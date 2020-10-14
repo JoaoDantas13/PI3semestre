@@ -35,18 +35,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Principal");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensIcones/pereirao.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pereirao.png"))); // NOI18N
         jLabel1.setText("Loja Pereirão");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Por favor selecione uma opção abaixo:"));
 
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensIcones/clients.png"))); // NOI18N
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clients.png"))); // NOI18N
         btnClientes.setText("Clientes  ");
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
-        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensIcones/product.png"))); // NOI18N
+        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/product.png"))); // NOI18N
         btnProdutos.setText("Produtos");
         btnProdutos.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensIcones/money.png"))); // NOI18N
+        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/money.png"))); // NOI18N
         btnVendas.setText("Vendas   ");
         btnVendas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
@@ -83,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensIcones/exit.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -120,15 +126,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        // TODO add your handling code here:
+        CadastroProduto produto = new CadastroProduto();
+        produto.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        CadastroCliente cliente = new CadastroCliente();        
+        cliente.setVisible(true);
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
      * @param args the command line arguments
