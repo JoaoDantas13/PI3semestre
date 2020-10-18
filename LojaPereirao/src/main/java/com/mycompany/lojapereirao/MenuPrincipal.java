@@ -64,6 +64,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/money.png"))); // NOI18N
         btnVendas.setText("Vendas   ");
         btnVendas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,6 +147,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         CadastroCliente cliente = new CadastroCliente();        
         cliente.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
+        Login loginVendedor  = new Login();
+        loginVendedor.setVisible(true);
+    }//GEN-LAST:event_btnVendasActionPerformed
 
     /**
      * @param args the command line arguments
