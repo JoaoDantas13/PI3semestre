@@ -52,6 +52,7 @@ public class Vendas extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Vendas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
