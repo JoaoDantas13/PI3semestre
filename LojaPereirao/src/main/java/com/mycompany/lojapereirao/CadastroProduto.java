@@ -5,6 +5,10 @@
  */
 package com.mycompany.lojapereirao;
 
+import java.awt.Color;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -33,15 +37,17 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNomeProduto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtQtdCaixa = new javax.swing.JTextField();
         cboUnidadeMedida = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        txtQtdCaixa = new javax.swing.JTextField();
+        txtSaldo = new javax.swing.JTextField();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lblCodigoProduto = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -60,6 +66,8 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         cboUnidadeMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "UND", "KG", "LT" }));
 
+        jLabel5.setText("Saldo:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,13 +80,18 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSaldo))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboUnidadeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtQtdCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboUnidadeMedida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtQtdCaixa))))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,7 +101,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtQtdCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -96,50 +109,88 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cboUnidadeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Básicos", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Dados Fiscais", jPanel2);
-
         btnIncluir.setText("Incluir");
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Código do Produto:");
+
+        jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Menu");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem1.setText("Incluir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setText("Alterar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem3.setText("Excluir");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem4.setText("Cancelar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -155,11 +206,13 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIncluir)
-                        .addGap(102, 102, 102)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAlterar)
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancelar))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -171,7 +224,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAlterar, btnCancelar, btnExcluir, btnIncluir});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAlterar, btnCancelar, btnExcluir, btnIncluir, jButton1});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +240,303 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(jButton1))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            ConsultaProduto consultaProd = new ConsultaProduto();
+            consultaProd.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        String texto = "";
+        int g=0;
+               
+        if(txtNomeProduto.getText().isEmpty()){
+            txtNomeProduto.setBackground(Color.red);
+            texto += "\n-Nome não inserido";
+            g++;
+        } else {
+            txtNomeProduto.setBackground(Color.white);
+        }
+        
+        if(txtQtdCaixa.getText().isEmpty()){
+            txtQtdCaixa.setBackground(Color.red);
+            texto += "\n-Quantidade por caixa não inserido";
+            g++;
+        } else {
+            txtQtdCaixa.setBackground(Color.white);
+            
+            try{
+                int qtdcaixa = Integer.parseInt(txtQtdCaixa.getText());
+                txtQtdCaixa.setBackground(Color.white);
+            } catch(Exception e){
+                txtQtdCaixa.setBackground(Color.red);
+                texto += "\n-Quantidade por caixa inválido";
+                g++;
+            } 
+        }
+        
+        if(cboUnidadeMedida.getSelectedIndex()==0){
+            cboUnidadeMedida.setBackground(Color.red);
+            texto += "\n-Unidade de medida não inserida";
+            g++;
+        } else {
+            cboUnidadeMedida.setBackground(Color.white);
+        }        
+
+        if(txtSaldo.getText().isEmpty()){
+            txtSaldo.setBackground(Color.red);
+            texto += "\n-Saldo não inserido";
+            g++;
+        } else {
+            txtSaldo.setBackground(Color.white);
+            
+            try{
+                int saldo = Integer.parseInt(txtSaldo.getText());
+                txtSaldo.setBackground(Color.white);
+            } catch(Exception e){
+                txtSaldo.setBackground(Color.red);
+                texto += "\n-Saldo inválido";
+                g++;
+            }
+        }
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+        }         
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        String texto = "";
+        int g=0;
+               
+        if(txtNomeProduto.getText().isEmpty()){
+            txtNomeProduto.setBackground(Color.red);
+            texto += "\n-Nome não inserido";
+            g++;
+        } else {
+            txtNomeProduto.setBackground(Color.white);
+        }
+        
+        if(txtQtdCaixa.getText().isEmpty()){
+            txtQtdCaixa.setBackground(Color.red);
+            texto += "\n-Quantidade por caixa não inserido";
+            g++;
+        } else {
+            txtQtdCaixa.setBackground(Color.white);
+            
+            try{
+                int qtdcaixa = Integer.parseInt(txtQtdCaixa.getText());
+                txtQtdCaixa.setBackground(Color.white);
+            } catch(Exception e){
+                txtQtdCaixa.setBackground(Color.red);
+                texto += "\n-Quantidade por caixa inválido";
+                g++;
+            } 
+        }
+        
+        if(cboUnidadeMedida.getSelectedIndex()==0){
+            cboUnidadeMedida.setBackground(Color.red);
+            texto += "\n-Unidade de medida não inserida";
+            g++;
+        } else {
+            cboUnidadeMedida.setBackground(Color.white);
+        }        
+
+        if(txtSaldo.getText().isEmpty()){
+            txtSaldo.setBackground(Color.red);
+            texto += "\n-Saldo não inserido";
+            g++;
+        } else {
+            txtSaldo.setBackground(Color.white);
+            
+            try{
+                int saldo = Integer.parseInt(txtSaldo.getText());
+                txtSaldo.setBackground(Color.white);
+            } catch(Exception e){
+                txtSaldo.setBackground(Color.red);
+                texto += "\n-Saldo inválido";
+                g++;
+            }
+        }
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Alteração Concluida com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+        }   
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        String texto = "";
+        int g=0;
+               
+        if(txtNomeProduto.getText().isEmpty()){
+            txtNomeProduto.setBackground(Color.red);
+            texto += "\n-Nome não inserido";
+            g++;
+        } else {
+            txtNomeProduto.setBackground(Color.white);
+        }
+        
+        if(txtQtdCaixa.getText().isEmpty()){
+            txtQtdCaixa.setBackground(Color.red);
+            texto += "\n-Quantidade por caixa não inserido";
+            g++;
+        } else {
+            txtQtdCaixa.setBackground(Color.white);
+            
+            try{
+                int qtdcaixa = Integer.parseInt(txtQtdCaixa.getText());
+                txtQtdCaixa.setBackground(Color.white);
+            } catch(Exception e){
+                txtQtdCaixa.setBackground(Color.red);
+                texto += "\n-Quantidade por caixa inválido";
+                g++;
+            } 
+        }
+        
+        if(cboUnidadeMedida.getSelectedIndex()==0){
+            cboUnidadeMedida.setBackground(Color.red);
+            texto += "\n-Unidade de medida não inserida";
+            g++;
+        } else {
+            cboUnidadeMedida.setBackground(Color.white);
+        }        
+
+        if(txtSaldo.getText().isEmpty()){
+            txtSaldo.setBackground(Color.red);
+            texto += "\n-Saldo não inserido";
+            g++;
+        } else {
+            txtSaldo.setBackground(Color.white);
+            
+            try{
+                int saldo = Integer.parseInt(txtSaldo.getText());
+                txtSaldo.setBackground(Color.white);
+            } catch(Exception e){
+                txtSaldo.setBackground(Color.red);
+                texto += "\n-Saldo inválido";
+                g++;
+            }
+        }
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+        }                 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        String texto = "";
+        int g=0;
+               
+        if(txtNomeProduto.getText().isEmpty()){
+            txtNomeProduto.setBackground(Color.red);
+            texto += "\n-Nome não inserido";
+            g++;
+        } else {
+            txtNomeProduto.setBackground(Color.white);
+        }
+        
+        if(txtQtdCaixa.getText().isEmpty()){
+            txtQtdCaixa.setBackground(Color.red);
+            texto += "\n-Quantidade por caixa não inserido";
+            g++;
+        } else {
+            txtQtdCaixa.setBackground(Color.white);
+            
+            try{
+                int qtdcaixa = Integer.parseInt(txtQtdCaixa.getText());
+                txtQtdCaixa.setBackground(Color.white);
+            } catch(Exception e){
+                txtQtdCaixa.setBackground(Color.red);
+                texto += "\n-Quantidade por caixa inválido";
+                g++;
+            } 
+        }
+        
+        if(cboUnidadeMedida.getSelectedIndex()==0){
+            cboUnidadeMedida.setBackground(Color.red);
+            texto += "\n-Unidade de medida não inserida";
+            g++;
+        } else {
+            cboUnidadeMedida.setBackground(Color.white);
+        }        
+
+        if(txtSaldo.getText().isEmpty()){
+            txtSaldo.setBackground(Color.red);
+            texto += "\n-Saldo não inserido";
+            g++;
+        } else {
+            txtSaldo.setBackground(Color.white);
+            
+            try{
+                int saldo = Integer.parseInt(txtSaldo.getText());
+                txtSaldo.setBackground(Color.white);
+            } catch(Exception e){
+                txtSaldo.setBackground(Color.red);
+                texto += "\n-Saldo inválido";
+                g++;
+            }
+        }
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Alteração Concluida com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+        }   
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeProduto.setText("");
+        txtQtdCaixa.setText("");
+        cboUnidadeMedida.setSelectedIndex(0);
+        txtSaldo.setText("");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,10 +579,12 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JComboBox<String> cboUnidadeMedida;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -247,10 +592,10 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblCodigoProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtQtdCaixa;
+    private javax.swing.JTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
 }
