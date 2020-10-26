@@ -5,6 +5,9 @@
  */
 package com.mycompany.lojapereirao;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -36,12 +39,12 @@ public class CadastroVendedor extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtNomeVendedor = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JFormattedTextField();
+        txtLoja = new javax.swing.JFormattedTextField();
+        txtSenha = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtConfirmSenha = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -71,13 +74,13 @@ public class CadastroVendedor extends javax.swing.JFrame {
         jLabel1.setText("Nome Vendedor:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+            txtLoja.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -97,13 +100,13 @@ public class CadastroVendedor extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtLoja, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtConfirmSenha, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,44 +115,64 @@ public class CadastroVendedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFormattedTextField1, jFormattedTextField2, jTextField1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCPF, txtLoja, txtNomeVendedor});
 
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Menu");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem1.setText("Cadastrar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem2.setText("Cancelar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -196,6 +219,192 @@ public class CadastroVendedor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String texto = "";
+        int g=0;
+
+                
+        if(txtNomeVendedor.getText().isEmpty()){
+            txtNomeVendedor.setBackground(Color.red);
+            texto += "-Nome do Vendedor não inserido";
+            g++;
+        } else {
+            txtNomeVendedor.setBackground(Color.white);
+        }
+        
+        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+            txtCPF.setBackground(Color.red);
+            texto += "\n-CPF não inserido";
+            g++;
+        } else {
+            txtCPF.setBackground(Color.white);
+        }
+        
+        if(txtLoja.getText().isEmpty()){
+            txtLoja.setBackground(Color.red);
+            texto += "\n-Número da loja não inserido";
+            g++;
+        } else {
+            txtLoja.setBackground(Color.white);
+            
+            try{
+                int loja = Integer.parseInt(txtLoja.getText());
+                txtLoja.setBackground(Color.white);
+            } catch(Exception e){
+                txtLoja.setBackground(Color.red);
+                texto += "\n-Número de loja inválido";
+                g++;
+            } 
+        }
+        
+        if(txtUsuario.getText().isEmpty()){
+            txtUsuario.setBackground(Color.red);
+            texto += "\n-Usuário não inserido";
+            g++;
+        } else {
+            txtUsuario.setBackground(Color.white);
+        }
+        
+        if(txtSenha.getText().isEmpty()){
+            txtSenha.setBackground(Color.red);
+            texto += "\n-Senha não inserida";
+            g++;
+        } else {
+            txtSenha.setBackground(Color.white);
+        }
+        
+        if(txtConfirmSenha.getText().isEmpty()){
+            txtConfirmSenha.setBackground(Color.red);
+            texto += "\n-Confirmação de Senha não inserida";
+            g++;
+        } else {
+            txtConfirmSenha.setBackground(Color.white);
+        }
+        
+        if(!txtConfirmSenha.getText().equals(txtSenha.getText())){
+            txtSenha.setBackground(Color.red);
+            txtConfirmSenha.setBackground(Color.red);
+            texto += "\n-As senhas não são iguais";
+            g++;
+        } else if(txtConfirmSenha.getText().isEmpty() && txtSenha.getText().isEmpty()) {
+            txtSenha.setBackground(Color.red);
+            txtConfirmSenha.setBackground(Color.red);
+        } else {
+            txtSenha.setBackground(Color.white);
+            txtConfirmSenha.setBackground(Color.white);
+        }
+        
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeVendedor.setText("");
+        txtCPF.setText("");
+        txtLoja.setText("");
+        txtUsuario.setText("");
+        txtSenha.setText("");
+        txtConfirmSenha.setText("");
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        String texto = "";
+        int g=0;
+
+                
+        if(txtNomeVendedor.getText().isEmpty()){
+            txtNomeVendedor.setBackground(Color.red);
+            texto += "-Nome do Vendedor não inserido";
+            g++;
+        } else {
+            txtNomeVendedor.setBackground(Color.white);
+        }
+        
+        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+            txtCPF.setBackground(Color.red);
+            texto += "\n-CPF não inserido";
+            g++;
+        } else {
+            txtCPF.setBackground(Color.white);
+        }
+        
+        if(txtLoja.getText().isEmpty()){
+            txtLoja.setBackground(Color.red);
+            texto += "\n-Número da loja não inserido";
+            g++;
+        } else {
+            txtLoja.setBackground(Color.white);
+            
+            try{
+                int loja = Integer.parseInt(txtLoja.getText());
+                txtLoja.setBackground(Color.white);
+            } catch(Exception e){
+                txtLoja.setBackground(Color.red);
+                texto += "\n-Número de loja inválido";
+                g++;
+            } 
+        }
+        
+        if(txtUsuario.getText().isEmpty()){
+            txtUsuario.setBackground(Color.red);
+            texto += "\n-Usuário não inserido";
+            g++;
+        } else {
+            txtUsuario.setBackground(Color.white);
+        }
+        
+        if(txtSenha.getText().isEmpty()){
+            txtSenha.setBackground(Color.red);
+            texto += "\n-Senha não inserida";
+            g++;
+        } else {
+            txtSenha.setBackground(Color.white);
+        }
+        
+        if(txtConfirmSenha.getText().isEmpty()){
+            txtConfirmSenha.setBackground(Color.red);
+            texto += "\n-Confirmação de Senha não inserida";
+            g++;
+        } else {
+            txtConfirmSenha.setBackground(Color.white);
+        }
+        
+        if(!txtConfirmSenha.getText().equals(txtSenha.getText())){
+            txtSenha.setBackground(Color.red);
+            txtConfirmSenha.setBackground(Color.red);
+            texto += "\n-As senhas não são iguais";
+            g++;
+        } else if(txtConfirmSenha.getText().isEmpty() && txtSenha.getText().isEmpty()) {
+            txtSenha.setBackground(Color.red);
+            txtConfirmSenha.setBackground(Color.red);
+        } else {
+            txtSenha.setBackground(Color.white);
+            txtConfirmSenha.setBackground(Color.white);
+        }
+        
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+        txtNomeVendedor.setText("");
+        txtCPF.setText("");
+        txtLoja.setText("");
+        txtUsuario.setText("");
+        txtSenha.setText("");
+        txtConfirmSenha.setText("");
+        } 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,8 +443,6 @@ public class CadastroVendedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -249,9 +456,11 @@ public class CadastroVendedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JFormattedTextField txtCPF;
+    private javax.swing.JTextField txtConfirmSenha;
+    private javax.swing.JFormattedTextField txtLoja;
+    private javax.swing.JTextField txtNomeVendedor;
+    private javax.swing.JTextField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

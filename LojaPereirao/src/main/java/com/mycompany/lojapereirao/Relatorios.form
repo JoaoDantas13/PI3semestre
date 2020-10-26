@@ -16,6 +16,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -91,7 +94,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="DataFinalSintetico" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <Component id="txtDataFinalSintetico" min="-2" pref="76" max="-2" attributes="0"/>
                                   <Component id="txtDataInicialSintetico" min="-2" pref="76" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -115,7 +118,7 @@
                               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="DataFinalSintetico" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtDataFinalSintetico" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -159,7 +162,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtDataInicialSintetico">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##/##/##" subtype="-1" type="5"/>
+                  <Format format="##/##/####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -168,10 +171,10 @@
                 <Property name="text" type="java.lang.String" value="Data Final:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="DataFinalSintetico">
+            <Component class="javax.swing.JFormattedTextField" name="txtDataFinalSintetico">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##/##/##" subtype="-1" type="5"/>
+                  <Format format="##/##/####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -179,6 +182,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarSinteticoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -203,7 +209,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtCodCliente" min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="txtCodCli" min="-2" pref="39" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -255,7 +261,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCodCli" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtCodProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -326,7 +332,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodVendedor">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtCodCliente">
+            <Component class="javax.swing.JTextField" name="txtCodCli">
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodProduto">
             </Component>
@@ -341,6 +347,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarAnaliticoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

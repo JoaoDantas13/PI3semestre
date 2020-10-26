@@ -9,6 +9,17 @@ package com.mycompany.lojapereirao;
  *
  * @author Eduardo
  */
+
+import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Relatorios extends javax.swing.JFrame {
 
     /**
@@ -34,7 +45,7 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtDataInicialSintetico = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        DataFinalSintetico = new javax.swing.JFormattedTextField();
+        txtDataFinalSintetico = new javax.swing.JFormattedTextField();
         btnPesquisarSintetico = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -46,7 +57,7 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCodVenda = new javax.swing.JTextField();
         txtCodVendedor = new javax.swing.JTextField();
-        txtCodCliente = new javax.swing.JTextField();
+        txtCodCli = new javax.swing.JTextField();
         txtCodProduto = new javax.swing.JTextField();
         txtDataVendaAnalitico = new javax.swing.JFormattedTextField();
         btnPesquisarAnalitico = new javax.swing.JButton();
@@ -78,7 +89,7 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel1.setText("Data Inical:");
 
         try {
-            txtDataInicialSintetico.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            txtDataInicialSintetico.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -86,12 +97,17 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel2.setText("Data Final:");
 
         try {
-            DataFinalSintetico.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            txtDataFinalSintetico.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         btnPesquisarSintetico.setText("Pesquisar");
+        btnPesquisarSintetico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarSinteticoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,7 +123,7 @@ public class Relatorios extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DataFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDataFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDataInicialSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPesquisarSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -125,7 +141,7 @@ public class Relatorios extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(DataFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtDataFinalSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnPesquisarSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -171,6 +187,11 @@ public class Relatorios extends javax.swing.JFrame {
         }
 
         btnPesquisarAnalitico.setText("Pesquisar");
+        btnPesquisarAnalitico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarAnaliticoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,7 +206,7 @@ public class Relatorios extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
@@ -226,7 +247,7 @@ public class Relatorios extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(txtCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -242,6 +263,11 @@ public class Relatorios extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem1.setText("Sair");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -268,6 +294,192 @@ public class Relatorios extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisarSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSinteticoActionPerformed
+        String texto = "";
+        int g=0;
+        int h=0;                
+        
+        if(txtDataInicialSintetico.getText().replaceAll("\\D", "").isEmpty()){
+            txtDataInicialSintetico.setBackground(Color.red);
+            texto += "\n-Data Inicial não inserida";
+            g++;
+        } else {
+            txtDataInicialSintetico.setBackground(Color.white);
+        }
+        
+        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+        df.setLenient(false);
+        try{
+            df.parse(txtDataInicialSintetico.getText());
+        }catch(ParseException ex){
+            h=1;
+        }
+
+        if(h==1){
+            txtDataInicialSintetico.setBackground(Color.red);
+            texto += "\n-Data Inicial inválida";
+            g++;
+        }
+
+        
+        if(txtDataFinalSintetico.getText().replaceAll("\\D", "").isEmpty()){
+            txtDataFinalSintetico.setBackground(Color.red);
+            texto += "\n-Data Final não inserida";
+            g++;
+        } else {
+            txtDataFinalSintetico.setBackground(Color.white);
+        }        
+        try{
+            df.parse(txtDataFinalSintetico.getText());
+        }catch(ParseException ex){
+            h=1;
+        }
+
+        if(h==1){
+            txtDataFinalSintetico.setBackground(Color.red);
+            texto += "\n-Data Final inválida";
+            g++;
+        }
+        
+        try {
+            Date data1 = new Date(df.parse(txtDataFinalSintetico.getText()).getTime());
+            Date data2 = new Date(df.parse(txtDataInicialSintetico.getText()).getTime());
+            if(data1.before(data2)){
+                texto += "\n-Data inical superior a data final!";
+                g++;
+        }
+
+        } catch (ParseException ex) {
+            Logger.getLogger(Relatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+        String dateinicial = txtDataInicialSintetico.getText();
+        String datefinal = txtDataFinalSintetico.getText();
+            
+        DefaultTableModel model = (DefaultTableModel) tblSintetico.getModel();
+        model.setNumRows(0);
+        model.addRow(new Object[] {dateinicial, datefinal});    
+            
+        txtDataInicialSintetico.setText("");
+        txtDataFinalSintetico.setText("");
+        }         
+        
+        
+    }//GEN-LAST:event_btnPesquisarSinteticoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnPesquisarAnaliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAnaliticoActionPerformed
+        
+        
+        
+        String texto = "";
+        int g=0;
+        int h=0;        
+        
+        
+       
+        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+        df.setLenient(false);
+        try{
+            df.parse(txtDataVendaAnalitico.getText());
+        }catch(ParseException ex){
+            if(txtDataVendaAnalitico.getText().replaceAll("\\D", "").isEmpty()){
+                txtDataVendaAnalitico.setBackground(Color.WHITE);
+            } else{    
+            h=1;
+            }
+        }
+
+        if(h==1){
+            txtDataVendaAnalitico.setBackground(Color.red);
+            texto += "\n-Data inválida";
+            g++;
+        }
+        
+
+                    
+        try{
+            int codcli = Integer.parseInt(txtCodCli.getText());
+            txtCodCli.setBackground(Color.white);
+        } catch(Exception e){
+            if(txtCodCli.getText().isEmpty()){
+                txtCodCli.setBackground(Color.WHITE);
+            } else {   
+            txtCodCli.setBackground(Color.red);
+            texto += "\n-Código de Cliente inválido";
+            g++;
+            }
+        } 
+        
+
+        
+        try{
+            int codvend = Integer.parseInt(txtCodVenda.getText());
+            txtCodVenda.setBackground(Color.white);
+        } catch(Exception e){
+            if(txtCodVenda.getText().isEmpty()){
+                txtCodVenda.setBackground(Color.WHITE);
+            } else {   
+            txtCodVenda.setBackground(Color.red);
+            texto += "\n-Código de Venda inválido";
+            g++;
+            }
+        } 
+        
+        try{
+            int codprod = Integer.parseInt(txtCodProduto.getText());
+            txtCodProduto.setBackground(Color.white);
+        } catch(Exception e){
+            if(txtCodProduto.getText().isEmpty()){
+                txtCodProduto.setBackground(Color.WHITE);
+            } else {   
+            txtCodProduto.setBackground(Color.red);
+            texto += "\n-Código do Produto inválido";
+            g++;
+            }
+        } 
+        
+        try{
+            int codvendedor = Integer.parseInt(txtCodVendedor.getText());
+            txtCodVendedor.setBackground(Color.white);
+        } catch(Exception e){
+            if(txtCodVendedor.getText().isEmpty()){
+                txtCodVendedor.setBackground(Color.WHITE);
+            } else {   
+            txtCodVendedor.setBackground(Color.red);
+            texto += "\n-Código do Vendedor inválido";
+            g++;
+            }
+        } 
+        
+        if(g>0){
+        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+        String date = txtDataVendaAnalitico.getText();
+        String codcli = txtCodCli.getText();
+        String codvenda = txtCodVenda.getText();
+        String codprod = txtCodProduto.getText();
+        String codvendedor = txtCodVendedor.getText();
+            
+        DefaultTableModel model = (DefaultTableModel) tblAnalitico.getModel();
+        model.setNumRows(0);
+        model.addRow(new Object[] {date, codvenda, codvendedor, codcli, codprod});    
+            
+        txtDataVendaAnalitico.setText("");
+        txtCodCli.setText("");
+        }                           
+        
+    }//GEN-LAST:event_btnPesquisarAnaliticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,7 +517,6 @@ public class Relatorios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField DataFinalSintetico;
     private javax.swing.JButton btnPesquisarAnalitico;
     private javax.swing.JButton btnPesquisarSintetico;
     private javax.swing.JLabel jLabel1;
@@ -325,10 +536,11 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblAnalitico;
     private javax.swing.JTable tblSintetico;
-    private javax.swing.JTextField txtCodCliente;
+    private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodProduto;
     private javax.swing.JTextField txtCodVenda;
     private javax.swing.JTextField txtCodVendedor;
+    private javax.swing.JFormattedTextField txtDataFinalSintetico;
     private javax.swing.JFormattedTextField txtDataInicialSintetico;
     private javax.swing.JFormattedTextField txtDataVendaAnalitico;
     // End of variables declaration//GEN-END:variables
