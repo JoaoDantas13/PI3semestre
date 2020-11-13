@@ -41,6 +41,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtQtdCaixa = new javax.swing.JTextField();
         txtSaldo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -68,6 +70,14 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         jLabel5.setText("Saldo:");
 
+        jLabel6.setText("Valor:");
+
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,6 +91,10 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtValor))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
@@ -113,7 +127,11 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados Básicos", jPanel1);
@@ -234,8 +252,8 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(lblCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
@@ -308,6 +326,23 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         }
         
+        if(txtValor.getText().isEmpty()){
+            txtValor.setBackground(Color.red);
+            texto += "\n-Valor não inserido";
+            g++;
+        } else {
+            txtValor.setBackground(Color.white);
+            
+            try{
+                double valor = Double.valueOf(txtValor.getText());
+                txtValor.setBackground(Color.white);
+            } catch(Exception e){
+                txtValor.setBackground(Color.red);
+                texto += "\n-Valor inválido";
+                g++;
+            }
+        }
+        
         if(g>0){
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -316,6 +351,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        txtValor.setText("");
         }         
     }//GEN-LAST:event_btnIncluirActionPerformed
 
@@ -538,6 +574,10 @@ public class CadastroProduto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -585,6 +625,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -597,5 +638,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtQtdCaixa;
     private javax.swing.JTextField txtSaldo;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

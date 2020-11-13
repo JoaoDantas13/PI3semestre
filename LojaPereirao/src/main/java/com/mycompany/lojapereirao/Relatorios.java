@@ -47,6 +47,8 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtDataFinalSintetico = new javax.swing.JFormattedTextField();
         btnPesquisarSintetico = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtVendaTotal = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAnalitico = new javax.swing.JTable();
@@ -57,10 +59,10 @@ public class Relatorios extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCodVenda = new javax.swing.JTextField();
         txtCodVendedor = new javax.swing.JTextField();
-        txtCodCli = new javax.swing.JTextField();
         txtCodProduto = new javax.swing.JTextField();
         txtDataVendaAnalitico = new javax.swing.JFormattedTextField();
         btnPesquisarAnalitico = new javax.swing.JButton();
+        txtCPF = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -73,11 +75,11 @@ public class Relatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data Incial", "Data Final", "Total de Vendas"
+                "CPF Cliente", "Data Incial", "Data Final", "Total de Vendas"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -109,10 +111,18 @@ public class Relatorios extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Venda Total:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -147,7 +157,11 @@ public class Relatorios extends javax.swing.JFrame {
                         .addComponent(btnPesquisarSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtVendaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sintético", jPanel1);
@@ -157,11 +171,11 @@ public class Relatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data Venda", "Cod. Venda", "Cod. Vendedor", "Cod. Cliente", "Cod. Produto", "Desc. Produto", "Quantidade", "Valor Total"
+                "Data Venda", "CPF Cliente", "Cod. Produto", "Desc. Produto", "Quantidade", "Valor Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +186,7 @@ public class Relatorios extends javax.swing.JFrame {
 
         jLabel3.setText("Data Venda:");
 
-        jLabel4.setText("Cod. Cliente:");
+        jLabel4.setText("CPF Cliente:");
 
         jLabel5.setText("Cod. Venda:");
 
@@ -193,6 +207,12 @@ public class Relatorios extends javax.swing.JFrame {
             }
         });
 
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -202,29 +222,28 @@ public class Relatorios extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtDataVendaAnalitico, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtDataVendaAnalitico, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCPF)))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel6))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(130, 130, 130))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(27, 27, 27)
-                                .addComponent(txtCodVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)))
+                                .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addComponent(txtCodVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPesquisarAnalitico, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -247,8 +266,8 @@ public class Relatorios extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnPesquisarAnalitico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -256,6 +275,8 @@ public class Relatorios extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCPF, txtCodProduto});
 
         jTabbedPane1.addTab("Analítico", jPanel2);
 
@@ -403,23 +424,10 @@ public class Relatorios extends javax.swing.JFrame {
             txtDataVendaAnalitico.setBackground(Color.red);
             texto += "\n-Data inválida";
             g++;
+        } else {
+            txtDataVendaAnalitico.setBackground(Color.white);
         }
-        
-
-                    
-        try{
-            int codcli = Integer.parseInt(txtCodCli.getText());
-            txtCodCli.setBackground(Color.white);
-        } catch(Exception e){
-            if(txtCodCli.getText().isEmpty()){
-                txtCodCli.setBackground(Color.WHITE);
-            } else {   
-            txtCodCli.setBackground(Color.red);
-            texto += "\n-Código de Cliente inválido";
-            g++;
-            }
-        } 
-        
+           
 
         
         try{
@@ -465,18 +473,21 @@ public class Relatorios extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
 
-        String date = txtDataVendaAnalitico.getText();
-        String codcli = txtCodCli.getText();
-        String codvenda = txtCodVenda.getText();
-        String codprod = txtCodProduto.getText();
-        String codvendedor = txtCodVendedor.getText();
+//        String date = txtDataVendaAnalitico.getText();
+//        String codcli = txtCodCli.getText();
+//        String codvenda = txtCodVenda.getText();
+//        String codprod = txtCodProduto.getText();
+//        String codvendedor = txtCodVendedor.getText();
             
-        DefaultTableModel model = (DefaultTableModel) tblAnalitico.getModel();
-        model.setNumRows(0);
-        model.addRow(new Object[] {date, codvenda, codvendedor, codcli, codprod});    
+//        DefaultTableModel model = (DefaultTableModel) tblAnalitico.getModel();
+//        model.setNumRows(0);
+//        model.addRow(new Object[] {date, codvenda, codvendedor, codcli, codprod});    
             
         txtDataVendaAnalitico.setText("");
-        txtCodCli.setText("");
+        txtCPF.setText("");
+        txtCodProduto.setText("");
+        txtCodVenda.setText("");
+        txtCodVendedor.setText("");
         }                           
         
     }//GEN-LAST:event_btnPesquisarAnaliticoActionPerformed
@@ -526,6 +537,7 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -536,12 +548,13 @@ public class Relatorios extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblAnalitico;
     private javax.swing.JTable tblSintetico;
-    private javax.swing.JTextField txtCodCli;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodProduto;
     private javax.swing.JTextField txtCodVenda;
     private javax.swing.JTextField txtCodVendedor;
     private javax.swing.JFormattedTextField txtDataFinalSintetico;
     private javax.swing.JFormattedTextField txtDataInicialSintetico;
     private javax.swing.JFormattedTextField txtDataVendaAnalitico;
+    private javax.swing.JTextField txtVendaTotal;
     // End of variables declaration//GEN-END:variables
 }

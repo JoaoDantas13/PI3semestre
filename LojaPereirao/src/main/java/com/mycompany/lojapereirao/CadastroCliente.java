@@ -141,7 +141,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGroup(pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtDataNacimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pnlAbasClientes.addTab("Dados Pessoais", pnlDadosPessoais);
@@ -221,7 +221,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         pnlContatosLayout.setVerticalGroup(
             pnlContatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContatosLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(22, 22, 22)
                 .addGroup(pnlContatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,7 +233,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGroup(pnlContatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cboUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(pnlContatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,7 +249,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGroup(pnlContatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pnlAbasClientes.addTab("Contatos", pnlContatos);
@@ -375,8 +375,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(lblCodigoCliente))
                 .addGap(2, 2, 2)
-                .addComponent(pnlAbasClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(pnlAbasClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIncluir)
                     .addComponent(btnExcluir)
@@ -463,6 +463,15 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setBackground(Color.white);
         }
         
+        if(txtEmail.getText().isEmpty()){
+            txtEmail.setBackground(Color.red);
+            texto += "\n-E-mail não inserido";
+            g++;
+        } else {
+            txtEmail.setBackground(Color.white);
+        }
+
+        
         if(g>0){
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -548,6 +557,14 @@ public class CadastroCliente extends javax.swing.JFrame {
             g++;
         } else {
             txtTelefone.setBackground(Color.white);
+        }
+        
+        if(txtEmail.getText().replaceAll("\\D", "").isEmpty()){
+            txtEmail.setBackground(Color.red);
+            texto += "\n-E-mail não inserido";
+            g++;
+        } else {
+            txtEmail.setBackground(Color.white);
         }
         
         if(g>0){
