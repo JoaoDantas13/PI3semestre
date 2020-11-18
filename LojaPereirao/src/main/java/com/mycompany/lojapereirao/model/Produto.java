@@ -1,4 +1,4 @@
-package com.mycompany.lojapereirao;
+package com.mycompany.lojapereirao.model;
 
 //nome do projeto
 public class Produto {
@@ -10,6 +10,7 @@ public class Produto {
     private int qtdCaixa;
     private String undMedida;
     private int saldo;
+    private double valor;
     
 //Construtor
     
@@ -57,6 +58,14 @@ public Produto (){
 
     public void setSaldo(int saldo) {
         this.saldo = saldo;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
 

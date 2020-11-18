@@ -1,4 +1,4 @@
-package com.mycompany.lojapereirao;
+package com.mycompany.lojapereirao.model;
 
 //nome do projeto
 public class Vendedor {

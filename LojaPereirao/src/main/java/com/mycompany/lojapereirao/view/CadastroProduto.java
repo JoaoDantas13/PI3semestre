@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.lojapereirao;
+package com.mycompany.lojapereirao.view;
 
+import com.mycompany.lojapereirao.controller.ProdutoController;
 import java.awt.Color;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
@@ -346,13 +347,31 @@ public class CadastroProduto extends javax.swing.JFrame {
         if(g>0){
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNomeProduto.getText();
+            int qtdCaixa = Integer.parseInt(this.txtQtdCaixa.getText());
+            String undMedida = String.valueOf(this.cboUnidadeMedida.getSelectedItem());
+            int saldo = Integer.parseInt(this.txtSaldo.getText());
+            double valor = Double.parseDouble(this.txtValor.getText());
+
+        
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ProdutoController.Salvar(nome,qtdCaixa,undMedida,saldo,valor);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Cadastro realizado",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha no cadastro do Produtol!","Falha",JOptionPane.ERROR_MESSAGE);
+            }
+ 
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
         txtValor.setText("");
-        }         
+        }
+               
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed

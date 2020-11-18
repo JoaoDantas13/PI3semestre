@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.lojapereirao;
+package com.mycompany.lojapereirao.view;
 
+import com.mycompany.lojapereirao.view.CadastroCliente;
+import com.mycompany.lojapereirao.view.CadastroProduto;
+import com.mycompany.lojapereirao.view.Login;
+import com.mycompany.lojapereirao.view.Relatorios;
 import javax.swing.SwingConstants;
 
 /**
