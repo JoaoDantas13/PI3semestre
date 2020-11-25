@@ -5,7 +5,7 @@ public class Produto {
     
 //Atributos
 
-    private static int codProd;
+    private int codProd;
     private String nome;
     private int qtdCaixa;
     private String undMedida;
@@ -20,12 +20,12 @@ public Produto (){
 
 //Metodos acessores
 
-    public static int getCodProd() {
+    public int getCodProd() {
         return codProd;
     }
 
-    public static void setCodProd(int codProd) {
-        Produto.codProd = codProd;
+    public void setCodProd(int codProd) {
+        this.codProd = codProd;
     }
 
     public String getNome() {

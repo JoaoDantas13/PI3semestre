@@ -2,6 +2,7 @@ package com.mycompany.lojapereirao.controller;
 
 import com.mycompany.lojapereirao.dao.ProdutoDao;
 import com.mycompany.lojapereirao.model.Produto;
+import java.util.ArrayList;
 
 
 public class ProdutoController {
@@ -15,5 +16,36 @@ public class ProdutoController {
         obj.setValor(valor);
         
         return ProdutoDao.Salvar(obj);
+    }
+    
+        public static boolean Alterar(String nomeProduto, int qtdCaixa, String undMedida, int saldo, double valor, int codprod){
+        Produto obj = new Produto();
+        obj.setNome(nomeProduto);
+        obj.setQtdCaixa(qtdCaixa);
+        obj.setUndMedida(undMedida);
+        obj.setSaldo(saldo);
+        obj.setValor(valor);
+        obj.setCodProd(codprod);
+        
+        return ProdutoDao.Alterar(obj);
+    }
+        
+    public static ArrayList<String []> Listar(){
+        
+        ArrayList<Produto> listaProdutos = ProdutoDao.Listar();
+        
+        ArrayList<String []> listaRetorno = new ArrayList<>();
+        
+        for(Produto prod : listaProdutos){
+            listaRetorno.add(new String[]{String.valueOf(prod.getCodProd()) 
+                                        ,String.valueOf(prod.getNome())
+                                        ,String.valueOf(prod.getQtdCaixa())
+                                        ,String.valueOf(prod.getUndMedida())
+                                        ,String.valueOf(prod.getSaldo())
+                                        ,String.valueOf(prod.getValor())
+            });
+        }    
+        
+        return listaRetorno;
     }
 }

@@ -431,7 +431,25 @@ public class CadastroProduto extends javax.swing.JFrame {
         if(g>0){
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Alteração Concluida com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNomeProduto.getText();
+            int qtdCaixa = Integer.parseInt(this.txtQtdCaixa.getText());
+            String undMedida = String.valueOf(this.cboUnidadeMedida.getSelectedItem());
+            int saldo = Integer.parseInt(this.txtSaldo.getText());
+            double valor = Double.parseDouble(this.txtValor.getText());
+            int codprod = Integer.parseInt(this.lblCodigoProduto.getText());
+
+        
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ProdutoController.Alterar(nome,qtdCaixa,undMedida,saldo,valor,codprod);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(null, "Alteração Concluída com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na alteração do Produto!","Falha",JOptionPane.ERROR_MESSAGE);
+            }
+        
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
