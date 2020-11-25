@@ -5,7 +5,10 @@
  */
 package com.mycompany.lojapereirao.view;
 
+import com.mycompany.lojapereirao.controller.ProdutoController;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -132,12 +135,30 @@ public class ConsultaProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void listarProdutos(){
+        
+        ArrayList<String []> listaProdutos = new ProdutoController.Listar();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        
+        modelo.setRowCount(0);
+        
+        for(String[] listaProduto : listaProdutos){
+            modelo.addRow(listaProduto);
+        }    
+    }
+    
     private void btnPesquisarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdActionPerformed
       
         try{
-            int codProd = Integer.parseInt(txtCodProd.getText());
+            if(!txtCodProd.getText().isEmpty()){
+                int codprod = Integer.parseInt(txtCodProd.getText());
+                listarProdutos();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código de Produto Inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtCodProd.setText("");
         }
         
     }//GEN-LAST:event_btnPesquisarProdActionPerformed
