@@ -48,4 +48,42 @@ public class ProdutoController {
         
         return listaRetorno;
     }
+    
+        public static ArrayList<String []> Listar(int codprod){
+        
+        ArrayList<Produto> listaProdutos = ProdutoDao.Listar(codprod);
+        
+        ArrayList<String []> listaRetorno = new ArrayList<>();
+        
+        for(Produto prod : listaProdutos){
+            listaRetorno.add(new String[]{String.valueOf(prod.getCodProd()) 
+                                        ,String.valueOf(prod.getNome())
+                                        ,String.valueOf(prod.getQtdCaixa())
+                                        ,String.valueOf(prod.getUndMedida())
+                                        ,String.valueOf(prod.getSaldo())
+                                        ,String.valueOf(prod.getValor())
+            });
+        }    
+        
+        return listaRetorno;
+    }
+        
+        public static String[] consultarPorID(int codprod){
+            
+           Produto objRetorno = ProdutoDao.consultarPorID(codprod);
+           String[] retorno = null;
+           
+            if (objRetorno != null) {
+                
+                retorno = new String[]{String.valueOf (objRetorno.getCodProd())
+                                       ,String.valueOf(objRetorno.getNome())
+                                       ,String.valueOf(objRetorno.getQtdCaixa())
+                                       ,String.valueOf(objRetorno.getUndMedida())
+                                       ,String.valueOf(objRetorno.getSaldo())
+                                       ,String.valueOf(objRetorno.getValor())
+                };
+            }
+            
+            return retorno;
+        }
 }

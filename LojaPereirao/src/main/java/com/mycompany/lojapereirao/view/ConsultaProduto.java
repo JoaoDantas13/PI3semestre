@@ -6,6 +6,8 @@
 package com.mycompany.lojapereirao.view;
 
 import com.mycompany.lojapereirao.controller.ProdutoController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,9 +35,7 @@ public class ConsultaProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         txtCodProd = new javax.swing.JTextField();
-        txtNome = new javax.swing.JTextField();
         btnPesquisarProd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,8 +43,6 @@ public class ConsultaProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta Produto");
-
-        jLabel2.setText("Nome:");
 
         btnPesquisarProd.setText("Pesquisar");
         btnPesquisarProd.addActionListener(new java.awt.event.ActionListener() {
@@ -61,14 +59,10 @@ public class ConsultaProduto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(btnPesquisarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -76,17 +70,10 @@ public class ConsultaProduto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnPesquisarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -95,11 +82,11 @@ public class ConsultaProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Qtd Caixa", "Und Medida"
+                "Código Produto", "Nome", "Qtd Caixa", "Und Medida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -135,32 +122,65 @@ public class ConsultaProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void listarProdutos(){
-        
-        ArrayList<String []> listaProdutos = new ProdutoController.Listar();
-        
+    public void listarProdutos() {
+
+        ArrayList<String[]> listaProdutos = ProdutoController.Listar();
+
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) jTable1.getModel();
-        
+
         modelo.setRowCount(0);
-        
-        for(String[] listaProduto : listaProdutos){
+
+        for (String[] listaProduto : listaProdutos) {
             modelo.addRow(listaProduto);
-        }    
+        }
     }
-    
+
+    public void listarProdutos(int codprod) {
+
+        ArrayList<String[]> listaProdutos = ProdutoController.Listar(codprod);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) jTable1.getModel();
+
+        modelo.setRowCount(0);
+
+        for (String[] listaProduto : listaProdutos) {
+            modelo.addRow(listaProduto);
+        }
+    }
+
+
     private void btnPesquisarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdActionPerformed
-      
-        try{
-            if(!txtCodProd.getText().isEmpty()){
-                int codprod = Integer.parseInt(txtCodProd.getText());
+
+        try {
+            if (txtCodProd.getText().isEmpty()) {
                 listarProdutos();
+
+                jTable1.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            System.out.println("duplo-clique detectado");
+                            int linhaSelecionada = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                            System.out.println(linhaSelecionada);
+                            
+                            CadastroProduto dados = new CadastroProduto(linhaSelecionada);
+                            
+                            dispose();
+                        }
+                    }
+                });
+
+            } else {
+                int codprod = Integer.parseInt(txtCodProd.getText());
+                listarProdutos(codprod);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código de Produto Inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtCodProd.setText("");
         }
-        
+
+
     }//GEN-LAST:event_btnPesquisarProdActionPerformed
 
     /**
@@ -201,11 +221,9 @@ public class ConsultaProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisarProd;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCodProd;
-    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

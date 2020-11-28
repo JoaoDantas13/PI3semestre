@@ -22,6 +22,12 @@ public class CadastroProduto extends javax.swing.JFrame {
     public CadastroProduto() {
         initComponents();
     }
+    
+    public CadastroProduto(int codprod){
+        
+        preencherProduto(codprod);
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -677,4 +683,16 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
+
+private void preencherProduto(int codprod){
+    
+   String[] retorno = ProdutoController.consultarPorID(codprod);
+   lblCodigoProduto.setText(retorno[0]);
+   txtNomeProduto.setText(retorno[1]);
+   txtQtdCaixa.setText(retorno[2]);
+   cboUnidadeMedida.setSelectedItem(retorno[3]);
+   txtSaldo.setText(retorno[4]);
+   txtValor.setText(retorno[5]);
+}
+
 }
