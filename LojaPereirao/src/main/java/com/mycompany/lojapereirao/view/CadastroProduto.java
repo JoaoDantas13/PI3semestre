@@ -16,15 +16,23 @@ import javax.swing.JOptionPane;
  */
 public class CadastroProduto extends javax.swing.JFrame {
 
+    String modoTela = "Criar";
+    int codproduto = 0;
+    
+    
     /**
      * Creates new form CadastroProduto
      */
     public CadastroProduto() {
+        
         initComponents();
+        
     }
     
     public CadastroProduto(int codprod){
         
+        modoTela = "Busca";
+        initComponents();
         preencherProduto(codprod);
     
     }
@@ -277,6 +285,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             ConsultaProduto consultaProd = new ConsultaProduto();
             consultaProd.setVisible(true);
+            dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
@@ -460,6 +469,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        txtValor.setText("");
         }   
     }//GEN-LAST:event_btnAlterarActionPerformed
 

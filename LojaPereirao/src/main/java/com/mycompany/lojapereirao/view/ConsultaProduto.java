@@ -160,11 +160,10 @@ public class ConsultaProduto extends javax.swing.JFrame {
                 jTable1.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
                         if (e.getClickCount() == 2) {
-                            System.out.println("duplo-clique detectado");
                             int linhaSelecionada = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-                            System.out.println(linhaSelecionada);
                             
-                            CadastroProduto dados = new CadastroProduto(linhaSelecionada);
+                            CadastroProduto telaCadastroProduto = new CadastroProduto(linhaSelecionada);
+                            telaCadastroProduto.setVisible(true);
                             
                             dispose();
                         }
