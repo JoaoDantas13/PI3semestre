@@ -290,4 +290,18 @@ public class ProdutoDao {
         }
         return retorno;
     }
+    
+    public static boolean Excluir(int codprod) {
+
+        boolean retorno = false;
+        String nomeBaseDados = "lojapereirao";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String LOGIN = "root";
+        String SENHA = "";
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        
+        
+    }
 }

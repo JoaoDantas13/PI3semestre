@@ -474,11 +474,19 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        int codProd = Integer.parseInt(lblCodigoProduto.getText());
+
+        if(lblCodigoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else{
+            
         JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
