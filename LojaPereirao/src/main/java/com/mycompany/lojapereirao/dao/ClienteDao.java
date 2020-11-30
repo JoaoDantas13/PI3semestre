@@ -6,8 +6,10 @@ import com.mycompany.lojapereirao.model.Produto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class ClienteDao {
@@ -16,7 +18,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -69,5 +71,65 @@ public class ClienteDao {
         return retorno;
 
     }
+       
+       
+    public static ArrayList<Cliente> Listar() {
+
+        boolean retorno = false;
+        String nomeBaseDados = "lojapereirao";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String LOGIN = "root";
+        String SENHA = "";
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ResultSet rs = null;
+
+        try {
+            //1- Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2- Abrir Conexão
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+            instrucaoSQL = conexao.prepareStatement(
+                    "SELECT * FROM cliente;");
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                Cliente cli = new Cliente();
+                cli.setCodCli(rs.getInt("codcli"));
+                cli.setNome(rs.getString("nome"));
+                cli.setCpf(rs.getLong("cpf"));
+      //          cli.setSexo(rs.getString("sexo"));
+                cli.setDataNasc(rs.getString("dataNasc"));
+                cli.setLogradouro(rs.getString("logradouro"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setUf(rs.getString("uf"));
+                cli.setTelefone(rs.getInt("telefone"));
+                cli.setCelular(rs.getLong("logradouro"));
+                cli.setEmail(rs.getString("email"));
+
+                listaClientes.add(cli);
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            listaClientes = null;
+        } finally {
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+
+                    if (conexao != null) {
+                        conexao.close();
+                    }
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return listaClientes;
+    }       
     
 }

@@ -5,7 +5,13 @@
  */
 package com.mycompany.lojapereirao.view;
 
+import com.mycompany.lojapereirao.controller.ClienteController;
+import com.mycompany.lojapereirao.controller.ProdutoController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,7 +42,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         btnPesquisaCli = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNomeCli = new javax.swing.JTextField();
-        txtCodCli = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta Cliente");
@@ -68,7 +74,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Cod. Cliente:");
+        jLabel1.setText("CPF:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +88,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNomeCli, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(txtCodCli))
+                    .addComponent(txtCpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnPesquisaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -96,7 +102,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -132,10 +138,44 @@ public class ConsultaCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void listarClientes() {
+
+        ArrayList<String[]> listaClientes = ClienteController.Listar();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) tblPesquisaCli.getModel();
+
+        modelo.setRowCount(0);
+
+        for (String[] listaCliente : listaClientes) {
+            modelo.addRow(listaCliente);
+        }
+    }
+      
+    
     private void btnPesquisaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaCliActionPerformed
         
+        if(txtCpf.getText().isEmpty() && txtNomeCli.getText().isEmpty()){
+            
+                listarClientes();
+
+                tblPesquisaCli.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            int linhaSelecionada = Integer.parseInt(tblPesquisaCli.getValueAt(tblPesquisaCli.getSelectedRow(), 0).toString());
+                            
+                            CadastroProduto telaCadastroProduto = new CadastroProduto(linhaSelecionada);
+                            telaCadastroProduto.setVisible(true);
+                            
+                            dispose();
+                        }
+                    }
+                });
+            
+        }
+        
         try{
-            int codProd = Integer.parseInt(txtCodCli.getText());
+            long cpf = Long.parseLong(txtCpf.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código de Cliente Inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
@@ -184,7 +224,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPesquisaCli;
-    private javax.swing.JTextField txtCodCli;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtNomeCli;
     // End of variables declaration//GEN-END:variables
 }
