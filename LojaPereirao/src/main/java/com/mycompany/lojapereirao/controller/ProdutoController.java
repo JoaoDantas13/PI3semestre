@@ -86,4 +86,9 @@ public class ProdutoController {
             
             return retorno;
         }
+        
+        public static boolean Excluir(int codprod){
+            
+            return ProdutoDao.Excluir(codprod);
+        }
 }

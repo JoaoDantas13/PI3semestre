@@ -360,8 +360,10 @@ public class CadastroProduto extends javax.swing.JFrame {
         }
         
         if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
-        } else {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if(!lblCodigoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Este item já foi cadastrado", "Aviso", JOptionPane.WARNING_MESSAGE);            
+        }else {
             
             //Converto o valor digitado no número da nota para Inteiro
             String nome = this.txtNomeProduto.getText();
@@ -481,11 +483,20 @@ public class CadastroProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
         } else{
             
-        JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            boolean retorno = ProdutoController.Excluir(codProd);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do Produto!","Falha",JOptionPane.ERROR_MESSAGE);
+            }    
+            
+        
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        txtValor.setText("");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

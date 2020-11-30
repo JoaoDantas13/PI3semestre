@@ -173,6 +173,18 @@ public class ConsultaProduto extends javax.swing.JFrame {
             } else {
                 int codprod = Integer.parseInt(txtCodProd.getText());
                 listarProdutos(codprod);
+                jTable1.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            int linhaSelecionada = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                            
+                            CadastroProduto telaCadastroProduto = new CadastroProduto(linhaSelecionada);
+                            telaCadastroProduto.setVisible(true);
+                            
+                            dispose();
+                        }
+                    }
+                });
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código de Produto Inválido", "Aviso", JOptionPane.WARNING_MESSAGE);

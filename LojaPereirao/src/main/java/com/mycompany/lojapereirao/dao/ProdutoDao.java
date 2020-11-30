@@ -17,7 +17,7 @@ public class ProdutoDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -74,7 +74,7 @@ public class ProdutoDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -126,7 +126,7 @@ public class ProdutoDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -180,7 +180,7 @@ public class ProdutoDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -235,7 +235,7 @@ public class ProdutoDao {
     public static Produto consultarPorID(int codprod) {
 
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Produto retorno = null;
@@ -251,9 +251,9 @@ public class ProdutoDao {
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE codprod = ?");
             instrucaoSQL.setInt(1, codprod);
             rs = instrucaoSQL.executeQuery();
-            
-            while(rs.next()){
-                
+
+            while (rs.next()) {
+
                 retorno = new Produto();
                 retorno.setCodProd(rs.getInt("codprod"));
                 retorno.setNome(rs.getString("nome"));
@@ -261,16 +261,16 @@ public class ProdutoDao {
                 retorno.setUndMedida(rs.getString("undMedida"));
                 retorno.setSaldo(rs.getInt("saldo"));
                 retorno.setValor(rs.getDouble("valor"));
-            
+
             }
         } catch (Exception e) {
-            
+
             retorno = null;
-            
-        }finally {
-            
-            if(instrucaoSQL != null){
-                
+
+        } finally {
+
+            if (instrucaoSQL != null) {
+
                 try {
                     instrucaoSQL.close();
                 } catch (SQLException ex) {
@@ -278,30 +278,60 @@ public class ProdutoDao {
                 }
             }
             if (conexao != null) {
-                
+
                 try {
                     conexao.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
-        
+
         }
         return retorno;
     }
-    
+
     public static boolean Excluir(int codprod) {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        
-        
+
+        try {
+            //1- Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2- Abrir Conexão
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+            instrucaoSQL = conexao.prepareStatement(
+                    "DELETE FROM produto WHERE codprod = ?");
+
+            instrucaoSQL.setInt(1, codprod);
+            
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                conexao.close();
+            } catch (SQLException ex) {
+            }
+        }
         return retorno;
     }
 }
