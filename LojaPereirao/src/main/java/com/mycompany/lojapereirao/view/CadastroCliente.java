@@ -5,10 +5,15 @@
  */
 package com.mycompany.lojapereirao.view;
 
+import com.mycompany.lojapereirao.controller.ClienteController;
+import com.mycompany.lojapereirao.controller.ProdutoController;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -397,73 +402,72 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         String texto = "";
-        int g=0;
-        int h=0;
+        int g = 0;
+        int h = 0;
 
-                
-        if(txtNome.getText().isEmpty()){
+        if (txtNome.getText().isEmpty()) {
             txtNome.setBackground(Color.red);
             texto += "-Nome não inserido";
             g++;
         } else {
             txtNome.setBackground(Color.white);
         }
-        
-        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtCPF.getText().replaceAll("\\D", "").isEmpty()) {
             txtCPF.setBackground(Color.red);
             texto += "\n-CPF não inserido";
             g++;
         } else {
             txtCPF.setBackground(Color.white);
         }
-        
-        if(cboSexo.getSelectedIndex()==0){
+
+        if (cboSexo.getSelectedIndex() == 0) {
             cboSexo.setBackground(Color.red);
             texto += "\n-Sexo não selecionado";
             g++;
         } else {
             cboSexo.setBackground(Color.white);
         }
-        
-        if(txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento não inserida";
             g++;
         } else {
             txtDataNacimento.setBackground(Color.white);
         }
-        
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataNacimento.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento inválida";
             g++;
         }
 
-        if(txtCEP.getText().replaceAll("\\D", "").isEmpty()){
+        if (txtCEP.getText().replaceAll("\\D", "").isEmpty()) {
             txtCEP.setBackground(Color.red);
             texto += "\n-CEP não inserido";
             g++;
         } else {
             txtCEP.setBackground(Color.white);
-        }        
-        
-        if(txtTelefone.getText().replaceAll("\\D", "").isEmpty()){
+        }
+
+        if (txtTelefone.getText().replaceAll("\\D", "").isEmpty()) {
             txtTelefone.setBackground(Color.red);
             texto += "\n-Telefone não inserido";
             g++;
         } else {
             txtTelefone.setBackground(Color.white);
         }
-        
-        if(txtEmail.getText().isEmpty()){
+
+        if (txtEmail.getText().isEmpty()) {
             txtEmail.setBackground(Color.red);
             texto += "\n-E-mail não inserido";
             g++;
@@ -471,122 +475,155 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtEmail.setBackground(Color.white);
         }
 
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
-                txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
-        } 
-        
+
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNome.getText();
+            long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
+            char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
+            String dataNasc = "";
+            
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");            
+            java.sql.Date dSql = null;
+            try {
+                dSql = new java.sql.Date(df.parse(txtDataNacimento.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dataNasc = dSql.toString();
+            
+
+            String logradouro = this.txtLogradouro.getText();
+            String cidade = this.txtCidade.getText();
+            String uf = String.valueOf(this.cboUF.getSelectedItem());
+            int cep = Integer.parseInt(this.txtCEP.getText().replaceAll("\\D", ""));
+            int telefone = Integer.parseInt(this.txtTelefone.getText().replaceAll("\\D", ""));
+            long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
+            String email = this.txtEmail.getText();
+
+            System.out.println(nome + "\n" + cpf + "\n" + sexo + "\n" + dataNasc + "\n" + logradouro + "\n" + cidade + "\n" + uf + "\n" + cep + "\n" + telefone + "\n" + celular + "\n" + email);
+
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ClienteController.Salvar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha no cadastro do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
+        }
+
+
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         String texto = "";
-        int g=0;
-        int h=0;
+        int g = 0;
+        int h = 0;
 
-                
-        if(txtNome.getText().isEmpty()){
+        if (txtNome.getText().isEmpty()) {
             txtNome.setBackground(Color.red);
             texto += "-Nome não inserido";
             g++;
         } else {
             txtNome.setBackground(Color.white);
         }
-        
-        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtCPF.getText().replaceAll("\\D", "").isEmpty()) {
             txtCPF.setBackground(Color.red);
             texto += "\n-CPF não inserido";
             g++;
         } else {
             txtCPF.setBackground(Color.white);
         }
-        
-        if(cboSexo.getSelectedIndex()==0){
+
+        if (cboSexo.getSelectedIndex() == 0) {
             cboSexo.setBackground(Color.red);
             texto += "\n-Sexo não selecionado";
             g++;
         } else {
             cboSexo.setBackground(Color.white);
         }
-        
-        if(txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento não inserida";
             g++;
         } else {
             txtDataNacimento.setBackground(Color.white);
         }
-        
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataNacimento.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento inválida";
             g++;
         }
 
-        if(txtCEP.getText().replaceAll("\\D", "").isEmpty()){
+        if (txtCEP.getText().replaceAll("\\D", "").isEmpty()) {
             txtCEP.setBackground(Color.red);
             texto += "\n-CEP não inserido";
             g++;
         } else {
             txtCEP.setBackground(Color.white);
-        }        
-        
-        if(txtTelefone.getText().replaceAll("\\D", "").isEmpty()){
+        }
+
+        if (txtTelefone.getText().replaceAll("\\D", "").isEmpty()) {
             txtTelefone.setBackground(Color.red);
             texto += "\n-Telefone não inserido";
             g++;
         } else {
             txtTelefone.setBackground(Color.white);
         }
-        
-        if(txtEmail.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtEmail.getText().replaceAll("\\D", "").isEmpty()) {
             txtEmail.setBackground(Color.red);
             texto += "\n-E-mail não inserido";
             g++;
         } else {
             txtEmail.setBackground(Color.white);
         }
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
-        txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
+            JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+
         txtNome.setText("");
         txtCPF.setText("");
         cboSexo.setSelectedIndex(0);
@@ -598,7 +635,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtTelefone.setText("");
         txtCelular.setText("");
         txtEmail.setText("");
-        
+
         JOptionPane.showMessageDialog(this, "Cadastro Excluído com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -608,178 +645,176 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         String texto = "";
-        int g=0;
-        int h=0;
+        int g = 0;
+        int h = 0;
 
-                
-        if(txtNome.getText().isEmpty()){
+        if (txtNome.getText().isEmpty()) {
             txtNome.setBackground(Color.red);
             texto += "-Nome não inserido";
             g++;
         } else {
             txtNome.setBackground(Color.white);
         }
-        
-        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtCPF.getText().replaceAll("\\D", "").isEmpty()) {
             txtCPF.setBackground(Color.red);
             texto += "\n-CPF não inserido";
             g++;
         } else {
             txtCPF.setBackground(Color.white);
         }
-        
-        if(cboSexo.getSelectedIndex()==0){
+
+        if (cboSexo.getSelectedIndex() == 0) {
             cboSexo.setBackground(Color.red);
             texto += "\n-Sexo não selecionado";
             g++;
         } else {
             cboSexo.setBackground(Color.white);
         }
-        
-        if(txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento não inserida";
             g++;
         } else {
             txtDataNacimento.setBackground(Color.white);
         }
-        
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataNacimento.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento inválida";
             g++;
         }
 
-        if(txtCEP.getText().replaceAll("\\D", "").isEmpty()){
+        if (txtCEP.getText().replaceAll("\\D", "").isEmpty()) {
             txtCEP.setBackground(Color.red);
             texto += "\n-CEP não inserido";
             g++;
         } else {
             txtCEP.setBackground(Color.white);
-        }        
-        
-        if(txtTelefone.getText().replaceAll("\\D", "").isEmpty()){
+        }
+
+        if (txtTelefone.getText().replaceAll("\\D", "").isEmpty()) {
             txtTelefone.setBackground(Color.red);
             texto += "\n-Telefone não inserido";
             g++;
         } else {
             txtTelefone.setBackground(Color.white);
         }
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
-                txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
-        } 
+            JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         String texto = "";
-        int g=0;
-        int h=0;
+        int g = 0;
+        int h = 0;
 
-                
-        if(txtNome.getText().isEmpty()){
+        if (txtNome.getText().isEmpty()) {
             txtNome.setBackground(Color.red);
             texto += "-Nome não inserido";
             g++;
         } else {
             txtNome.setBackground(Color.white);
         }
-        
-        if(txtCPF.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtCPF.getText().replaceAll("\\D", "").isEmpty()) {
             txtCPF.setBackground(Color.red);
             texto += "\n-CPF não inserido";
             g++;
         } else {
             txtCPF.setBackground(Color.white);
         }
-        
-        if(cboSexo.getSelectedIndex()==0){
+
+        if (cboSexo.getSelectedIndex() == 0) {
             cboSexo.setBackground(Color.red);
             texto += "\n-Sexo não selecionado";
             g++;
         } else {
             cboSexo.setBackground(Color.white);
         }
-        
-        if(txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()){
+
+        if (txtDataNacimento.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento não inserida";
             g++;
         } else {
             txtDataNacimento.setBackground(Color.white);
         }
-        
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataNacimento.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataNacimento.setBackground(Color.red);
             texto += "\n-Data de Nascimento inválida";
             g++;
         }
 
-        if(txtCEP.getText().replaceAll("\\D", "").isEmpty()){
+        if (txtCEP.getText().replaceAll("\\D", "").isEmpty()) {
             txtCEP.setBackground(Color.red);
             texto += "\n-CEP não inserido";
             g++;
         } else {
             txtCEP.setBackground(Color.white);
-        }        
-        
-        if(txtTelefone.getText().replaceAll("\\D", "").isEmpty()){
+        }
+
+        if (txtTelefone.getText().replaceAll("\\D", "").isEmpty()) {
             txtTelefone.setBackground(Color.red);
             texto += "\n-Telefone não inserido";
             g++;
         } else {
             txtTelefone.setBackground(Color.white);
         }
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
-        txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
+            JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
+
         txtNome.setText("");
         txtCPF.setText("");
         cboSexo.setSelectedIndex(0);
@@ -791,7 +826,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtTelefone.setText("");
         txtCelular.setText("");
         txtEmail.setText("");
-        
+
         JOptionPane.showMessageDialog(this, "Cadastro Excluído com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

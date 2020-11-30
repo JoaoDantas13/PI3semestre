@@ -6,9 +6,9 @@ public class Cliente {
     
 //Atributos
     
-    private static int codCli;
+    private int codCli;
     private String nome;
-    private int cpf;
+    private long cpf;
     private char sexo;
     private String dataNasc;
     private String logradouro;
@@ -16,21 +16,21 @@ public class Cliente {
     private String uf;
     private int cep;
     private int telefone;
-    private int celular;
+    private long celular;
     private String email;
 
 //Construtor
 public Cliente(){
     
 }    
+ //Metodos acessores
     
-//Metodos acessores
-    public static int getCodCli() {
+   public int getCodCli() {
         return codCli;
     }
 
-    public static void setCodCli(int codCli) {
-        Cliente.codCli = codCli;
+    public void setCodCli(int codCli) {    
+        this.codCli = codCli;
     }
 
     public String getNome() {
@@ -41,11 +41,11 @@ public Cliente(){
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -105,11 +105,11 @@ public Cliente(){
         this.telefone = telefone;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 
