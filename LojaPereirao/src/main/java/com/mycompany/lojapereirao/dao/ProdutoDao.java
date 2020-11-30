@@ -302,6 +302,6 @@ public class ProdutoDao {
         PreparedStatement instrucaoSQL = null;
         
         
-        
+        return retorno;
     }
 }
