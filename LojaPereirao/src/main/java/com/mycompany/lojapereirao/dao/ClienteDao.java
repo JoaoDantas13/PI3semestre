@@ -20,7 +20,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -78,7 +78,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -137,7 +137,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -182,7 +182,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -236,7 +236,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -292,7 +292,7 @@ public class ClienteDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -347,7 +347,7 @@ public class ClienteDao {
     public static Cliente consultarPorID(int codcli) {
 
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Cliente retorno = null;

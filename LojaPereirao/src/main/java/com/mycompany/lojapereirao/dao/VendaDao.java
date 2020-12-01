@@ -1,5 +1,6 @@
 package com.mycompany.lojapereirao.dao;
 
+import com.mycompany.lojapereirao.model.Cliente;
 import com.mycompany.lojapereirao.model.Produto;
 import com.mycompany.lojapereirao.model.Venda;
 import java.sql.Connection;
@@ -17,7 +18,7 @@ public class VendaDao {
     public static boolean ValidarCpf(long cpf) {
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -65,7 +66,7 @@ public class VendaDao {
     public static Produto ValidarSaldo(int codprod) {
 
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Produto retorno = null;
@@ -85,7 +86,7 @@ public class VendaDao {
             while (rs.next()) {
 
                 retorno = new Produto();
-                retorno.setSaldo(rs.getInt("saldo"));               
+                retorno.setSaldo(rs.getInt("saldo"));
 
             }
         } catch (Exception e) {
@@ -116,11 +117,65 @@ public class VendaDao {
         return retorno;
     }
 
+    public static Cliente consultaCodCli(long cpf) {
+
+        String nomeBaseDados = "lojapereirao";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String LOGIN = "root";
+        String SENHA = "";
+        Cliente retorno = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ResultSet rs = null;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ?");
+            instrucaoSQL.setLong(1, cpf);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                retorno = new Cliente();
+                retorno.setCodCli(rs.getInt("codcli"));
+
+            }
+        } catch (Exception e) {
+
+            retorno = null;
+
+        } finally {
+
+            if (instrucaoSQL != null) {
+
+                try {
+                    instrucaoSQL.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conexao != null) {
+
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+        return retorno;
+    }
+
     public static ArrayList<Venda> Listar(int codprod, int qtd) {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;

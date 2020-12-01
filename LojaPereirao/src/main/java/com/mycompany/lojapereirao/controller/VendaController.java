@@ -2,6 +2,7 @@ package com.mycompany.lojapereirao.controller;
 
 import com.mycompany.lojapereirao.dao.ProdutoDao;
 import com.mycompany.lojapereirao.dao.VendaDao;
+import com.mycompany.lojapereirao.model.Cliente;
 import com.mycompany.lojapereirao.model.Produto;
 import com.mycompany.lojapereirao.model.Venda;
 import java.util.ArrayList;
@@ -24,6 +25,20 @@ public class VendaController {
         if (objRetorno != null) {
 
             retorno = new String[]{String.valueOf(objRetorno.getSaldo())
+            };
+        }
+
+        return retorno;
+    }
+
+    public static String[] consultaCodCli(long cpf) {
+
+        Cliente objRetorno = VendaDao.consultaCodCli(cpf);
+        String[] retorno = null;
+
+        if (objRetorno != null) {
+
+            retorno = new String[]{String.valueOf(objRetorno.getCodCli())
             };
         }
 

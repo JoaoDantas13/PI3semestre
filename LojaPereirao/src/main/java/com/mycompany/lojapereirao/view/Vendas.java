@@ -8,7 +8,10 @@ package com.mycompany.lojapereirao.view;
 import com.mycompany.lojapereirao.controller.ProdutoController;
 import com.mycompany.lojapereirao.controller.VendaController;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -301,16 +304,26 @@ public class Vendas extends javax.swing.JFrame {
     public boolean validarSaldo(int codprod, int qtd) {
         boolean retorno1 = false;
 
-        String [] retorno = VendaController.ValidarSaldo(codprod);
-        
+        String[] retorno = VendaController.ValidarSaldo(codprod);
+
         int valor = Integer.parseInt(retorno[0]);
-        
-        if(valor >= qtd){
+
+        if (valor >= qtd) {
             retorno1 = true;
         }
-        
 
         return retorno1;
+    }
+
+    public int consultaCodCli(long cpf) {
+        int codCli = 0;
+
+        String[] retorno = VendaController.consultaCodCli(cpf);
+
+        codCli = Integer.parseInt(retorno[0]);
+
+ 
+        return codCli;
     }
 
     public void incluirLinha(int codprod, int qtd) {
@@ -401,9 +414,9 @@ public class Vendas extends javax.swing.JFrame {
                 txtCpf.setText("");
                 txtCodProd.setText("");
                 txtQtd.setText("");
-            } else if(saldo == false){
+            } else if (saldo == false) {
                 JOptionPane.showMessageDialog(this, "O produto esta com saldo insuficiente", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }else {
+            } else {
 
                 incluirLinha(codprod, qtd);
 
@@ -420,6 +433,20 @@ public class Vendas extends javax.swing.JFrame {
         if (tblVendas.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Nenhuma linha de venda incluída!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
+
+            long cpf = Long.parseLong(txtCpf.getText().replaceAll("\\D", ""));
+            int codcli = consultaCodCli(cpf);
+            int codprod = Integer.parseInt(tblVendas.getValueAt(0, 0).toString());
+            int qtd = Integer.parseInt(tblVendas.getValueAt(0, 1).toString());
+            
+            Date date = new Date();
+            String dataVenda = new SimpleDateFormat("yyyy/MM/dd").format(date);
+            
+            double total = Double.parseDouble(tblVendas.getValueAt(0, 2).toString());
+            
+            System.out.println(codcli+"\n"+cpf+"\n"+codprod+"\n"+qtd+"\n"+dataVenda+"\n"+total);
+            
+
             JOptionPane.showMessageDialog(this, "Venda Concluida com Sucesso!", "Venda Concluída", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
