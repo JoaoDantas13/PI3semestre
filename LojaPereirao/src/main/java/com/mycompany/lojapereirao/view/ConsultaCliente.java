@@ -42,7 +42,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         btnPesquisaCli = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNomeCli = new javax.swing.JTextField();
-        txtCpf = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta Cliente");
@@ -75,6 +75,12 @@ public class ConsultaCliente extends javax.swing.JFrame {
         });
 
         jLabel1.setText("CPF:");
+
+        try {
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,35 +157,101 @@ public class ConsultaCliente extends javax.swing.JFrame {
             modelo.addRow(listaCliente);
         }
     }
-      
     
+    public void listarClientes(long cpf) {
+
+        ArrayList<String[]> listaClientes = ClienteController.Listar(cpf);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) tblPesquisaCli.getModel();
+
+        modelo.setRowCount(0);
+
+        for (String[] listaCliente : listaClientes) {
+            modelo.addRow(listaCliente);
+        }
+    }
+    
+    public void listarClientes(String nome) {
+
+        ArrayList<String[]> listaClientes = ClienteController.Listar(nome);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) tblPesquisaCli.getModel();
+
+        modelo.setRowCount(0);
+
+        for (String[] listaCliente : listaClientes) {
+            modelo.addRow(listaCliente);
+        }
+    }
+
+
     private void btnPesquisaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaCliActionPerformed
-        
-        if(txtCpf.getText().isEmpty() && txtNomeCli.getText().isEmpty()){
-            
+
+        try {
+
+            if (txtCpf.getText().replaceAll("\\D", "").isEmpty() && txtNomeCli.getText().isEmpty()) {
+
                 listarClientes();
 
                 tblPesquisaCli.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
                         if (e.getClickCount() == 2) {
                             int linhaSelecionada = Integer.parseInt(tblPesquisaCli.getValueAt(tblPesquisaCli.getSelectedRow(), 0).toString());
-                            
-                            CadastroProduto telaCadastroProduto = new CadastroProduto(linhaSelecionada);
-                            telaCadastroProduto.setVisible(true);
-                            
+
+                            CadastroCliente telaCadastroCliente = new CadastroCliente(linhaSelecionada);
+                            telaCadastroCliente.setVisible(true);
+
                             dispose();
                         }
                     }
                 });
-            
-        }
-        
-        try{
-            long cpf = Long.parseLong(txtCpf.getText());
+
+            } else if (!txtCpf.getText().replaceAll("\\D", "").isEmpty()) {
+                long cpf = Long.parseLong(txtCpf.getText().replaceAll("\\D", ""));
+
+                listarClientes(cpf);
+
+                tblPesquisaCli.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            int linhaSelecionada = Integer.parseInt(tblPesquisaCli.getValueAt(tblPesquisaCli.getSelectedRow(), 0).toString());
+
+                            CadastroCliente telaCadastroCliente = new CadastroCliente(linhaSelecionada);
+                            telaCadastroCliente.setVisible(true);
+
+                            dispose();
+                        }
+                    }
+                });
+
+            } else {
+                String nome = txtNomeCli.getText();
+                
+                listarClientes(nome);
+
+                tblPesquisaCli.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            int linhaSelecionada = Integer.parseInt(tblPesquisaCli.getValueAt(tblPesquisaCli.getSelectedRow(), 0).toString());
+
+                            CadastroCliente telaCadastroCliente = new CadastroCliente(linhaSelecionada);
+                            telaCadastroCliente.setVisible(true);
+
+                            dispose();
+                        }
+                    }
+                });
+            }
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Código de Cliente Inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "CPF do cliente inválido", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
         
+        txtCpf.setText("");
+        txtNomeCli.setText("");
+
     }//GEN-LAST:event_btnPesquisaCliActionPerformed
 
     /**
@@ -224,7 +296,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPesquisaCli;
-    private javax.swing.JTextField txtCpf;
+    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtNomeCli;
     // End of variables declaration//GEN-END:variables
 }

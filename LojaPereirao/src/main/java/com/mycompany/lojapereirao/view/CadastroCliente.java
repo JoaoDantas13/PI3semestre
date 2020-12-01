@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,12 +23,21 @@ import javax.swing.JOptionPane;
  * @author Eduardo
  */
 public class CadastroCliente extends javax.swing.JFrame {
-
+    
+    String modotela = "Cadastrar";
+    
     /**
      * Creates new form CadastroCliente
      */
     public CadastroCliente() {
         initComponents();
+    }
+
+    public CadastroCliente(int codcli) {
+        modotela = "Listar";
+        
+        initComponents();
+        preencherCliente(codcli);        
     }
 
     /**
@@ -398,6 +409,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         ConsultaCliente consultaCli = new ConsultaCliente();
         consultaCli.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
@@ -484,8 +496,8 @@ public class CadastroCliente extends javax.swing.JFrame {
             long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
             char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
             String dataNasc = "";
-            
-            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");            
+
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
             java.sql.Date dSql = null;
             try {
                 dSql = new java.sql.Date(df.parse(txtDataNacimento.getText()).getTime());
@@ -493,7 +505,6 @@ public class CadastroCliente extends javax.swing.JFrame {
                 Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
             dataNasc = dSql.toString();
-            
 
             String logradouro = this.txtLogradouro.getText();
             String cidade = this.txtCidade.getText();
@@ -503,8 +514,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
             String email = this.txtEmail.getText();
 
-            System.out.println(nome + "\n" + cpf + "\n" + sexo + "\n" + dataNasc + "\n" + logradouro + "\n" + cidade + "\n" + uf + "\n" + cep + "\n" + telefone + "\n" + celular + "\n" + email);
-
+            
             //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
             boolean retorno = ClienteController.Salvar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email);
             if (retorno == true) {
@@ -596,7 +606,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setBackground(Color.white);
         }
 
-        if (txtEmail.getText().replaceAll("\\D", "").isEmpty()) {
+        if (txtEmail.getText().isEmpty()) {
             txtEmail.setBackground(Color.red);
             texto += "\n-E-mail não inserido";
             g++;
@@ -607,7 +617,42 @@ public class CadastroCliente extends javax.swing.JFrame {
         if (g > 0) {
             JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNome.getText();
+            long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
+            char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
+            
+            String dataNasc = "";
+
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
+            java.sql.Date dSql = null;
+            try {
+                dSql = new java.sql.Date(df.parse(txtDataNacimento.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dataNasc = dSql.toString();
+            
+            String logradouro = this.txtLogradouro.getText();
+            String cidade = this.txtCidade.getText();
+            String uf = String.valueOf(this.cboUF.getSelectedItem());
+            int cep = Integer.parseInt(this.txtCEP.getText().replaceAll("\\D", ""));
+            int telefone = Integer.parseInt(this.txtTelefone.getText().replaceAll("\\D", ""));
+            long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
+            String email = this.txtEmail.getText();
+            int codcli = Integer.parseInt(this.lblCodigoCliente.getText());
+
+        
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ClienteController.Alterar(nome,cpf,sexo,dataNasc,logradouro,cidade,uf,cep,telefone,celular,email,codcli);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(null, "Alteração Concluída com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na alteração do Cliente!","Falha",JOptionPane.ERROR_MESSAGE);
+            }
+            
             txtNome.setText("");
             txtCPF.setText("");
             cboSexo.setSelectedIndex(0);
@@ -624,6 +669,20 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
+        int codCli = Integer.parseInt(lblCodigoCliente.getText());
+
+        if(lblCodigoCliente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else{
+            
+            boolean retorno = ClienteController.Excluir(codCli);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do Cliente!","Falha",JOptionPane.ERROR_MESSAGE);
+            }    
+        
         txtNome.setText("");
         txtCPF.setText("");
         cboSexo.setSelectedIndex(0);
@@ -635,8 +694,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtTelefone.setText("");
         txtCelular.setText("");
         txtEmail.setText("");
-
-        JOptionPane.showMessageDialog(this, "Cadastro Excluído com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+        lblCodigoCliente.setText("");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -909,4 +968,31 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+private void preencherCliente(int codcli){
+    
+   String[] retorno = ClienteController.consultarPorID(codcli);
+   lblCodigoCliente.setText(retorno[0]);
+   txtNome.setText(retorno[1]);
+   txtCPF.setText(retorno[2]);
+   cboSexo.setSelectedItem(retorno[3]);
+   txtDataNacimento.setText(retorno[4]);
+   txtLogradouro.setText(retorno[5]);
+   txtCidade.setText(retorno[6]);
+   cboUF.setSelectedItem(retorno[7]);
+   txtCEP.setText(retorno[8]);
+   txtTelefone.setText(retorno[9]);
+   txtCelular.setText(retorno[10]);
+   txtEmail.setText(retorno[11]);
+   
+   
+   StringBuffer sb = new StringBuffer(retorno[4].replaceAll("\\D", ""));
+   sb.reverse();
+   
+   txtDataNacimento.setText(sb.toString());
+   
+
+   
+}
+
 }
