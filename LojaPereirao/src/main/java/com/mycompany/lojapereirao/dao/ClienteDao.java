@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Metodo para o CRUD do cliente 
+ * @author Viniciuis Hilario
+ * @author Eduardo Ferreira
+ * @author João Vitor Dantas
+ */
 public class ClienteDao {
 
        public static boolean Salvar(Cliente pCliente) {
@@ -74,6 +79,11 @@ public class ClienteDao {
 
     }
        
+       /**
+        * classe para alterar algum dado do cliente
+        * @param pCliente objeto da classe alterar
+        * @return boolean true: se o cadastrro foi alterado | false: se deu algum erro na alteraçao   
+        */
        public static boolean Alterar(Cliente pCliente) {
 
         boolean retorno = false;
