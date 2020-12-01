@@ -17,6 +17,14 @@ public class VendaController {
         return retorno;
     }
 
+    public static boolean BaixaEstoque(int codprod, int qtd) {
+        boolean retorno = false;
+
+        retorno = VendaDao.BaixaEstoque(codprod, qtd);
+
+        return retorno;
+    }
+
     public static String[] ValidarSaldo(int codprod) {
 
         Produto objRetorno = VendaDao.ValidarSaldo(codprod);

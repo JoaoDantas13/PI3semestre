@@ -130,16 +130,14 @@ public class Vendas extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59))
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(126, 126, 126)
-                                        .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -276,6 +274,19 @@ public class Vendas extends javax.swing.JFrame {
         boolean retorno = false;
 
         retorno = VendaController.ValidarCpf(cpf);
+
+        return retorno;
+    }
+
+    public boolean baixaEstoque(int codprod, int qtd) {
+        boolean retorno = false;
+
+        String[] retornox = VendaController.ValidarSaldo(codprod);
+        int saldo = Integer.parseInt(retornox[0]);
+        
+        int saldoAtual = saldo - qtd;
+        
+        retorno = VendaController.BaixaEstoque(codprod, saldoAtual);
 
         return retorno;
     }
@@ -429,6 +440,9 @@ public class Vendas extends javax.swing.JFrame {
                 System.out.println(codcli + "\n" + cpf + "\n" + codprod + "\n" + qtd + "\n" + dataVenda + "\n" + total);
                 System.out.println("");
                 retorno = VendaController.Salvar(codcli, cpf, codprod, qtd, dataVenda, total);
+
+                baixaEstoque(codprod, qtd);
+
             }
 
             if (retorno == true) {

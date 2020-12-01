@@ -9,11 +9,12 @@ package com.mycompany.lojapereirao.view;
  *
  * @author Eduardo
  */
-
+import com.mycompany.lojapereirao.controller.RelatorioController;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +76,7 @@ public class Relatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CPF Cliente", "Data Incial", "Data Final", "Total de Vendas"
+                "CPF Cliente", "Data Incial", "Data Final", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -316,82 +317,118 @@ public class Relatorios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void listarVendarsSintetica(String dataI, String dataF, String dateInical, String dateFinal) {
+
+        ArrayList<String[]> listaSinteticas = RelatorioController.Listar(dataI, dataF, dateInical, dateFinal);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) tblSintetico.getModel();
+
+        modelo.setRowCount(0);
+
+        for (String[] listaSintetica : listaSinteticas) {
+            modelo.addRow(listaSintetica);
+        }
+    }
+
+
     private void btnPesquisarSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarSinteticoActionPerformed
         String texto = "";
-        int g=0;
-        int h=0;                
-        
-        if(txtDataInicialSintetico.getText().replaceAll("\\D", "").isEmpty()){
+        int g = 0;
+        int h = 0;
+
+        if (txtDataInicialSintetico.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataInicialSintetico.setBackground(Color.red);
             texto += "\n-Data Inicial não inserida";
             g++;
         } else {
             txtDataInicialSintetico.setBackground(Color.white);
         }
-        
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataInicialSintetico.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataInicialSintetico.setBackground(Color.red);
             texto += "\n-Data Inicial inválida";
             g++;
         }
 
-        
-        if(txtDataFinalSintetico.getText().replaceAll("\\D", "").isEmpty()){
+        if (txtDataFinalSintetico.getText().replaceAll("\\D", "").isEmpty()) {
             txtDataFinalSintetico.setBackground(Color.red);
             texto += "\n-Data Final não inserida";
             g++;
         } else {
             txtDataFinalSintetico.setBackground(Color.white);
-        }        
-        try{
+        }
+        try {
             df.parse(txtDataFinalSintetico.getText());
-        }catch(ParseException ex){
-            h=1;
+        } catch (ParseException ex) {
+            h = 1;
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataFinalSintetico.setBackground(Color.red);
             texto += "\n-Data Final inválida";
             g++;
         }
-        
+
         try {
             Date data1 = new Date(df.parse(txtDataFinalSintetico.getText()).getTime());
             Date data2 = new Date(df.parse(txtDataInicialSintetico.getText()).getTime());
-            if(data1.before(data2)){
+            if (data1.before(data2)) {
                 texto += "\n-Data inical superior a data final!";
                 g++;
-        }
+            }
 
         } catch (ParseException ex) {
             Logger.getLogger(Relatorios.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
 
-        String dateinicial = txtDataInicialSintetico.getText();
-        String datefinal = txtDataFinalSintetico.getText();
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
+            java.sql.Date dSql = null;
+            try {
+                dSql = new java.sql.Date(df.parse(txtDataInicialSintetico.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String dataI = dSql.toString();
+
+            java.sql.Date dSql1 = null;
+            try {
+                dSql1 = new java.sql.Date(df.parse(txtDataFinalSintetico.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String dataF = dSql1.toString();
+
+            String dateinicial = txtDataInicialSintetico.getText();
+            String datefinal = txtDataFinalSintetico.getText();
+
+            listarVendarsSintetica(dataI, dataF, dateinicial, datefinal);
+
+            int tamanhoTbl = tblSintetico.getModel().getRowCount();
+            double totalGeral = 0;
+            for (int i = 0; i < tamanhoTbl; i++) {
+                totalGeral = totalGeral + Double.parseDouble(tblSintetico.getValueAt(i, 3).toString());
+            }
             
-        DefaultTableModel model = (DefaultTableModel) tblSintetico.getModel();
-        model.setNumRows(0);
-        model.addRow(new Object[] {dateinicial, datefinal});    
-            
-        txtDataInicialSintetico.setText("");
-        txtDataFinalSintetico.setText("");
-        }         
-        
-        
+            txtVendaTotal.setText(String.valueOf(totalGeral));
+
+            txtDataInicialSintetico.setText("");
+            txtDataFinalSintetico.setText("");
+        }
+
+
     }//GEN-LAST:event_btnPesquisarSinteticoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -399,78 +436,72 @@ public class Relatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnPesquisarAnaliticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAnaliticoActionPerformed
-        
-        
-        
+
         String texto = "";
-        int g=0;
-        int h=0;        
-        
-        
-       
-        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+        int g = 0;
+        int h = 0;
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setLenient(false);
-        try{
+        try {
             df.parse(txtDataVendaAnalitico.getText());
-        }catch(ParseException ex){
-            if(txtDataVendaAnalitico.getText().replaceAll("\\D", "").isEmpty()){
+        } catch (ParseException ex) {
+            if (txtDataVendaAnalitico.getText().replaceAll("\\D", "").isEmpty()) {
                 txtDataVendaAnalitico.setBackground(Color.WHITE);
-            } else{    
-            h=1;
+            } else {
+                h = 1;
             }
         }
 
-        if(h==1){
+        if (h == 1) {
             txtDataVendaAnalitico.setBackground(Color.red);
             texto += "\n-Data inválida";
             g++;
         } else {
             txtDataVendaAnalitico.setBackground(Color.white);
         }
-           
 
-        
-        try{
+        try {
             int codvend = Integer.parseInt(txtCodVenda.getText());
             txtCodVenda.setBackground(Color.white);
-        } catch(Exception e){
-            if(txtCodVenda.getText().isEmpty()){
+        } catch (Exception e) {
+            if (txtCodVenda.getText().isEmpty()) {
                 txtCodVenda.setBackground(Color.WHITE);
-            } else {   
-            txtCodVenda.setBackground(Color.red);
-            texto += "\n-Código de Venda inválido";
-            g++;
+            } else {
+                txtCodVenda.setBackground(Color.red);
+                texto += "\n-Código de Venda inválido";
+                g++;
             }
-        } 
-        
-        try{
+        }
+
+        try {
             int codprod = Integer.parseInt(txtCodProduto.getText());
             txtCodProduto.setBackground(Color.white);
-        } catch(Exception e){
-            if(txtCodProduto.getText().isEmpty()){
+        } catch (Exception e) {
+            if (txtCodProduto.getText().isEmpty()) {
                 txtCodProduto.setBackground(Color.WHITE);
-            } else {   
-            txtCodProduto.setBackground(Color.red);
-            texto += "\n-Código do Produto inválido";
-            g++;
+            } else {
+                txtCodProduto.setBackground(Color.red);
+                texto += "\n-Código do Produto inválido";
+                g++;
             }
-        } 
-        
-        try{
+        }
+
+        try {
             int codvendedor = Integer.parseInt(txtCodVendedor.getText());
             txtCodVendedor.setBackground(Color.white);
-        } catch(Exception e){
-            if(txtCodVendedor.getText().isEmpty()){
+        } catch (Exception e) {
+            if (txtCodVendedor.getText().isEmpty()) {
                 txtCodVendedor.setBackground(Color.WHITE);
-            } else {   
-            txtCodVendedor.setBackground(Color.red);
-            texto += "\n-Código do Vendedor inválido";
-            g++;
+            } else {
+                txtCodVendedor.setBackground(Color.red);
+                texto += "\n-Código do Vendedor inválido";
+                g++;
             }
-        } 
-        
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if (g > 0) {
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
 
 //        String date = txtDataVendaAnalitico.getText();
@@ -478,18 +509,16 @@ public class Relatorios extends javax.swing.JFrame {
 //        String codvenda = txtCodVenda.getText();
 //        String codprod = txtCodProduto.getText();
 //        String codvendedor = txtCodVendedor.getText();
-            
 //        DefaultTableModel model = (DefaultTableModel) tblAnalitico.getModel();
 //        model.setNumRows(0);
 //        model.addRow(new Object[] {date, codvenda, codvendedor, codcli, codprod});    
-            
-        txtDataVendaAnalitico.setText("");
-        txtCPF.setText("");
-        txtCodProduto.setText("");
-        txtCodVenda.setText("");
-        txtCodVendedor.setText("");
-        }                           
-        
+            txtDataVendaAnalitico.setText("");
+            txtCPF.setText("");
+            txtCodProduto.setText("");
+            txtCodVenda.setText("");
+            txtCodVendedor.setText("");
+        }
+
     }//GEN-LAST:event_btnPesquisarAnaliticoActionPerformed
 
     /**

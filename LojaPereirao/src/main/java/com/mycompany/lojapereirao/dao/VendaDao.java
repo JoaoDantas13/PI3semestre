@@ -63,6 +63,54 @@ public class VendaDao {
         return retorno;
     }
 
+    public static boolean BaixaEstoque(int codprod, int qtd) {
+        boolean retorno = false;
+        String nomeBaseDados = "lojapereirao";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String LOGIN = "root";
+        String SENHA = "";
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ResultSet rs = null;
+        ArrayList<Venda> listaVendas = new ArrayList<>();
+
+        try {
+            //1- Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2- Abrir Conexão
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+            instrucaoSQL = conexao.prepareStatement(
+                    "UPDATE produto SET saldo = ? WHERE codprod = ?");
+
+            //Adiciono os parâmetros ao meu comando SQL
+            instrucaoSQL.setInt(1, qtd);
+            instrucaoSQL.setInt(2, codprod);
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                conexao.close();
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+    }
+
     public static Produto ValidarSaldo(int codprod) {
 
         String nomeBaseDados = "lojapereirao";
@@ -255,7 +303,6 @@ public class VendaDao {
             if (linhasAfetadas > 0) {
                 retorno = true;
 
-                
             } else {
                 retorno = false;
             }

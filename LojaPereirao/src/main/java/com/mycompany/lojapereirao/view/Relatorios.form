@@ -160,7 +160,7 @@
                         <Column editable="false" title="CPF Cliente" type="java.lang.Object"/>
                         <Column editable="false" title="Data Incial" type="java.lang.Object"/>
                         <Column editable="false" title="Data Final" type="java.lang.Object"/>
-                        <Column editable="false" title="Total de Vendas" type="java.lang.Object"/>
+                        <Column editable="false" title="Total" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>
