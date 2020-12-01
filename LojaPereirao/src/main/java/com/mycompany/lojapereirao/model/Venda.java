@@ -6,11 +6,12 @@ public class Venda {
  
 //Atributos
     
-    private static int codVenda;
-    private int codVendedor;
+    private int codVenda;
     private int codCli;
     private int codProd;
     private int qtdProd;
+    private double valorUnt;
+    private double valorTotal;
         
 //Construtor
     
@@ -20,22 +21,14 @@ public Venda (){
 
 //Metodos acessores
 
-    public static int getCodVenda() {
+    public int getCodVenda() {
         return codVenda;
     }
 
-    public static void setCodVenda(int codVenda) {
-        Venda.codVenda = codVenda;
+    public void setCodVenda(int codVenda) {
+        this.codVenda = codVenda;
     }
-
-    public int getCodVendedor() {
-        return codVendedor;
-    }
-
-    public void setCodVendedor(int codVendedor) {
-        this.codVendedor = codVendedor;
-    }
-
+    
     public int getCodCli() {
         return codCli;
     }
@@ -60,5 +53,22 @@ public Venda (){
         this.qtdProd = qtdProd;
     }
 
+    public double getValorUnt() {
+        return valorUnt;
+    }
+
+    public void setValorUnt(double valorUnt) {
+        this.valorUnt = valorUnt;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
+    
     
 }

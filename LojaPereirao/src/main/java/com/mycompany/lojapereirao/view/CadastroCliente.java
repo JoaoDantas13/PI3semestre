@@ -664,6 +664,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setText("");
             txtCelular.setText("");
             txtEmail.setText("");
+            lblCodigoCliente.setText("");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

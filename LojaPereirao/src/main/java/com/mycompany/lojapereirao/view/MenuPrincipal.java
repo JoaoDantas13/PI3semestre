@@ -7,7 +7,7 @@ package com.mycompany.lojapereirao.view;
 
 import com.mycompany.lojapereirao.view.CadastroCliente;
 import com.mycompany.lojapereirao.view.CadastroProduto;
-import com.mycompany.lojapereirao.view.Login;
+import com.mycompany.lojapereirao.view.Vendas;
 import com.mycompany.lojapereirao.view.Relatorios;
 import javax.swing.SwingConstants;
 
@@ -153,8 +153,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        Login loginVendedor  = new Login();
-        loginVendedor.setVisible(true);
+        Vendas venda  = new Vendas();
+        venda.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatoriosActionPerformed
