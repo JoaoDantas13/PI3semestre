@@ -457,11 +457,40 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConcluirActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+                
         if (tblVendas.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Nenhuma linha de venda incluída!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Venda Concluida com Sucesso!", "Venda Concluída", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
+
+            boolean retorno = false;
+            int tamanhoTbl = tblVendas.getModel().getRowCount();
+
+            for (int i = 0; i < tamanhoTbl; i++) {
+                long cpf = Long.parseLong(txtCpf.getText().replaceAll("\\D", ""));
+                int codcli = consultaCodCli(cpf);
+                int codprod = Integer.parseInt(tblVendas.getValueAt(i, 0).toString());
+                int qtd = Integer.parseInt(tblVendas.getValueAt(i, 1).toString());
+
+                Date date = new Date();
+                String dataVenda = new SimpleDateFormat("yyyy/MM/dd").format(date);
+
+                double total = Double.parseDouble(tblVendas.getValueAt(i, 3).toString());
+
+                System.out.println(codcli + "\n" + cpf + "\n" + codprod + "\n" + qtd + "\n" + dataVenda + "\n" + total);
+                System.out.println("");
+                retorno = VendaController.Salvar(codcli, cpf, codprod, qtd, dataVenda, total);
+
+                baixaEstoque(codprod, qtd);
+
+            }
+
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(this, "Venda Concluida com Sucesso!", "Venda Concluída", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na conclusãõ da Venda!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

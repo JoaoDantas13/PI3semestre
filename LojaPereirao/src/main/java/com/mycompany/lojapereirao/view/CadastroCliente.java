@@ -700,7 +700,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        String texto = "";
+  String texto = "";
         int g = 0;
         int h = 0;
 
@@ -766,10 +766,49 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setBackground(Color.white);
         }
 
+        if (txtEmail.getText().isEmpty()) {
+            txtEmail.setBackground(Color.red);
+            texto += "\n-E-mail não inserido";
+            g++;
+        } else {
+            txtEmail.setBackground(Color.white);
+        }
+
         if (g > 0) {
             JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNome.getText();
+            long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
+            char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
+            String dataNasc = "";
+
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
+            java.sql.Date dSql = null;
+            try {
+                dSql = new java.sql.Date(df.parse(txtDataNacimento.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dataNasc = dSql.toString();
+
+            String logradouro = this.txtLogradouro.getText();
+            String cidade = this.txtCidade.getText();
+            String uf = String.valueOf(this.cboUF.getSelectedItem());
+            int cep = Integer.parseInt(this.txtCEP.getText().replaceAll("\\D", ""));
+            int telefone = Integer.parseInt(this.txtTelefone.getText().replaceAll("\\D", ""));
+            long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
+            String email = this.txtEmail.getText();
+
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ClienteController.Salvar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha no cadastro do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
             txtNome.setText("");
             txtCPF.setText("");
             cboSexo.setSelectedIndex(0);
@@ -851,10 +890,51 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setBackground(Color.white);
         }
 
+        if (txtEmail.getText().isEmpty()) {
+            txtEmail.setBackground(Color.red);
+            texto += "\n-E-mail não inserido";
+            g++;
+        } else {
+            txtEmail.setBackground(Color.white);
+        }
+
         if (g > 0) {
             JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Cadasto Alterado com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNome.getText();
+            long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
+            char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
+
+            String dataNasc = "";
+
+            DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
+            java.sql.Date dSql = null;
+            try {
+                dSql = new java.sql.Date(df.parse(txtDataNacimento.getText()).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dataNasc = dSql.toString();
+
+            String logradouro = this.txtLogradouro.getText();
+            String cidade = this.txtCidade.getText();
+            String uf = String.valueOf(this.cboUF.getSelectedItem());
+            int cep = Integer.parseInt(this.txtCEP.getText().replaceAll("\\D", ""));
+            int telefone = Integer.parseInt(this.txtTelefone.getText().replaceAll("\\D", ""));
+            long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
+            String email = this.txtEmail.getText();
+            int codcli = Integer.parseInt(this.lblCodigoCliente.getText());
+
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ClienteController.Alterar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email, codcli);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Alteração Concluída com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na alteração do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
             txtNome.setText("");
             txtCPF.setText("");
             cboSexo.setSelectedIndex(0);
@@ -866,24 +946,38 @@ public class CadastroCliente extends javax.swing.JFrame {
             txtTelefone.setText("");
             txtCelular.setText("");
             txtEmail.setText("");
+            lblCodigoCliente.setText("");
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-        txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
+        int codCli = Integer.parseInt(lblCodigoCliente.getText());
 
-        JOptionPane.showMessageDialog(this, "Cadastro Excluído com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+        if (lblCodigoCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            boolean retorno = ClienteController.Excluir(codCli);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
+            lblCodigoCliente.setText("");
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

@@ -505,7 +505,8 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        String texto = "";
+        
+                String texto = "";
         int g=0;
                
         if(txtNomeProduto.getText().isEmpty()){
@@ -558,15 +559,52 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         }
         
-        if(g>0){
-        JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        if(txtValor.getText().isEmpty()){
+            txtValor.setBackground(Color.red);
+            texto += "\n-Valor não inserido";
+            g++;
         } else {
-        JOptionPane.showMessageDialog(this, "Cadastro Concluido com Sucesso!", "Cadastro Concluído", JOptionPane.INFORMATION_MESSAGE);
+            txtValor.setBackground(Color.white);
+            
+            try{
+                double valor = Double.valueOf(txtValor.getText());
+                txtValor.setBackground(Color.white);
+            } catch(Exception e){
+                txtValor.setBackground(Color.red);
+                texto += "\n-Valor inválido";
+                g++;
+            }
+        }
+        
+        if(g>0){
+            JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if(!lblCodigoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Este item já foi cadastrado", "Aviso", JOptionPane.WARNING_MESSAGE);            
+        }else {
+            
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNomeProduto.getText();
+            int qtdCaixa = Integer.parseInt(this.txtQtdCaixa.getText());
+            String undMedida = String.valueOf(this.cboUnidadeMedida.getSelectedItem());
+            int saldo = Integer.parseInt(this.txtSaldo.getText());
+            double valor = Double.parseDouble(this.txtValor.getText());
+
+        
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ProdutoController.Salvar(nome,qtdCaixa,undMedida,saldo,valor);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Cadastro realizado",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha no cadastro do Produtol!","Falha",JOptionPane.ERROR_MESSAGE);
+            }
+ 
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
-        }                 
+        txtValor.setText("");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -626,20 +664,55 @@ public class CadastroProduto extends javax.swing.JFrame {
         if(g>0){
         JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-        JOptionPane.showMessageDialog(this, "Alteração Concluida com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Converto o valor digitado no número da nota para Inteiro
+            String nome = this.txtNomeProduto.getText();
+            int qtdCaixa = Integer.parseInt(this.txtQtdCaixa.getText());
+            String undMedida = String.valueOf(this.cboUnidadeMedida.getSelectedItem());
+            int saldo = Integer.parseInt(this.txtSaldo.getText());
+            double valor = Double.parseDouble(this.txtValor.getText());
+            int codprod = Integer.parseInt(this.lblCodigoProduto.getText());
+
+        
+            //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
+            boolean retorno = ProdutoController.Alterar(nome,qtdCaixa,undMedida,saldo,valor,codprod);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(null, "Alteração Concluída com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na alteração do Produto!","Falha",JOptionPane.ERROR_MESSAGE);
+            }
+        
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        txtValor.setText("");
         }   
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+        int codProd = Integer.parseInt(lblCodigoProduto.getText());
+
+        if(lblCodigoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
+        } else{
+            
+            boolean retorno = ProdutoController.Excluir(codProd);
+            if(retorno==true){
+                JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do Produto!","Falha",JOptionPane.ERROR_MESSAGE);
+            }    
+            
+        
         txtNomeProduto.setText("");
         txtQtdCaixa.setText("");
         cboUnidadeMedida.setSelectedIndex(0);
         txtSaldo.setText("");
+        txtValor.setText("");
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
