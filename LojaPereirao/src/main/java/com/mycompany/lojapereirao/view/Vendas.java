@@ -38,12 +38,10 @@ public class Vendas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        lblCodVenda = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCodProd = new javax.swing.JTextField();
@@ -65,8 +63,6 @@ public class Vendas extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("Cod. Venda:");
-
         jLabel1.setText("CPF Cliente:");
 
         tblVendas.setModel(new javax.swing.table.DefaultTableModel(
@@ -86,8 +82,6 @@ public class Vendas extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblVendas);
-
-        lblCodVenda.setText("     ");
 
         jLabel7.setText("Cod. Produto:");
 
@@ -141,16 +135,11 @@ public class Vendas extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(126, 126, 126)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblCodVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(126, 126, 126)
+                                        .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -159,34 +148,23 @@ public class Vendas extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblCodVenda))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addComponent(btnIncluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel1)
+                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))))
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addContainerGap())
@@ -277,7 +255,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(btnConcluir)
                     .addComponent(btnCancelar)
                     .addComponent(btnCadastro))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,7 +300,6 @@ public class Vendas extends javax.swing.JFrame {
 
         codCli = Integer.parseInt(retorno[0]);
 
- 
         return codCli;
     }
 
@@ -434,21 +411,32 @@ public class Vendas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nenhuma linha de venda incluída!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
 
-            long cpf = Long.parseLong(txtCpf.getText().replaceAll("\\D", ""));
-            int codcli = consultaCodCli(cpf);
-            int codprod = Integer.parseInt(tblVendas.getValueAt(0, 0).toString());
-            int qtd = Integer.parseInt(tblVendas.getValueAt(0, 1).toString());
-            
-            Date date = new Date();
-            String dataVenda = new SimpleDateFormat("yyyy/MM/dd").format(date);
-            
-            double total = Double.parseDouble(tblVendas.getValueAt(0, 2).toString());
-            
-            System.out.println(codcli+"\n"+cpf+"\n"+codprod+"\n"+qtd+"\n"+dataVenda+"\n"+total);
-            
+            boolean retorno = false;
+            int tamanhoTbl = tblVendas.getModel().getRowCount();
 
-            JOptionPane.showMessageDialog(this, "Venda Concluida com Sucesso!", "Venda Concluída", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
+            for (int i = 0; i < tamanhoTbl; i++) {
+                long cpf = Long.parseLong(txtCpf.getText().replaceAll("\\D", ""));
+                int codcli = consultaCodCli(cpf);
+                int codprod = Integer.parseInt(tblVendas.getValueAt(i, 0).toString());
+                int qtd = Integer.parseInt(tblVendas.getValueAt(i, 1).toString());
+
+                Date date = new Date();
+                String dataVenda = new SimpleDateFormat("yyyy/MM/dd").format(date);
+
+                double total = Double.parseDouble(tblVendas.getValueAt(i, 3).toString());
+
+                System.out.println(codcli + "\n" + cpf + "\n" + codprod + "\n" + qtd + "\n" + dataVenda + "\n" + total);
+                System.out.println("");
+                retorno = VendaController.Salvar(codcli, cpf, codprod, qtd, dataVenda, total);
+            }
+
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(this, "Venda Concluida com Sucesso!", "Venda Concluída", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na conclusãõ da Venda!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
     }//GEN-LAST:event_btnConcluirActionPerformed
@@ -518,7 +506,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -529,7 +516,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCodVenda;
     private javax.swing.JTable tblVendas;
     private javax.swing.JTextField txtCodProd;
     private javax.swing.JFormattedTextField txtCpf;

@@ -18,7 +18,7 @@ public class VendaDao {
     public static boolean ValidarCpf(long cpf) {
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -66,7 +66,7 @@ public class VendaDao {
     public static Produto ValidarSaldo(int codprod) {
 
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Produto retorno = null;
@@ -120,7 +120,7 @@ public class VendaDao {
     public static Cliente consultaCodCli(long cpf) {
 
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Cliente retorno = null;
@@ -175,7 +175,7 @@ public class VendaDao {
 
         boolean retorno = false;
         String nomeBaseDados = "lojapereirao";
-        String URL = "jdbc:mysql://localhost:3306/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
         String LOGIN = "root";
         String SENHA = "";
         Connection conexao = null;
@@ -222,4 +222,58 @@ public class VendaDao {
         }
         return listaVendas;
     }
+
+    public static boolean Salvar(Venda pVenda) {
+
+        boolean retorno = false;
+        String nomeBaseDados = "lojapereirao";
+        String URL = "jdbc:mysql://localhost:3307/lojapereirao?useTimezone=true&serverTimezone=UTC";
+        String LOGIN = "root";
+        String SENHA = "";
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            //1- Carregar o Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2- Abrir Conexão
+            conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
+            instrucaoSQL = conexao.prepareStatement(
+                    "INSERT INTO venda (codcli, cpf, codprod, qtdVenda, dataVenda, valorTotal) VALUES( ?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            //Caso queira retornar o ID
+            //Adiciono os parâmetros ao meu comando SQL
+            instrucaoSQL.setInt(1, pVenda.getCodCli());
+            instrucaoSQL.setLong(2, pVenda.getCpf());
+            instrucaoSQL.setInt(3, pVenda.getCodProd());
+            instrucaoSQL.setInt(4, pVenda.getQtdProd());
+            instrucaoSQL.setString(5, pVenda.getDataVenda());
+            instrucaoSQL.setDouble(6, pVenda.getValorTotal());
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+                
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                conexao.close();
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+
+    }
+
 }

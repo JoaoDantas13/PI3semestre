@@ -61,4 +61,16 @@ public class VendaController {
         return listaRetorno;
     }
 
+    public static boolean Salvar(int codcli, long cpf, int codprod, int qtd, String dataVenda, double total) {
+        Venda obj = new Venda();
+        obj.setCodCli(codcli);
+        obj.setCpf(cpf);
+        obj.setCodProd(codprod);
+        obj.setQtdProd(qtd);
+        obj.setDataVenda(dataVenda);
+        obj.setValorTotal(total);
+
+        return VendaDao.Salvar(obj);
+    }
+
 }

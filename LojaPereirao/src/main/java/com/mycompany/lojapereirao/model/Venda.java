@@ -8,8 +8,10 @@ public class Venda {
     
     private int codVenda;
     private int codCli;
+    private long cpf;
     private int codProd;
     private int qtdProd;
+    private String dataVenda;
     private double valorUnt;
     private double valorTotal;
         
@@ -67,6 +69,22 @@ public Venda (){
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
     }
     
     
