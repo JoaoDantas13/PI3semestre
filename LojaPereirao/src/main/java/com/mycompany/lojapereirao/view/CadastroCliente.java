@@ -23,9 +23,9 @@ import javax.swing.JOptionPane;
  * @author Eduardo
  */
 public class CadastroCliente extends javax.swing.JFrame {
-    
+
     String modotela = "Cadastrar";
-    
+
     /**
      * Creates new form CadastroCliente
      */
@@ -35,9 +35,9 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     public CadastroCliente(int codcli) {
         modotela = "Listar";
-        
+
         initComponents();
-        preencherCliente(codcli);        
+        preencherCliente(codcli);
     }
 
     /**
@@ -514,7 +514,6 @@ public class CadastroCliente extends javax.swing.JFrame {
             long celular = Long.parseLong(this.txtCelular.getText().replaceAll("\\D", ""));
             String email = this.txtEmail.getText();
 
-            
             //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
             boolean retorno = ClienteController.Salvar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email);
             if (retorno == true) {
@@ -617,12 +616,12 @@ public class CadastroCliente extends javax.swing.JFrame {
         if (g > 0) {
             JOptionPane.showMessageDialog(this, texto, "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            
+
             //Converto o valor digitado no número da nota para Inteiro
             String nome = this.txtNome.getText();
             long cpf = Long.parseLong(this.txtCPF.getText().replaceAll("\\D", ""));
             char sexo = (String.valueOf(this.cboSexo.getSelectedItem())).charAt(0);
-            
+
             String dataNasc = "";
 
             DateFormat novaDf = new SimpleDateFormat("yyyy/MM/dd");
@@ -633,7 +632,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
             dataNasc = dSql.toString();
-            
+
             String logradouro = this.txtLogradouro.getText();
             String cidade = this.txtCidade.getText();
             String uf = String.valueOf(this.cboUF.getSelectedItem());
@@ -643,16 +642,14 @@ public class CadastroCliente extends javax.swing.JFrame {
             String email = this.txtEmail.getText();
             int codcli = Integer.parseInt(this.lblCodigoCliente.getText());
 
-        
             //Utilizo o controller para fazer o elo entre as informações digitadas na tela com o banco de dados
-            boolean retorno = ClienteController.Alterar(nome,cpf,sexo,dataNasc,logradouro,cidade,uf,cep,telefone,celular,email,codcli);
-            if(retorno==true){
+            boolean retorno = ClienteController.Alterar(nome, cpf, sexo, dataNasc, logradouro, cidade, uf, cep, telefone, celular, email, codcli);
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(null, "Alteração Concluída com Sucesso!", "Alteração Concluída", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na alteração do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Falha na alteração do Cliente!","Falha",JOptionPane.ERROR_MESSAGE);
-            }
-            
+
             txtNome.setText("");
             txtCPF.setText("");
             cboSexo.setSelectedIndex(0);
@@ -672,30 +669,29 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         int codCli = Integer.parseInt(lblCodigoCliente.getText());
 
-        if(lblCodigoCliente.getText().isEmpty()){
+        if (lblCodigoCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nenhum Cadastro Selecionado", "Erro", JOptionPane.WARNING_MESSAGE);
-        } else{
-            
+        } else {
+
             boolean retorno = ClienteController.Excluir(codCli);
-            if(retorno==true){
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(this, "Exclusão Concluida com Sucesso!", "Exclusão Concluída", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do Cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Falha na exclusão do Cliente!","Falha",JOptionPane.ERROR_MESSAGE);
-            }    
-        
-        txtNome.setText("");
-        txtCPF.setText("");
-        cboSexo.setSelectedIndex(0);
-        txtDataNacimento.setText("");
-        txtLogradouro.setText("");
-        txtCidade.setText("");
-        cboUF.setSelectedIndex(0);
-        txtCEP.setText("");
-        txtTelefone.setText("");
-        txtCelular.setText("");
-        txtEmail.setText("");
-        lblCodigoCliente.setText("");
+
+            txtNome.setText("");
+            txtCPF.setText("");
+            cboSexo.setSelectedIndex(0);
+            txtDataNacimento.setText("");
+            txtLogradouro.setText("");
+            txtCidade.setText("");
+            cboUF.setSelectedIndex(0);
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            txtCelular.setText("");
+            txtEmail.setText("");
+            lblCodigoCliente.setText("");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -970,30 +966,43 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-private void preencherCliente(int codcli){
-    
-   String[] retorno = ClienteController.consultarPorID(codcli);
-   lblCodigoCliente.setText(retorno[0]);
-   txtNome.setText(retorno[1]);
-   txtCPF.setText(retorno[2]);
-   cboSexo.setSelectedItem(retorno[3]);
-   txtDataNacimento.setText(retorno[4]);
-   txtLogradouro.setText(retorno[5]);
-   txtCidade.setText(retorno[6]);
-   cboUF.setSelectedItem(retorno[7]);
-   txtCEP.setText(retorno[8]);
-   txtTelefone.setText(retorno[9]);
-   txtCelular.setText(retorno[10]);
-   txtEmail.setText(retorno[11]);
-   
-   
-   StringBuffer sb = new StringBuffer(retorno[4].replaceAll("\\D", ""));
-   sb.reverse();
-   
-   txtDataNacimento.setText(sb.toString());
-   
+    private void preencherCliente(int codcli) {
 
-   
-}
+        String[] retorno = ClienteController.consultarPorID(codcli);
+        lblCodigoCliente.setText(retorno[0]);
+        txtNome.setText(retorno[1]);
+        txtCPF.setText(retorno[2]);
+        cboSexo.setSelectedItem(retorno[3]);
+        txtDataNacimento.setText(retorno[4]);
+        txtLogradouro.setText(retorno[5]);
+        txtCidade.setText(retorno[6]);
+        cboUF.setSelectedItem(retorno[7]);
+        txtCEP.setText(retorno[8]);
+        txtTelefone.setText(retorno[9]);
+        txtCelular.setText(retorno[10]);
+        txtEmail.setText(retorno[11]);
+
+//        StringBuffer sb = new StringBuffer(retorno[4].replaceAll("\\D", ""));
+//        sb.reverse();
+
+//        txtDataNacimento.setText(sb.toString());
+        
+        String dataVenda = null;
+                
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date date = (Date)formatter.parse(retorno[4].toString().replaceAll("\\D", "/"));
+            System.out.println(date);
+            dataVenda = new SimpleDateFormat("dd/MM/yyyy").format(date);
+            System.out.println(dataVenda);
+            txtDataNacimento.setText(dataVenda);
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+
+    }
 
 }
