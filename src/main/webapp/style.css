@@ -76,3 +76,83 @@ label{
     font-size: 17px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.telaacess {
+    
+    background-color: rgba(0,0,0,1);
+    margin-left: 37%;
+    width: 20%;
+    height: 420px;
+    padding: 25px;
+    margin-top: 14px;
+    border-radius: 80px;
+
+}
+
+.h-1{
+    
+    color: white;
+    margin-left: 26%;
+}
+
+.abc {
+
+    border-radius: 10px;
+    margin-left: 72%;
+    margin-top: 3%;
+    width: 17%;
+    height: 30px;
+    border: aliceblue;
+    box-shadow: 2px 1px 8px;
+    transition: .5s;
+    color: black;
+
+}
+
+.abc:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.rmv {
+    
+    border-radius: 10px;
+    margin-left: 72%;
+    margin-top: 3%;
+    width: 17%;
+    height: 30px;
+    border: aliceblue;
+    box-shadow: 2px 1px 8px;
+    transition: .5s;
+    color: black;
+
+}
+
+.rmv:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+
+.fina {
+    
+        
+    border-radius: 6px;
+    margin-left: 27%;
+    margin-top: 65%;
+    width: 50%;
+    height: 30px;
+    border: aliceblue;
+    box-shadow: 2px 1px 8px;
+    transition: .5s;
+    color: black;
+
+}
+
+.fina:hover{
+
+    background-color: rgb(0, 0, 0);
+    color: white;
+    
+    
+}
