@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Vendas</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div class="header-1">
+            <h1 class="ttsp">Speed Racer</h1>
+            <!--Div login-->
+            <div class="acesso">
+                <label>Login Usuario:</label>
+                <input type="text">
+                <label>Loja:</label>
+                <input type="text">
+                <button  class = "btnacess" type="button">Entrar</button>
+            </div>
+        </div>
+        <!--Div acesso-->
+        <div class = "conteiner">
+            <!--Div menu central-->
+            <div  class="menucentral">
+                <div class="vendas">
+                    <h1 class="ttvds">Vendas</h1>
+                </div>
+            </div> 
+        </div>
+        <div class ="telaacess">
+            <h1 class = "h-1">Manutencao</h1>
+            <button class = "abc" type="button">Adicionar</button>
+            <button class = "rmv" type="button">Remover</button>
+            <button class ="fina"  type="button">Finalizar</button>
+        </div>
+    </body>
+</html>
+
