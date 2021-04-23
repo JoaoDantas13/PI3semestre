@@ -10,6 +10,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import br.senac.sp.speedracer.conexao.Conexao;
+import br.senac.sp.speedracer.entidade.Produto;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -27,12 +34,14 @@ public class Conexao {
 
     }
   
-    public Connection getConexao() throws SQLException{
+    public static Connection getConexao() throws SQLException{
         String url = "jbdc:derby://localhost:1527/senac";
         String user = "senac";
         String pass = "senac";
         
         return DriverManager.getConnection(url,user,pass);
     }
+    
+
     
 }
