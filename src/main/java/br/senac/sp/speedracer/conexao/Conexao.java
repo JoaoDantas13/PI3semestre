@@ -35,9 +35,9 @@ public class Conexao {
     }
   
     public static Connection getConexao() throws SQLException{
-        String url = "jbdc:derby://localhost:1527/senac";
-        String user = "senac";
-        String pass = "senac";
+        String url = "jdbc:derby://localhost:1527/SpeedRacer";
+        String user = "";
+        String pass = "";
         
         return DriverManager.getConnection(url,user,pass);
     }
