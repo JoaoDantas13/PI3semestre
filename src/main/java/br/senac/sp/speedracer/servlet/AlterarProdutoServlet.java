@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.sp.speedracer;
+package br.senac.sp.speedracer.servlet;
 
 /**
  *
  * @author HOME
  */
-public class Produto {
+public class AlterarProdutoServlet {
     
 }
