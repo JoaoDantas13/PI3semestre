@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <title>Vendas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
@@ -14,7 +14,7 @@
                 <input type="text">
                 <label>Loja:</label>
                 <input type="text">
-                <button  class = "btnacess" type="button">Entrar</button>
+            <button type="button" class="btn btn-outline-secondary">Adicionar</button>
             </div>
         </div>
         <!--Div acesso-->
@@ -28,9 +28,9 @@
         </div>
         <div class ="telaacess">
             <h1 class = "h-1">Manutencao</h1>
-            <button class = "abc" type="button">Adicionar</button>
-            <button class = "rmv" type="button">Remover</button>
-            <button class ="fina"  type="button">Finalizar</button>
+            <button type="button" class="btn btn-outline-secondary">Adicionar</button>
+            <button type="button" class="btn btn-outline-secondary">Remover</button>
+            <button type="button" class="btn btn-outline-secondary">Finalizar</button>
         </div>
     </body>
 </html>
