@@ -23,6 +23,7 @@
             <div  class="menucentral">
                 <div class="vendas">    
                     <h1 class="ttvds">Vendas</h1>
+                    <a href="Vendas.jsp">Vendas</a>
                 </div>
             </div> 
         </div>
