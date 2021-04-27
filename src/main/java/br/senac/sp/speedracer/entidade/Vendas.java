@@ -5,10 +5,21 @@
  */
 package br.senac.sp.speedracer.entidade;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
  * @author Danta
  */
-public class Vendas {
+
+@Getter
+@Setter
+    public class Vendas {
+    private int  CodProd;
+    private int CodCliente;
+    private int  CPF;
+    private String Produto;
+    private int Quantidade;
     
 }

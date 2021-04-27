@@ -18,17 +18,11 @@
         <label>CodCliente</label>
         <input type="number">
         <label>CPF</label>
-        <input type="number">
-        <select>
-        <label>Escolha um carro</label
-        <option value="volvo">Volvo</option>
-        <option value="Ford">Ford</option>
-        <option value="Bmw">Bmw</option>
-        <option value="Audi">Audi</option>
-        </select>
-        <input type="text">
+        <input type="number"><br>
+        <label>Descrição do Produto</label>
+        <input type = "text"
         <label>Quantidade</label>
-        <input type ="number">
+        <input type ="number"><br>
         <button type ="button">Adicionar</button>
         <button type="button">Pesquisar</button>
         <button type ="button">Finalizar</button>
