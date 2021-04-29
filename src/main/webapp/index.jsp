@@ -22,8 +22,9 @@
             <!--Div menu central-->
             <div  class="menucentral">
                 <div class="vendas">    
-                    <h1 class="ttvds">Vendas</h1>
+                    <h1 class="ttvds">Menu</h1>
                     <a href="Vendas.jsp">Vendas</a>
+                    <a href="produto.jsp">Produto</a>
                 </div>
             </div> 
         </div>
