@@ -5,11 +5,6 @@
  */
 package br.senac.sp.speedracer.servlet;
 
-/**
- *
- * @author Eduardo Silva
- */
-
 import br.senac.sp.speedracer.dao.ProdutoDAO;
 import br.senac.sp.speedracer.entidade.Produto;
 import java.io.IOException;
