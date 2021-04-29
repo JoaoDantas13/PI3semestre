@@ -24,7 +24,6 @@
         <label>Quantidade</label>
         <input type ="number"><br>
         <button type ="button">Adicionar</button>
-        <button type="button">Pesquisar</button>
         <button type ="button">Finalizar</button>
     </body>
 </html>
