@@ -24,5 +24,7 @@
         <button type ="button">Incluir</button>
         <button type="button">Alterar</button>
         <button type ="button">Inativar</button>
+        <br/><br/>         
+        <a href="ProdutoServlet">Voltar</a>
     </body>
 </html>

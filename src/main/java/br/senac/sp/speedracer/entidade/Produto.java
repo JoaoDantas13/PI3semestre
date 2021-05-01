@@ -16,11 +16,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Produto {
+    private String placa;
     private String nome;
     private int quantidade;
     private double precoUnit;
     
-    public Produto(String nome, int quantidade, double precoUnit) {
+    public Produto(String placa, String nome, int quantidade, double precoUnit) {
+        this.placa = placa;
         this.nome = nome;
         this.quantidade = quantidade;
         this.precoUnit = precoUnit;
@@ -36,7 +38,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s <br/> Quantidade: %d <br/> Preço Unitário: %.2f", 
-                nome, quantidade , precoUnit);
+        return String.format("Placa: %s <br/> Nome: %s <br/> Quantidade: %d <br/> Preço Unitário: %.2f", 
+                placa,nome,quantidade,precoUnit);
     }
 }
