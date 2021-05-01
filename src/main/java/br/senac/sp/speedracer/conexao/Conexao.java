@@ -19,7 +19,8 @@ public class Conexao {
 
     static {
         try {
-            Class.forName("org.apache.derby.jdbc.EmbeddeDriver");
+           
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
@@ -28,9 +29,10 @@ public class Conexao {
     }
 
     public static Connection getConexao() throws SQLException {
-        String url = "jdbc:derby://localhost:1527/SpeedRacer";
-        String user = "";
-        String pass = "";
+        
+        String url = "jdbc:derby://localhost:1527/SpeedRacer1";
+        String user = "racer";
+        String pass = "racer";
 
         return DriverManager.getConnection(url, user, pass);
     }

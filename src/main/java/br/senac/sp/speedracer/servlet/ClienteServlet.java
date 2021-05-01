@@ -27,7 +27,7 @@ public class ClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        List<Cliente> listaClientes = ClienteDAO.getClientes();
+       List<Cliente> listaClientes = ClienteDAO.getClientes();
         
        request.setAttribute("listaClientes", listaClientes);
        

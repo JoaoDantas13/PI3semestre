@@ -39,7 +39,7 @@ public class ClienteDAO {
                 String cidade = rs.getString("cidade");
                 char sexo = rs.getString("sexo").charAt(0);
                 int ativo = rs.getInt("ativo");
-                Cliente cliente = new Cliente(nome, email, cpf,endereco,cidade,sexo,ativo);
+                Cliente cliente = new Cliente(nome,email,cpf,endereco,cidade,sexo,ativo);
                 clientes.add(cliente);
             }
         } catch (SQLException ex) {
