@@ -10,10 +10,13 @@
         <div class="header-1">
             <h1 class="ttsp">Speed Racer</h1>
         </div>
-        <h1>Bem vindo a Tela Cliente</h1>
+        <h1>Tela de Clientes</h1>
                         
         <br/>
         <a href="ClienteServlet">Lista de Clientes</a>
+        
+         <br/><br/>
+        <a href="clientes/cadastrar.jsp">Cadastar os Clientes</a>
         
         <br/><br/>
         <a href="index.jsp">Voltar</a>

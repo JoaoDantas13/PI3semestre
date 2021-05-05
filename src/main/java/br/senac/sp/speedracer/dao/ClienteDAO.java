@@ -49,6 +49,32 @@ public class ClienteDAO {
 
     }
     
-    
+    public static boolean cadastrar (Cliente cliente){
+        
+        boolean ok = true;
+        String query = "insert into Cliente (nome, email, cpf, endereco, cidade, sexo, ativo) "
+                + "values(?, ?, ?, ?, ?, ?, 0)";
+        Connection con;
+        
+        try {
+            
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, cliente.getNome());
+            ps.setString(2, cliente.getEmail());
+            ps.setString(3, cliente.getCpf());
+            ps.setString(4, cliente.getEndereco());
+            ps.setString(5, cliente.getCidade());
+            ps.setString(6, String.valueOf(cliente.getSexo()));
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+               
+        return ok;
+    }
     
 }

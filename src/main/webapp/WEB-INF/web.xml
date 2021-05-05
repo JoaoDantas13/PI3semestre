@@ -12,6 +12,10 @@
         <servlet-name>VendasServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.VendasServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastrarClienteServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.CadastrarClienteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
         <url-pattern>/ProdutoServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>VendasServlet</servlet-name>
         <url-pattern>/VendasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarClienteServlet</servlet-name>
+        <url-pattern>/clientes/CadastrarClienteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
