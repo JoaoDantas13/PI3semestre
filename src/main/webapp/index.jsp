@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head >
@@ -8,7 +9,7 @@
     </head>
     <body>
         <div class="header-1">
-            <h1 class="ttsp">Speed Racer</h1>
+            <c:import  url="header.jsp" />
             <!--Div login-->
             <div class="acesso">
                 <label>Usuario:</label>

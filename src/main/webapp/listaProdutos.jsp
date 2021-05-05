@@ -10,13 +10,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Produtos</title>
     </head>
     <body class="container">
         
          <div class="header-1">
-            <h1 class="ttsp">Speed Racer</h1>
+             <c:import url="header.jsp"/>
         </div>
         
         <h1>Produtos:</h1>
@@ -45,10 +46,11 @@
          <br/><br/>
                     <div class ="btnincluir">
                         <button class = "inc" type="button">
-                            <a href="produto.jsp">Incluir</a></button>
+                            <a href="incluirProduto.jsp">Incluir</a></button>
                     </div>                    
          
-         <br/><br/>         
-        <a href="index.jsp">Voltar</a>
+        
+        <c:import url="footer.jsp"/>
+    
     </body>
 </html>
