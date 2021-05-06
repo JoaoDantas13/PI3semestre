@@ -35,7 +35,7 @@
                     <td>${cliente.cidade}</td>
                     <td>${cliente.sexo}</td>
                     
-                    <td><button type="button">Alterar</button></td>
+                    <td><a href="AlterarClienteServlet?cpf=${cliente.cpf}">Alterar</a></td>
                     <td><button type="button">Inativar</button></td>
                                         
                 </tr>

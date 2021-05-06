@@ -77,4 +77,62 @@ public class ClienteDAO {
         return ok;
     }
     
+    public static Cliente dadosAlterar (String cpf) {
+        
+        Cliente cliente = null;
+        String query = "select * from Cliente where cpf = ?";
+        Connection con;
+        
+        try {
+            
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String endereco = rs.getString("endereco");
+                String cidade = rs.getString("cidade");
+                char sexo = rs.getString("sexo").charAt(0);
+                int ativo = rs.getInt("ativo");
+                cliente = new Cliente(nome,email,cpf,endereco,cidade,sexo,ativo);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cliente;
+    }
+    
+    public static boolean alterar(Cliente cliente){
+        
+        boolean ok = true;
+        String query = "update Cliente set nome=?, email=?, endereco=?, cidade=?, sexo=? where cpf = ?";
+        Connection con;
+        
+        try {
+            
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, cliente.getNome());
+            ps.setString(2, cliente.getEmail());
+            ps.setString(6, cliente.getCpf());
+            ps.setString(3, cliente.getEndereco());
+            ps.setString(4, cliente.getCidade());
+            ps.setString(5, String.valueOf(cliente.getSexo()));
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+               
+        return ok;
+    }
+    
 }

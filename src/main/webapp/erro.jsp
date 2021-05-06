@@ -12,7 +12,7 @@
         <title>Erro</title>
     </head>
     <body>
-        <h1 style="color: red">Ops, o Cadastro não foi realizado</h1>
+        <h1 style="color: red">Ops, a Operação não foi realizado</h1>
         
         <a href="../Cliente.jsp">Voltar</a>
     </body>

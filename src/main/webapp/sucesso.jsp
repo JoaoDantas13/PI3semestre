@@ -12,7 +12,7 @@
         <title>Sucesso</title>
     </head>
     <body>
-        <h1 style="color: greenyellow">O Cadastro foi bem secedido !!</h1>
+        <h1 style="color: greenyellow">A Operação foi bem secedido !!</h1>
         
         <a href="/PI3semestre/Cliente.jsp">Voltar</a>
     </body>
