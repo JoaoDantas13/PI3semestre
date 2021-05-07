@@ -20,6 +20,10 @@
         <servlet-name>AlterarClienteServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.AlterarClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastraProdutoServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.CadastraProdutoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
         <url-pattern>/ProdutoServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AlterarClienteServlet</servlet-name>
         <url-pattern>/AlterarClienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastraProdutoServlet</servlet-name>
+        <url-pattern>/produtos/CadastraProdutoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

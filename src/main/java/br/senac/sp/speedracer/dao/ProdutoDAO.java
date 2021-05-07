@@ -25,7 +25,7 @@ public class ProdutoDAO {
     
     public static boolean cadastrar(Produto produto){
         boolean ok = true;
-        String query = "insert into produto (nome, quantidade, precounit) values (?,?,?,?)";
+        String query = "insert into produto (placa, nome, quantidade, precoUnit) values (?,?,?,?)";
         Connection con;
         try {
             con = Conexao.getConexao();

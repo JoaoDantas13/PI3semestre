@@ -14,21 +14,24 @@
         <title>Produto</title>
     </head>
     <body>
-        <c:import url="header.jsp" />
+        <c:import url="../header.jsp" />
         <h1>Produto</h1>
+        
+        <form action="CadastraProdutoServlet" method="POST">
         <label>Placa</label>
-        <input type="text">
+        <input type="text" name="placa" required="true"/>
         <label>Nome</label>
-        <input type="text">
+        <input type="text" name="nome" required="true"/>
         <label>Quantidade</label>
-        <input type="number"><br>
+        <input type="text" name="quantidade" required="true"/><br>
         <label>Valor Unitário</label>
-        <input type = "number"><br>
-        <button type ="button">Incluir</button>
-        <button type="button">Alterar</button>
-        <button type ="button">Inativar</button>
-        <c:import url="footer.jsp" />
+        <input type = "text" name="precoUnit" required="true"/><br>
+        
+        <button type ="submit">Incluir</button>
+        
+        </form>
+        
         <br/>         
-        <a href="ProdutoServlet">Voltar</a>
+        <a href="../ProdutoServlet">Voltar</a>
     </body>
 </html>

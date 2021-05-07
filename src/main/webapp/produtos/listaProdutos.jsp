@@ -16,8 +16,8 @@
     </head>
     <body class="container">
         
-         <div class="header-1">
-             <c:import url="header.jsp"/>
+        <div class="header-1">
+             <c:import url="../header.jsp"/>
         </div>
         
         <h1>Produtos:</h1>
@@ -45,12 +45,11 @@
                      
          <br/><br/>
                     <div class ="btnincluir">
-                        <button class = "inc" type="button">
-                            <a href="incluirProduto.jsp">Incluir</a></button>
+                            <a href="produtos/incluirProduto.jsp">Incluir</a>
                     </div>                    
          
         
-        <c:import url="footer.jsp"/>
+        <c:import url="../footer.jsp"/>
     
     </body>
 </html>

@@ -14,6 +14,6 @@
     <body>
         <h1 style="color: red">Ops, a Operação não foi realizado</h1>
         
-        <a href="../Cliente.jsp">Voltar</a>
+        <a href="../index.jsp">Voltar</a>
     </body>
 </html>
