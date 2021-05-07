@@ -15,48 +15,24 @@ import lombok.Setter;
 @Getter
 @Setter
     public class Vendas {
-    private int  CodProd;
-    private int CodCliente;
-    private String Produto;
-    private int Quantidade;
-    private int ValorTotal;
+    private String  PLACA;
+    private String NOME;
+    private int QUANTIDADE;
+    private Double PRECOUNIT;
     
-    public Vendas(int CodProd, int CodCliente, String Produto , int Quantidade , int ValorTotal) {
-        this.CodProd = CodProd;
-        this.Produto = Produto;
-        this.Quantidade = Quantidade;
-        this.ValorTotal = ValorTotal;
+    public Vendas(String PLACA, String NOME, int QUANTIDADE , double PRECOUNIT) {
+        this.PLACA = PLACA;
+        this.NOME = NOME;
+        this.QUANTIDADE = QUANTIDADE;
+        this.PRECOUNIT = PRECOUNIT;
     }
     
     @Override
     public String toString(){
-        return String.format("CodProd: %d <br/> CodCliente: %d <br/> Produto: %s  <br/> "
-                + "           Quantidade %d</br> ValorTotal %d", 
-                CodProd, CodCliente , Produto ,Quantidade,ValorTotal);
+        return String.format("PLACA: %s <br/> NOME: %s <br/> QUANTIDADE: %d  <br/> "
+                + "           PRECOUNIT %.2f</br>", 
+                PLACA, NOME , QUANTIDADE ,PRECOUNIT);
     }
 
-    public String getcodprod() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getcodcliente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public double getproduto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public double getquantidade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public double getvalortotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void add(Vendas vendas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

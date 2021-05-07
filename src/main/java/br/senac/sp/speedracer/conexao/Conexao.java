@@ -30,7 +30,7 @@ public class Conexao {
 
     public static Connection getConexao() throws SQLException {
         
-        String url = "jdbc:derby://localhost:1527/SpeedRacer1";
+        String url = "jdbc:derby://localhost:1527/SpeeddRacer1";
         String user = "racer";
         String pass = "racer";
 
