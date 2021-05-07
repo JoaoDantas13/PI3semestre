@@ -28,6 +28,8 @@
             <th>Nome</th>
             <th>Quantidade</th>
             <th>Preço Unitário</th>
+            <th>Loja</th>
+            <th>Status</th>
             
             <c:forEach items="${listaProdutos}" var="produto">                
                 <tr>                    
@@ -35,10 +37,11 @@
                     <td>${produto.nome}</td>
                     <td>${produto.quantidade}</td>
                     <td>${produto.precoUnit}</td>
-                    
-
-                    <td><button type="button">Alterar</button></td>
-                    <td><button type="button">Inativar</button></td>                    
+                    <td>${produto.loja}</td>
+                    <td>${produto.status}</td>
+              
+                    <td><a href="AlterarProdutoServlet?placa=${produto.placa}">Alterar</a></td>                    
+                    <td><a href="InativarProdutoServlet?placa=${produto.placa}">Inativar</a></td>                    
                 </tr>
             </c:forEach>
         </table>

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.sp.speedracer.servlet;
 
 import br.senac.sp.speedracer.dao.ProdutoDAO;
@@ -19,21 +15,36 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HOME
  */
-public class CadastraProdutoServlet extends HttpServlet {
+public class AlterarProdutoServlet extends HttpServlet {
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String placa = request.getParameter("placa");
+        
+        Produto produto = ProdutoDAO.getProduto(placa);
+        request.setAttribute("produto", produto);
+        
+        request.getRequestDispatcher("/produtos/alterarProduto.jsp").forward(request, response);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
         String placa = request.getParameter("placa");
         String nome = request.getParameter("nome");
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         double precoUnit = Double.parseDouble(request.getParameter("precoUnit"));
         int loja = Integer.parseInt(request.getParameter("loja"));
-        String status = "Ativo";
+        String status = request.getParameter("status");
         
         Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
-        boolean ok = ProdutoDAO.cadastrar(produto);
+        boolean ok = ProdutoDAO.atualizar(produto);
         Redirect.sendRedirect(ok, response);
-    }  
+        
+    }
+
+
 }

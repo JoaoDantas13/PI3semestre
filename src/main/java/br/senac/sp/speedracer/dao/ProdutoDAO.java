@@ -25,7 +25,7 @@ public class ProdutoDAO {
     
     public static boolean cadastrar(Produto produto){
         boolean ok = true;
-        String query = "insert into produto (placa, nome, quantidade, precoUnit) values (?,?,?,?)";
+        String query = "insert into produto (placa, nome, quantidade, precoUnit, loja, status) values (?,?,?,?,?,?)";
         Connection con;
         try {
             con = Conexao.getConexao();
@@ -34,6 +34,8 @@ public class ProdutoDAO {
             ps.setString(2, produto.getNome());
             ps.setInt(3, produto.getQuantidade());
             ps.setDouble(4, produto.getPrecoUnit());
+            ps.setInt(5, produto.getLoja());
+            ps.setString(6, produto.getStatus());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +57,10 @@ public class ProdutoDAO {
                 String nome = rs.getString("nome");
                 int quantidade = rs.getInt("quantidade");
                 double precoUnit  = rs.getDouble("precoUnit");
-                Produto produto = new Produto(placa, nome, quantidade, precoUnit);
+                int loja = rs.getInt("loja");
+                String status = rs.getString("status");
+                
+                Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
                 produtos.add(produto);
             }
         } catch (SQLException ex) {
@@ -63,4 +68,66 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+ 
+   public static Produto getProduto(String placa) {
+        Produto produto = null;
+        String query = "select * from produto where placa=?";
+        Connection con;
+        try {
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, placa);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String nome = rs.getString("nome");
+                int quantidade = rs.getInt("quantidade");
+                double precoUnit = rs.getDouble("precoUnit");
+                int loja = rs.getInt("loja");
+                String status = rs.getString("status");
+                produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produto;
+    }   
+   
+   public static boolean inativar(String placa) {
+        boolean ok = true;
+        String query = "update produto set status='Inativo' where placa=?";
+        Connection con;
+        try {
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, placa);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        return ok;
+    }   
+   
+   public static boolean atualizar(Produto produto) {
+        boolean ok = true;
+        String query = "update produto set nome=?, quantidade=?, precoUnit=?, loja=?, status=?"
+                + " where placa=?";
+        Connection con;
+        try {
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, produto.getNome());
+            ps.setInt(2, produto.getQuantidade());
+            ps.setDouble(3, produto.getPrecoUnit());
+            ps.setInt(4, produto.getLoja());
+            ps.setString(5, produto.getStatus());
+            ps.setString(6, produto.getPlaca());           
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        return ok;
+    }      
+      
 }

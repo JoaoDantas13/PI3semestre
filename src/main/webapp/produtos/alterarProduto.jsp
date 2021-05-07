@@ -17,19 +17,21 @@
         <c:import url="../header.jsp" />
         <h1>Produto</h1>
         
-        <form action="CadastraProdutoServlet" method="POST">
+        <form action="AlterarProdutoServlet" method="POST">
         <label>Placa</label>
-        <input type="text" name="placa" required="true"/>
+        <input type="text" name="placa" required="true" value="${produto.placa}" readonly="true"/>
         <label>Nome</label>
-        <input type="text" name="nome" required="true"/>
+        <input type="text" name="nome" required="true" value="${produto.nome}"/>
         <label>Quantidade</label>
-        <input type="text" name="quantidade" required="true"/><br>
+        <input type="text" name="quantidade" required="true" value="${produto.quantidade}"/><br>
         <label>Valor Unitário</label>
-        <input type = "text" name="precoUnit" required="true"/><br>
+        <input type = "text" name="precoUnit" required="true" value="${produto.precoUnit}"/>
         <label>Loja</label>
-        <input type = "text" name="loja" required="true"/><br>
+        <input type = "text" name="loja" required="true" value="${produto.loja}"/>
+        <label>Status</label>        
+        <input type = "text" name="status" required="true" value="${produto.status}"/><br>
         
-        <button type ="submit">Incluir</button>
+        <button type ="submit">Atualizar</button>
         
         </form>
         

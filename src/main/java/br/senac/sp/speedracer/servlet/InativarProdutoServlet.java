@@ -6,7 +6,6 @@
 package br.senac.sp.speedracer.servlet;
 
 import br.senac.sp.speedracer.dao.ProdutoDAO;
-import br.senac.sp.speedracer.entidade.Produto;
 import br.senac.sp.speedracer.utils.Redirect;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,21 +18,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HOME
  */
-public class CadastraProdutoServlet extends HttpServlet {
+public class InativarProdutoServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         String placa = request.getParameter("placa");
-        String nome = request.getParameter("nome");
-        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-        double precoUnit = Double.parseDouble(request.getParameter("precoUnit"));
-        int loja = Integer.parseInt(request.getParameter("loja"));
-        String status = "Ativo";
-        
-        Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
-        boolean ok = ProdutoDAO.cadastrar(produto);
+        boolean ok = ProdutoDAO.inativar(placa);
         Redirect.sendRedirect(ok, response);
-    }  
+        
+    }
+
 }
