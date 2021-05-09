@@ -10,9 +10,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Produtos</title>
+        
+        <script type="text/javascript">
+            function mostrarTelaConfirmacao(placa){
+                
+                $("#placaVeiculo").html(placa);
+                
+                var modalConfirmacao = $("#confirmarInativacao");
+                modalConfirmacao.show();
+            }
+            
+            function fecharTelaConfirmacao(){
+                $("#confirmarInativacao").hide();
+            }
+            
+            function inativarCliente(){
+                var placa = $("#placaVeiculo").html();
+                fecharTelaConfirmacao();
+                $.ajax("InativarProdutoServlet?placa=" + placa).done(function(){
+                        location.reload();
+                        
+                    })
+                    .fail(function(){
+                        $("#erro").css("display", "block");
+                        setTimeout(function(){
+                            $("#erro").css("display", "none");                        
+                        }, 3000);
+                    });
+            }
+            
+        </script>    
+        
     </head>
     <body class="container">
         
@@ -21,8 +51,18 @@
         </div>
         
         <h1>Produtos:</h1>
+    </b></b>   
+   
+    <div class="alert alert-danger" role="alert" id="erro" style="display:none">
+            Erro ao Inativar Produto!           
+    </div>
+
+    <div class="alert alert-primary" role="alert" id="concluido" style="display:none">
+            Produto Inativado com Sucesso!           
+    </div>
         
-        <table>
+    </b></b>
+        <table class="table">
             
             <th>Placa</th>
             <th>Nome</th>
@@ -41,10 +81,30 @@
                     <td>${produto.status}</td>
               
                     <td><a href="AlterarProdutoServlet?placa=${produto.placa}">Alterar</a></td>                    
-                    <td><a href="InativarProdutoServlet?placa=${produto.placa}">Inativar</a></td>                    
+                    
+                    <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${produto.placa}')">Inativar</button></td>
                 </tr>
             </c:forEach>
         </table>
+        
+        
+        <div class="modal" id="confirmarInativacao">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirmar Inativação</h5>
+                </div>
+              <div class="modal-body">
+                  <p>Tem certeza que deseja inativar o veiculo de placa <label id="placaVeiculo"></label>?</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" onclick="fecharTelaConfirmacao()">Cancelar</button>
+                  <button type="button" class="btn btn-primary" onclick="inativarCliente()">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
                      
          <br/><br/>
                     <div class ="btnincluir">
@@ -53,6 +113,7 @@
          
         
         <c:import url="../footer.jsp"/>
-    
+        
+        
     </body>
 </html>

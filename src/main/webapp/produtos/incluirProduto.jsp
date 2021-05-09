@@ -9,27 +9,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Produto</title>
     </head>
-    <body>
+    <body class="container">
         <c:import url="../header.jsp" />
         <h1>Produto</h1>
         
         <form action="CadastraProdutoServlet" method="POST">
-        <label>Placa</label>
-        <input type="text" name="placa" required="true"/>
-        <label>Nome</label>
-        <input type="text" name="nome" required="true"/>
-        <label>Quantidade</label>
-        <input type="text" name="quantidade" required="true"/><br>
-        <label>Valor Unitário</label>
-        <input type = "text" name="precoUnit" required="true"/><br>
-        <label>Loja</label>
-        <input type = "text" name="loja" required="true"/><br>
+        <label class="form-label">Placa</label>
+        <input type="text" name="placa" required="true" class="form-control"/>
+        <label class="form-label">Nome</label>
+        <input type="text" name="nome" required="true" class="form-control"/>
+        <label class="form-label">Quantidade</label>
+        <input type="text" name="quantidade" required="true" class="form-control"/>
+        <label class="form-label">Valor Unitário</label>
+        <input type = "text" name="precoUnit" required="true" class="form-control"/>
+        <label class="form-label">Loja</label>
+        <input type = "text" name="loja" required="true" class="form-control"/><br>
         
-        <button type ="submit">Incluir</button>
+        <button type ="submit" class="btn-primary">Incluir</button>
         
         </form>
         

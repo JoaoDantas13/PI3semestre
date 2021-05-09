@@ -26,8 +26,7 @@ public class InativarProdutoServlet extends HttpServlet {
 
         String placa = request.getParameter("placa");
         boolean ok = ProdutoDAO.inativar(placa);
-        Redirect.sendRedirect(ok, response);
-        
+        response.setStatus(ok? 200:500);        
     }
 
 }
