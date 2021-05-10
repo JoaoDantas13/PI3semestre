@@ -14,6 +14,15 @@
         <title>Lista de Produtos</title>
         
         <script type="text/javascript">
+            function mostrarTelaAlteracao(placa){
+                $.ajax("AlterarProdutoServlet?placa=" + placa).done(function(){
+                    alert(placa);
+                })
+                    .fail(function(){
+                       alert("erro"); 
+                });
+            }
+                       
             function mostrarTelaConfirmacao(placa){
                 
                 $("#placaVeiculo").html(placa);
@@ -56,12 +65,14 @@
     <div class="alert alert-danger" role="alert" id="erro" style="display:none">
             Erro ao Inativar Produto!           
     </div>
-
-    <div class="alert alert-primary" role="alert" id="concluido" style="display:none">
-            Produto Inativado com Sucesso!           
-    </div>
         
     </b></b>
+                 <div class ="btnincluir">
+                        <a href="produtos/incluirProduto.jsp"><button type="button" class="btn btn-primary">Incluir novo Produto</button></a>
+                    </div>
+
+    </b></b>
+
         <table class="table">
             
             <th>Placa</th>
@@ -80,8 +91,8 @@
                     <td>${produto.loja}</td>
                     <td>${produto.status}</td>
               
-                    <td><a href="AlterarProdutoServlet?placa=${produto.placa}">Alterar</a></td>                    
-                    
+                    <td><a href="AlterarProdutoServlet?placa=${produto.placa}"><button type="button" class="btn btn-primary">Alterar</button></a></td>
+                
                     <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${produto.placa}')">Inativar</button></td>
                 </tr>
             </c:forEach>
@@ -107,9 +118,7 @@
         
                      
          <br/><br/>
-                    <div class ="btnincluir">
-                            <a href="produtos/incluirProduto.jsp">Incluir</a>
-                    </div>                    
+   
          
         
         <c:import url="../footer.jsp"/>
