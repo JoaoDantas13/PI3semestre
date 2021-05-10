@@ -4,13 +4,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastrar</title>
+        <title>Aterar</title>
     </head>
     <body class="conteiner">
+        
         <div class="header-1">
-            <h1 class="ttsp">Speed Racer</h1>
+             <c:import url="../header.jsp"/>
         </div>
-        <h1>Cadastrar os Clientes</h1>
+        
+        <h1>Altera os dados dos Clientes</h1>
         
         <c:if test="${not empty cliente}">
             

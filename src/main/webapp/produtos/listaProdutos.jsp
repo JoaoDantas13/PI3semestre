@@ -1,10 +1,3 @@
-<%-- 
-    Document   : listaProdutos
-    Created on : 30/04/2021, 19:27:20
-    Author     : HOME
---%>
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

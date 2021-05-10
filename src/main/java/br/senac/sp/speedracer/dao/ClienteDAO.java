@@ -27,6 +27,7 @@ public class ClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
         String query = "select * from Cliente where ativo = 0";
         Connection con;
+        
         try {
             con = Conexao.getConexao();
             PreparedStatement ps = con.prepareStatement(query);
@@ -135,4 +136,77 @@ public class ClienteDAO {
         return ok;
     }
     
+    public static boolean Inativar(String cpf){
+        
+        boolean ok = true;
+        String query = "update Cliente set ativo = 1 where cpf = ?";
+        Connection con;
+        
+        try {
+            
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, cpf);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+            
+        }
+        
+        return ok;
+    }
+    
+    public static boolean Ativar(String cpf){
+        
+        boolean ok = true;
+        String query = "update Cliente set ativo = 0 where cpf = ?";
+        Connection con;
+        
+        try {
+            
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, cpf);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+            
+        }
+        
+        return ok;
+    }
+    
+    public static List<Cliente> getClientesInativos() {
+               
+        List<Cliente> clientes = new ArrayList<>();
+        String query = "select * from Cliente where ativo = 1";
+        Connection con;
+        try {
+            con = Conexao.getConexao();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String cpf = rs.getString("cpf");
+                String endereco = rs.getString("endereco");
+                String cidade = rs.getString("cidade");
+                char sexo = rs.getString("sexo").charAt(0);
+                int ativo = rs.getInt("ativo");
+                Cliente cliente = new Cliente(nome,email,cpf,endereco,cidade,sexo,ativo);
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return clientes;
+    }
 }

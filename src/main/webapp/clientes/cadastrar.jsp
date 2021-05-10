@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,9 +7,11 @@
         <title>Cadastrar</title>
     </head>
     <body class="conteiner">
+        
         <div class="header-1">
-            <h1 class="ttsp">Speed Racer</h1>
+             <c:import url="../header.jsp"/>
         </div>
+        
         <h1>Cadastrar os Clientes</h1>
         
         <c:if test="${empty cliente}">

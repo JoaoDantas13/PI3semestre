@@ -32,6 +32,18 @@
         <servlet-name>AlterarProdutoServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.AlterarProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InativarClienteServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.InativarClienteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtivarClienteServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.AtivarClienteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClienteInativoServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.ClienteInativoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
         <url-pattern>/ProdutoServlet</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>AlterarProdutoServlet</servlet-name>
         <url-pattern>/AlterarProdutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InativarClienteServlet</servlet-name>
+        <url-pattern>/InativarClienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtivarClienteServlet</servlet-name>
+        <url-pattern>/AtivarClienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClienteInativoServlet</servlet-name>
+        <url-pattern>/ClienteInativoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
