@@ -34,6 +34,18 @@ public class CadastraProdutoServlet extends HttpServlet {
         
         Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
         boolean ok = ProdutoDAO.cadastrar(produto);
-        Redirect.sendRedirect(ok, response);
+        
+        if(ok){
+            
+            response.sendRedirect(request.getContextPath() + "/sucesso.jsp");
+            
+        } else {
+            
+            String msg = "O cadastro não foi realizado!!";
+            request.setAttribute("msgErro", msg);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
+            
+        }
+
     }  
 }
