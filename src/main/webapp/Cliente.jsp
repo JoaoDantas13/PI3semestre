@@ -21,7 +21,7 @@
         <a href="ClienteServlet"><button type="button" class="btn btn-primary">Lista de Clientes</button></a>
         
         <br/><br/>
-        <a href="clientes/ativarCliente.jsp"><button type="button" class="btn btn-primary">Clientes Inativados</button></a>
+        <a href="ClienteInativoServlet"><button type="button" class="btn btn-primary">Clientes Inativados</button></a>
                 
         <br/><br/>
         <a href="index.jsp">Voltar</a>
