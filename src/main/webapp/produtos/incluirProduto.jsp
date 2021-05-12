@@ -21,8 +21,7 @@
         <input type="text" name="placa" required="true" class="form-control"/>
         <label class="form-label">Nome</label>
         <input type="text" name="nome" required="true" class="form-control"/>
-        <label class="form-label">Quantidade</label>
-        <input type="text" name="quantidade" required="true" class="form-control"/>
+    
         <label class="form-label">Valor Unitário</label>
         <input type = "text" name="precoUnit" required="true" class="form-control"/>
         <label class="form-label">Loja</label>

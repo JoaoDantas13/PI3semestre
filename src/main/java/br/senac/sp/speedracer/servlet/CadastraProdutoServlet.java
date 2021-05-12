@@ -27,7 +27,7 @@ public class CadastraProdutoServlet extends HttpServlet {
        
         String placa = request.getParameter("placa");
         String nome = request.getParameter("nome");
-        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        int quantidade = 1;
         double precoUnit = Double.parseDouble(request.getParameter("precoUnit"));
         int loja = Integer.parseInt(request.getParameter("loja"));
         String status = "Ativo";
