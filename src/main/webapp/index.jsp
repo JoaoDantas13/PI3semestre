@@ -25,7 +25,7 @@
                 <div class="vendas">    
                     <h1 class="ttvds">Menu</h1>
                     <a href="Cliente.jsp">Cliente</a>
-                    <a href="Vendas.jsp">Vendas</a>
+                    <a href="venda/inserirVenda.jsp">Vendas</a>
                     <a href="ProdutoServlet">Produto</a>
                 </div>
             </div> 
