@@ -41,8 +41,12 @@
         <form action="AlterarProdutoServlet" method="POST" >
         <label>Placa</label>
         <input type="text" name="placa" required="true" value="${produto.placa}" readonly="true"/>
-        <label>Nome</label>
-        <input type="text" name="nome" required="true" value="${produto.nome}"/>
+        <label>Marca</label>
+        <input type="text" name="marca" required="true" value="${produto.marca}"/>
+        <label>Modelo</label>
+        <input type="text" name="modelo" required="true" value="${produto.modelo}"/>
+        <label>Tipo</label>
+        <input type="text" name="tipo" required="true" value="${produto.tipo}"/>
         
         <label>Quantidade</label>
         <select name="quantidade" >

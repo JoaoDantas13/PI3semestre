@@ -69,7 +69,9 @@
         <table class="table">
             
             <th>Placa</th>
-            <th>Nome</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Tipo</th>
             <th>Quantidade</th>
             <th>Preço Unitário</th>
             <th>Loja</th>
@@ -78,7 +80,9 @@
             <c:forEach items="${listaProdutos}" var="produto">                
                 <tr>                    
                     <td>${produto.placa}</td>                    
-                    <td>${produto.nome}</td>
+                    <td>${produto.marca}</td>
+                    <td>${produto.modelo}</td>
+                    <td>${produto.tipo}</td>
                     <td>${produto.quantidade}</td>
                     <td>${produto.precoUnit}</td>
                     <td>${produto.loja}</td>

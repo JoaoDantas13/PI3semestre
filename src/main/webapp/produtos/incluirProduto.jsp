@@ -19,9 +19,14 @@
         <form action="CadastraProdutoServlet" method="POST">
         <label class="form-label">Placa</label>
         <input type="text" name="placa" required="true" class="form-control"/>
-        <label class="form-label">Nome</label>
-        <input type="text" name="nome" required="true" class="form-control"/>
+        <label class="form-label">Marca</label>
+        <input type="text" name="marca" required="true" class="form-control"/>
+        <label class="form-label">Modelo</label>
+        <input type="text" name="modelo" required="true" class="form-control"/>
+        <label class="form-label">Tipo</label>
+        <input type="text" name="tipo" required="true" class="form-control"/>
     
+        
         <label class="form-label">Valor Unitário</label>
         <input type = "text" name="precoUnit" required="true" class="form-control"/>
         <label class="form-label">Loja</label>

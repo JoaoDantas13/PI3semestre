@@ -34,13 +34,15 @@ public class AlterarProdutoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String placa = request.getParameter("placa");
-        String nome = request.getParameter("nome");
+        String marca = request.getParameter("marca");
+        String modelo = request.getParameter("modelo");
+        String tipo = request.getParameter("tipo");
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         double precoUnit = Double.parseDouble(request.getParameter("precoUnit"));
         int loja = Integer.parseInt(request.getParameter("loja"));
         String status = request.getParameter("status");
         
-        Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
+        Produto produto = new Produto(placa, marca, modelo, tipo, quantidade, precoUnit, loja, status);
         boolean ok = ProdutoDAO.atualizar(produto);
         Redirect.sendRedirect(ok, response);
         

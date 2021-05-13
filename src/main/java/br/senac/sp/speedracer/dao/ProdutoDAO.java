@@ -25,17 +25,19 @@ public class ProdutoDAO {
     
     public static boolean cadastrar(Produto produto){
         boolean ok = true;
-        String query = "insert into produto (placa, nome, quantidade, precoUnit, loja, status) values (?,?,?,?,?,?)";
+        String query = "insert into produto (placa, marca, modelo, tipo, quantidade, precoUnit, loja, status) values (?,?,?,?,?,?,?,?)";
         Connection con;
         try {
             con = Conexao.getConexao();
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, produto.getPlaca());
-            ps.setString(2, produto.getNome());
-            ps.setInt(3, produto.getQuantidade());
-            ps.setDouble(4, produto.getPrecoUnit());
-            ps.setInt(5, produto.getLoja());
-            ps.setString(6, produto.getStatus());
+            ps.setString(2, produto.getMarca());
+            ps.setString(3, produto.getModelo());
+            ps.setString(4, produto.getTipo());
+            ps.setInt(5, produto.getQuantidade());
+            ps.setDouble(6, produto.getPrecoUnit());
+            ps.setInt(7, produto.getLoja());
+            ps.setString(8, produto.getStatus());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,13 +56,15 @@ public class ProdutoDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 String placa = rs.getString("placa");
-                String nome = rs.getString("nome");
+                String marca = rs.getString("marca");
+                String modelo = rs.getString("modelo");
+                String tipo = rs.getString("tipo");
                 int quantidade = rs.getInt("quantidade");
                 double precoUnit  = rs.getDouble("precoUnit");
                 int loja = rs.getInt("loja");
                 String status = rs.getString("status");
                 
-                Produto produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
+                Produto produto = new Produto(placa, marca, modelo, tipo, quantidade, precoUnit, loja, status);
                 produtos.add(produto);
             }
         } catch (SQLException ex) {
@@ -79,12 +83,14 @@ public class ProdutoDAO {
             ps.setString(1, placa);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                String nome = rs.getString("nome");
+                String marca = rs.getString("marca");
+                String modelo = rs.getString("modelo");
+                String tipo = rs.getString("tipo");                
                 int quantidade = rs.getInt("quantidade");
                 double precoUnit = rs.getDouble("precoUnit");
                 int loja = rs.getInt("loja");
                 String status = rs.getString("status");
-                produto = new Produto(placa, nome, quantidade, precoUnit, loja, status);
+                produto = new Produto(placa, marca, modelo, tipo, quantidade, precoUnit, loja, status);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,18 +116,20 @@ public class ProdutoDAO {
    
    public static boolean atualizar(Produto produto) {
         boolean ok = true;
-        String query = "update produto set nome=?, quantidade=?, precoUnit=?, loja=?, status=?"
+        String query = "update produto set marca=?, modelo=?, tipo=?, quantidade=?, precoUnit=?, loja=?, status=?"
                 + " where placa=?";
         Connection con;
         try {
             con = Conexao.getConexao();
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, produto.getNome());
-            ps.setInt(2, produto.getQuantidade());
-            ps.setDouble(3, produto.getPrecoUnit());
-            ps.setInt(4, produto.getLoja());
-            ps.setString(5, produto.getStatus());
-            ps.setString(6, produto.getPlaca());           
+            ps.setString(1, produto.getMarca());
+            ps.setString(2, produto.getModelo());
+            ps.setString(3, produto.getTipo());            
+            ps.setInt(4, produto.getQuantidade());
+            ps.setDouble(5, produto.getPrecoUnit());
+            ps.setInt(6, produto.getLoja());
+            ps.setString(7, produto.getStatus());
+            ps.setString(8, produto.getPlaca());           
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
