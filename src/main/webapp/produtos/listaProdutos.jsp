@@ -76,6 +76,8 @@
             <th>Preço Unitário</th>
             <th>Loja</th>
             <th>Status</th>
+            <th></th>
+            <th></th>
             
             <c:forEach items="${listaProdutos}" var="produto">                
                 <tr>                    

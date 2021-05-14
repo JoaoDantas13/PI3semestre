@@ -45,7 +45,7 @@ public class ProdutoDAO {
         }
         return ok;        
     } 
-    
+
    public static List<Produto> getProdutos() {
         List<Produto> produtos = new ArrayList<>();
         String query = "select * from produto";

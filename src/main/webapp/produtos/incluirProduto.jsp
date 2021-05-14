@@ -18,23 +18,65 @@
         
         <form action="CadastraProdutoServlet" method="POST">
         <label class="form-label">Placa</label>
-        <input type="text" name="placa" required="true" class="form-control"/>
-        <label class="form-label">Marca</label>
-        <input type="text" name="marca" required="true" class="form-control"/>
-        <label class="form-label">Modelo</label>
-        <input type="text" name="modelo" required="true" class="form-control"/>
-        <label class="form-label">Tipo</label>
-        <input type="text" name="tipo" required="true" class="form-control"/>
-    
+        <input type="text" name="placa" required="true" class="form-control" placeholder="Ex.: XXX1111"/>
+        </br>
         
+        <label class="form-label">Marca</label>
+        </br>
+        
+        <select name="marca" class="form-control" required="true">
+            <option value="">Selecione uma Marca</option>
+            <option value="BMW">BMW</option>
+            <option value="GM/Chevrolet">GM/Chevrolet</option>
+            <option value="Citroën">Citroën</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Ford">Ford</option>
+            <option value="Honda">Honda</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Jeep">Jeep</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Peugeot">Peugeot</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Renault">Renault</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Volkswagen">Volkswagen</option>      
+        </select>
+
+        </br>
+        
+        <label class="form-label">Modelo</label>
+        <input type="text" name="modelo" required="true" class="form-control" placeholder="Ex.: Corsa, Meriva, Pajero"/>
+        </br>
+        
+        <label class="form-label">Tipo</label>
+        <select name="tipo" class="form-control" required="true">
+            <option value="">Selecione o Tipo</option>
+            <option value="Comum">Comum</option>
+            <option value="Luxo">Luxo</option>
+            <option value="SUV">SUV</option>
+            <option value="Utilitario">Utilitario</option>
+            <option value="Offroad">Offroad</option>
+        </select>
+        </br>
+      
         <label class="form-label">Valor Unitário</label>
         <input type = "text" name="precoUnit" required="true" class="form-control"/>
+        </br>
         <label class="form-label">Loja</label>
         <input type = "text" name="loja" required="true" class="form-control"/><br>
         
-        <button type ="submit" class="btn-primary">Incluir</button>
+        <button type ="submit" class="btn btn-primary">Incluir</button>
         
         </form>
+
+                   
+         <br/><br/>        
+        
+        
         
         <br/>         
         <a href="../ProdutoServlet">Voltar</a>
