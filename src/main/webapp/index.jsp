@@ -31,12 +31,6 @@
                 </div>
             </div> 
         </div> <br/><br/>
-        <div class ="telaacess">
-            <h1 class = "h-1">Manutencao</h1>
-            <button class = "abc" type="button">Adicionar</button>
-            <button class = "rmv" type="button">Remover</button>
-            <button class ="fina"  type="button">Finalizar</button>
-        </div>
-    </body>
+      </body>
 </html>
 
