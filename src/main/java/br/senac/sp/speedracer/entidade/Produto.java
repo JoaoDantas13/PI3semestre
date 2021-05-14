@@ -15,30 +15,22 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Produto {
-    private String placa;
+public class Produto extends SuperProduto{
     private String marca;
     private String modelo;
     private String tipo;        
-    private int quantidade;
-    private double precoUnit;
     private int loja;
     private String status;
     
     public Produto(String placa, String marca, String modelo, String tipo, int quantidade, double precoUnit, int loja, String status) {
-        this.placa = placa;
+        super(placa, quantidade, precoUnit);
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
-        this.quantidade = quantidade;
-        this.precoUnit = precoUnit;
         this.loja = loja;
         this.status = status;
     }
     
-    public boolean validarQuantidade() {
-        return true;
-    }
     
     public boolean validarPrecoUnit() {
         return true;
@@ -46,9 +38,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return String.format("Placa: %s <br/> Marca: %s <br/> Modelo: %s <br/> Tipo: %s <br/>"
-                + "Quantidade: %d <br/> "
-                + "Preço Unitário: %.2f <br/> Loja: %d <br/> Status: %s", 
-                placa,marca,modelo,tipo,quantidade,precoUnit,loja,status);
+        return String.format("%s <br/> Marca: %s <br/> Modelo: %s <br/> Tipo: %s <br/>"
+                + "Loja: %d <br/> Status: %s", 
+                super.toString(),marca,modelo,tipo,loja,status);
     }
 }
