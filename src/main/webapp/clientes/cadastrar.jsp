@@ -35,6 +35,9 @@
                 
                 <label class="form-label">Sexo:</label>&nbsp;
                 <input type="text" name="sexo" required="true" class="form-control"/> <br/><br/>
+                
+                <label class="form-label">Loja:</label>&nbsp;
+                <input type="text" name="loja" required="true" class="form-control"/> <br/><br/>
                  
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                 

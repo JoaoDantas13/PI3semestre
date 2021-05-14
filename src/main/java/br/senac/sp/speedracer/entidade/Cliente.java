@@ -24,8 +24,9 @@ public class Cliente {
     private String cidade;
     private char sexo;
     private int ativo;
+    private int loja;
 
-    public Cliente(String nome, String email, String cpf, String endereco, String cidade, char sexo, int ativo) {
+    public Cliente(String nome, String email, String cpf, String endereco, String cidade, char sexo, int ativo, int loja) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -33,12 +34,13 @@ public class Cliente {
         this.cidade = cidade;
         this.sexo = sexo;
         this.ativo = ativo;
+        this.loja = loja;
     }
     
     @Override
     public String toString() {
         return String.format("Nome: %s <br/> Email: %s <br/> CPF: %s <br/> Endereço: %s "
-                + "<br/> Cidade: %s <br/> Sexo: %c <br/> Ativo: %d", 
-                nome,email,cpf,endereco,cidade,sexo,ativo);
+                + "<br/> Cidade: %s <br/> Sexo: %c <br/> Ativo: %d <br/> Loja: %d", 
+                nome,email,cpf,endereco,cidade,sexo,ativo,loja);
     }
 }

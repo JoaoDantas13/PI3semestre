@@ -5,6 +5,7 @@
  */
 package br.senac.sp.speedracer.entidade;
 
+import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,22 +18,18 @@ import lombok.Setter;
 @Setter
 public class Venda {
     
-    private String placa;
-    private String marca;
-    private String nome;
-    private String cpfCli;
-    private int quantidade;
+    private String placa;       
+    private String cpfCli;    
     private double precoUnit;
     private int filial;
-
-    public Venda(String placa, String marca, String nome, String cpfCli, int quantidade, double precoUnit, int filial) {
+    private Date data;
+    
+    public Venda(String placa, String cpfCli, double precoUnit, int filial, Date data) {
         this.placa = placa;
-        this.marca = marca;
-        this.nome = nome;
         this.cpfCli = cpfCli;
-        this.quantidade = quantidade;
         this.precoUnit = precoUnit;
         this.filial = filial;
+        this.data = data;
     }
     
     public boolean validarQuantidade() {
@@ -45,8 +42,7 @@ public class Venda {
     
     @Override
     public String toString() {
-        return String.format("Placa: %s <br/> Marca: %s <br/> Nome: %s <br/> CPF Cliente: %s <br/> "
-                + "Quantidade: %d <br/> Preço Unitário: %.2f <br/> Filial: %d", 
-                placa, marca, nome, cpfCli, quantidade, precoUnit, filial);
+        return String.format("Placa: %s <br/> CPF Cliente: %s <br/> Preço Unitário: %.2f <br/> Filial: %d", 
+                placa, cpfCli, precoUnit, filial);
     }
 }

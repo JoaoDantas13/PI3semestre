@@ -8,6 +8,7 @@ package br.senac.sp.speedracer.dao;
 import br.senac.sp.speedracer.conexao.Conexao;
 import br.senac.sp.speedracer.entidade.Venda;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,22 +20,22 @@ import java.util.logging.Logger;
  */
 public class VendaDAO {
     
-     public static boolean cadastrar(Venda venda){
+     public static boolean cadastrar(Venda venda, Date data){
          
          boolean ok = true;
-         String query = "insert into Vendas (placa, marca, nome, cpfCli, quantidade, precoUnit, filial) values(?, ?, ?, ?, ?, ?, ?)";
+         String query = "insert into Vendas (placa, cpfCli, precoUnit, filial, data) "
+                 + "values(?, ?, ?, ?, ?)";
          Connection con;
          
          try {
              con = Conexao.getConexao();
              PreparedStatement ps = con.prepareStatement(query);
              ps.setString(1, venda.getPlaca());
-             ps.setString(2, venda.getMarca());
-             ps.setString(3, venda.getNome());
-             ps.setString(4, venda.getCpfCli());
-             ps.setInt(5, venda.getQuantidade());
-             ps.setDouble(6, venda.getPrecoUnit());
-             ps.setInt(7, venda.getFilial());
+             ps.setString(2, venda.getCpfCli());
+             ps.setDouble(3, venda.getPrecoUnit());
+             ps.setInt(4, venda.getFilial());
+             ps.setDate(5, data);
+             
              ps.executeUpdate();
              
          } catch (SQLException ex) {

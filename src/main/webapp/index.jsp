@@ -4,12 +4,13 @@
     <head >
         <c:import url="header.jsp" />
         <link rel="stylesheet" href="style.css">
-        <title>Vendas</title>
+        <title>SpeedRacer</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body class="container">
+        <br/>
         <div class="header-1">
-            <c:import  url="header.jsp" />
+            
             <!--Div login-->
             <div class="acesso">
                 <label>Usuario:</label>
@@ -17,19 +18,19 @@
                 <label>Loja:</label>
                 <input type="text">
             </div>
-        </div>
+        </div> <br/><br/>
         <!--Div acesso-->
         <div class = "conteiner">
             <!--Div menu central-->
             <div  class="menucentral">
                 <div class="vendas">    
-                    <h1 class="ttvds">Menu</h1>
-                    <a href="Cliente.jsp">Cliente</a>
-                    <a href="venda/inserirVenda.jsp">Vendas</a>
-                    <a href="ProdutoServlet">Produto</a>
+                    <h1 class="ttvds">Menu</h1> <br/>
+                    <a href="Cliente.jsp"><button type="button" class="btn btn-primary">Cliente</button></a>
+                    <a href="venda/inserirVenda.jsp"><button type="button" class="btn btn-primary">Vendas</button></a>
+                    <a href="ProdutoServlet"><button type="button" class="btn btn-primary">Produto</button></a> 
                 </div>
             </div> 
-        </div>
+        </div> <br/><br/>
         <div class ="telaacess">
             <h1 class = "h-1">Manutencao</h1>
             <button class = "abc" type="button">Adicionar</button>

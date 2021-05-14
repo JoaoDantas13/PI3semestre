@@ -62,6 +62,7 @@
             <th>Endereco</th>
             <th>Cidade</th>
             <th>Sexo</th>
+            <th>Loja</th>
             
             <c:forEach items="${listaClientesInativos}" var="cliente">
                 
@@ -73,6 +74,7 @@
                     <td>${cliente.endereco}</td>
                     <td>${cliente.cidade}</td>
                     <td>${cliente.sexo}</td>
+                    <td>${cliente.loja}</td>
                     
                     
                     <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${cliente.cpf}')">Reativar</button></td>

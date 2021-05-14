@@ -13,26 +13,20 @@
         <form action="CadastrarVendaServlet" method="POST">
             
             <label class="form-label">Placa:</label><br/>
-            <input type="text" name="placa" required="true" class="form-control" required/> <br/><br/>
-            
-            <label class="form-label">Marca:</label><br/>
-            <input type="text" name="marca" required="true" class="form-control" required/> <br/><br/>
-            
-            <label class="form-label">Nome:</label><br/>
-            <input type="text" name="nome" required="true" class="form-control" required/> <br/><br/>
-            
+            <input type="text" name="placa" required="true" class="form-control" /> <br/><br/>
+                                   
             <label class="form-label">CPF do Cliente:</label><br/>
-            <input type="text" name="cpfCli" required="true" class="form-control" required/> <br/><br/>
-            
-            <label class="form-label">Quantidade:</label><br/>
-            <input type="text" name="quantidade" required="true" class="form-control" required/> <br/><br/>
-            
+            <input type="text" name="cpfCli" required="true" class="form-control" /> <br/><br/>
+                        
             <label class="form-label">Preço Unitário:</label><br/>
-            <input type="text" name="precoUnit" required="true" class="form-control" required/> <br/><br/>
+            <input type="text" name="precoUnit" required="true" class="form-control" /> <br/><br/>
             
-            <label class="form-label">Filial:</label><br/>
-            <input type="text" name="filial" required="true" class="form-control" required/> <br/><br/>
+            <label class="form-label">Loja:</label><br/>
+            <input type="text" name="filial" required="true" class="form-control" /> <br/><br/>
             
+            <label>Data da Venda</label><br/>
+            <input type="date" name="data" required="true" class="form-control" /><br/><br/>
+           
             <button type="submit" class="btn btn-primary">Realizar Venda</button>
                 
         </form>

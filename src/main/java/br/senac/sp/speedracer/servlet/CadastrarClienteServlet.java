@@ -31,8 +31,9 @@ public class CadastrarClienteServlet extends HttpServlet {
         String cidade = request.getParameter("cidade");
         char sexo = request.getParameter("sexo").charAt(0);
         int ativo = request.getIntHeader("ativo");
+        int loja = Integer.parseInt(request.getParameter("loja"));
         
-        Cliente cliente = new Cliente(nome, email, cpf, endereco, cidade, sexo, ativo);
+        Cliente cliente = new Cliente(nome, email, cpf, endereco, cidade, sexo, ativo, loja);
         boolean ok = ClienteDAO.cadastrar(cliente);
         
         if(ok){

@@ -61,6 +61,7 @@
             <th>Endereco</th>
             <th>Cidade</th>
             <th>Sexo</th>
+            <th>Loja</th>
             
             <c:forEach items="${listaClientes}" var="cliente">
                 
@@ -72,6 +73,7 @@
                     <td>${cliente.endereco}</td>
                     <td>${cliente.cidade}</td>
                     <td>${cliente.sexo}</td>
+                    <td>${cliente.loja}</td>
                     
                     <td><a href="AlterarClienteServlet?cpf=${cliente.cpf}"><button type="button" class="btn btn-primary">Alterar</button></a></td>
                     <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${cliente.cpf}')">Inativar</button></td>
