@@ -44,6 +44,14 @@
         <servlet-name>CadastrarVendaServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.CadastrarVendaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GerarRelatorioGeralServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.GerarRelatorioGeralServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GerarRelatorioPorLojaServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.GerarRelatorioPorLojaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
         <url-pattern>/ProdutoServlet</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>CadastrarVendaServlet</servlet-name>
         <url-pattern>/venda/CadastrarVendaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GerarRelatorioGeralServlet</servlet-name>
+        <url-pattern>/GerarRelatorioGeralServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GerarRelatorioPorLojaServlet</servlet-name>
+        <url-pattern>/GerarRelatorioPorLojaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
