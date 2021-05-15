@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar</title>
     </head>
-    <body class="conteiner">
+    <body class="container" background="../Background.png" bgproperties="fixed">
         
         <div class="header-1">
              <c:import url="../header.jsp"/>

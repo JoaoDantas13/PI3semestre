@@ -4,14 +4,20 @@
     Author     : saulo.ambezerra
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Relatório Loja</title>
     </head>
     <body>
+        
+         <div class="header-1">
+             <c:import url="/header.jsp"/>
+        </div>
+        
         <form action="GerarRelatorioPorLojaServlet">
             <label>Loja</label>
             <select name="loja">

@@ -27,9 +27,12 @@
             <label>Data da Venda</label><br/>
             <input type="date" name="data" required="true" class="form-control" /><br/><br/>
            
-            <button type="submit" class="btn btn-primary">Realizar Venda</button>
+            <button type="submit" class="btn btn-primary">Realizar Venda</button> <br/><br/>
                 
         </form>
         </c:if>
+        
+       <a href="/PI3semestre/index.jsp">Voltar</a>
+        
     </body>
 </html>

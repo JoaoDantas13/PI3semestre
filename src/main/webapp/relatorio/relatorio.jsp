@@ -4,6 +4,7 @@
     Author     : saulo.ambezerra
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@
                     <td>${venda.filial}</td>
                     <td>${venda.data}</td>
                 </tr>
-            </foreach>
+            </c:forEach>
         </table>
     </body>
 </html>
