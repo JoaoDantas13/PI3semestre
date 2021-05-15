@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Produto</title>
     </head>
-    <body class="container">
+    <body class="container" background="../Background.png" bgproperties="fixed">
         <c:import url="../header.jsp" />
         <h1>Produto</h1>
         
