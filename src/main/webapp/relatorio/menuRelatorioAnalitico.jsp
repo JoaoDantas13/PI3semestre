@@ -1,6 +1,5 @@
 <%-- 
-    Document   : menuRelatorio
-    Created on : 14/05/2021, 06:58:01
+    Document   : menuRelatorioAnalitico
     Author     : saulo.ambezerra
 --%>
 
@@ -10,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Relatório Loja</title>
+        <title>Relatório Analítico</title>
     </head>
     <body>
         
@@ -18,23 +17,21 @@
              <c:import url="/header.jsp"/>
         </div>
         
-        <form action="GerarRelatorioPorLojaServlet">
-            <label>Loja</label>
-            <select name="loja">
-                <option value="loja1">Loja 1</option>
-                <option value="loja2">Loja 2</option>
-                <option value="loja2">Loja 3</option>
-                <option value="loja2">Loja 4</option>
+        <form action="GerarRelatorioAnaliticoServlet">
+            <label>Buscar por:</label>
+            <br/>
+            <select name ="buscapor">
+                <option value="produto">Produto</option>
+                <option value="cliente">Cliente</option>
+                <option value="filial">Filial</option>
             </select>
+            <input type="text" id="palavrachave" name="palavrachave">
+            <br/>
             <label>Data Inicial:</label>
             <input type="date" id="datainicial" name="datainicial" required="true">
+            <br/>
             <label>Data Final:</label>
             <input type="date" id="datafinal" name="datafinal" required="true">
-            <label>Seleção por:</label>
-            <select name ="selecao">
-                <option value ="produto">Produto</option>
-                <option value ="cliente">Cliente</option>
-            </select>
             <button type="submit">Gerar</button>
         </form>
     </body>

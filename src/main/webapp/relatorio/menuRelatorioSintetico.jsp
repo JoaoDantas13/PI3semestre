@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Relatório Geral</title>
+        <title>Relatório Sintético</title>
     </head>
     <body>
         
@@ -18,16 +18,16 @@
              <c:import url="/header.jsp"/>
         </div>
         
-        <form action="GerarRelatorioGeralServlet">
+        <form action="GerarRelatorioSinteticoServlet">
             <label>Data Inicial:</label>
             <input type="date" id="datainicial" name="datainicial" required="true">
             <label>Data Final:</label>
             <input type="date" id="datafinal" name="datafinal" required="true">
-            <label>Seleção por:</label>
-            <select name ="selecao">
+            <label>Visualizar por:</label>
+            <select name ="buscapor">
                 <option value="produto">Produto</option>
                 <option value="cliente">Cliente</option>
-                <option value="Loja">Loja</option>
+                <option value="filial">Filial</option>
             </select>
             <button type="submit">Gerar</button>
         </form>

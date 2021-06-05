@@ -10,7 +10,7 @@
     <body class="container" >
         <br/>
         <div class="header-1">
-            
+
             <!--Div login-->
             <div class="acesso">
                 <label>Usuario:</label>
@@ -28,9 +28,11 @@
                     <a href="Cliente.jsp"><button type="button" class="btn btn-primary">Cliente</button></a>
                     <a href="venda/inserirVenda.jsp"><button type="button" class="btn btn-primary">Vendas</button></a>
                     <a href="ProdutoServlet"><button type="button" class="btn btn-primary">Produto</button></a> 
+                    <a href="relatorio/menuRelatorioAnalitico.jsp"><button type="button" class="btn btn-primary">Relatório Analítico</button></a>
+                    <a href="relatorio/menuRelatorioSintetico.jsp"><button type="button" class="btn btn-primary">Relatório Sintético</button></a>
                 </div>
             </div> 
         </div> <br/><br/>
-      </body>
+    </body>
 </html>
 

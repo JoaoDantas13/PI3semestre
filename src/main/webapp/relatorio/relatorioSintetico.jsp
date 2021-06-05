@@ -1,0 +1,36 @@
+<%-- 
+    Document   : relatorio
+    Created on : 14/05/2021, 12:13:40
+    Author     : saulo.ambezerra
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body class="container">
+        
+        <div class="header-1">
+            <c:import url="/header.jsp"/>
+        </div>
+        <h1>Relatório</h1>
+        
+        <table class="table">
+            <th>${buscaPor}</th>
+            <th>quantidade</th>
+            <th>valor total</th>
+            
+            <c:forEach items="${relatorio}" var="venda">
+                <tr>
+                    <td>${venda.nome}</td>
+                    <td>${venda.quantidade}</td>
+                    <td>${venda.total}</td>                    
+                </tr>
+            </c:forEach>
+        </table>
+    </body>
+</html>

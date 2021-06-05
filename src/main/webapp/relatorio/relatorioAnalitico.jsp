@@ -1,6 +1,6 @@
 <%-- 
-    Document   : relatorio
-    Created on : 14/05/2021, 12:13:40
+    Document   : relatorioAnalitico
+    Created on : 03/06/2021, 10:46:49
     Author     : saulo.ambezerra
 --%>
 
@@ -19,22 +19,23 @@
         </div>
         <h1>Relatório</h1>
         
-        <table class="table">
-            <th>placa</th>
-            <th>cpf</th>
-            <th>precoUnit</th>
-            <th>filial</th>
-            <th>data</th>
+        <<table class="table">
+            <th>Produto</th>
+            <th>Cliente</th>
+            <th>Valor</th>
+            <th>Filial</th>
+            <th>Data</th>
             
-            <c:forEach items="${listaVendas}" var="venda">
+            <c:forEach items="${relatorio}" var="venda">
                 <tr>
-                    <td>${venda.placa}</td>
-                    <td>${venda.cpf}</td>
-                    <td>${venda.precoUnit}</td>
-                    <td>${venda.filial}</td>
+                    <td>${venda.produto}</td>
+                    <td>${venda.cpfCli}</td>
+                    <td>${venda.precoUnit}</td> 
+                    <<td>${venda.filial}</td>
                     <td>${venda.data}</td>
                 </tr>
             </c:forEach>
         </table>
+        
     </body>
 </html>
