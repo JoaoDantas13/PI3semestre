@@ -1,9 +1,3 @@
-<%-- 
-    Document   : relatorioAnalitico
-    Created on : 03/06/2021, 10:46:49
-    Author     : saulo.ambezerra
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

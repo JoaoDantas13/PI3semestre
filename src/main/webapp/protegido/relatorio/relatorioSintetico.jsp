@@ -1,9 +1,3 @@
-<%-- 
-    Document   : relatorio
-    Created on : 14/05/2021, 12:13:40
-    Author     : saulo.ambezerra
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
