@@ -45,7 +45,7 @@
 
         
         <h6>
-            <a id="posicaobtn" href="index.jsp"><button type="button" class="btn btn-primary">Confirmar</button></a>
+            <a id="posicaobtn" href="<c:url value="/protegido/index.jsp"/>"><button type="button" class="btn btn-primary">Confirmar</button></a>
         </h6>
 
 

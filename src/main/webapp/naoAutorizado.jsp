@@ -41,7 +41,7 @@
     <body class="container" background="Background.png" bgproperties="fixed">
 
  
-        <h1 id="posicao" >Ops, a operação não foi realizada !!</h1>
+        <h1 id="posicao" >Infelizmente você não acesso !!</h1>
 
         
         <h6>
@@ -52,4 +52,5 @@
 
     </body>
 </html>
+
 

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : menuRelatorioGeral
-    Created on : 14/05/2021, 08:32:08
-    Author     : saulo.ambezerra
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,10 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Relatório Sintético</title>
     </head>
-    <body>
+    <body class="container" background="../../Background.png" bgproperties="fixed">
         
          <div class="header-1">
-             <c:import url="/header.jsp"/>
+             <c:import url="../../header.jsp"/>
         </div>
         
         <form action="GerarRelatorioSinteticoServlet">
@@ -31,5 +25,9 @@
             </select>
             <button type="submit">Gerar</button>
         </form>
+        
+        <br/><br/>
+        
+        <a href="../index.jsp">Voltar</a>
     </body>
 </html>

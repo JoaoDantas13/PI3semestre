@@ -10,12 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Relatorio</title>
     </head>
-    <body class="container">
+    <body class="container" background="../../Background.png" bgproperties="fixed">
         
         <div class="header-1">
-            <c:import url="/header.jsp"/>
+            <c:import url="../../header.jsp"/>
         </div>
         <h1>Relatório</h1>
         
@@ -37,5 +37,8 @@
             </c:forEach>
         </table>
         
+        <br/><br/>
+        
+        <a href="../menuRelatorioAnalitico.jsp">Voltar</a>
     </body>
 </html>

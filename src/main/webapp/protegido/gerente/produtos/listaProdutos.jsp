@@ -49,7 +49,7 @@
     <body class="container">
         
         <div class="header-1">
-             <c:import url="../header.jsp"/>
+             <c:import url="../../../header.jsp"/>
         </div>
         
         <h1>Produtos:</h1>
@@ -61,7 +61,7 @@
         
     </b></b>
                  <div class ="btnincluir">
-                        <a href="produtos/incluirProduto.jsp"><button type="button" class="btn btn-primary">Incluir novo Produto</button></a>
+                        <a href="protegido/gerente/produtos/incluirProduto.jsp"><button type="button" class="btn btn-primary">Incluir novo Produto</button></a>
                     </div>
 
     </b></b>
@@ -120,7 +120,7 @@
    
          
         
-        <c:import url="../footer.jsp"/>
+        <c:import url="/footer.jsp"/>
         
         
     </body>

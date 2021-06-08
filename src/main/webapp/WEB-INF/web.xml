@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>AutorizacaoFilter</filter-name>
+        <filter-class>br.senac.sp.speedracer.filter.AutorizacaoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutorizacaoFilter</filter-name>
+        <url-pattern>/protegido/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>ProdutoServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.ProdutoServlet</servlet-class>
@@ -60,6 +68,14 @@
         <servlet-name>GerarRelatorioSinteticoServlet</servlet-name>
         <servlet-class>br.senac.sp.speedracer.servlet.GerarRelatorioSinteticoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>br.senac.sp.speedracer.servlet.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
         <url-pattern>/ProdutoServlet</url-pattern>
@@ -70,7 +86,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastrarClienteServlet</servlet-name>
-        <url-pattern>/clientes/CadastrarClienteServlet</url-pattern>
+        <url-pattern>/CadastrarClienteServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlterarClienteServlet</servlet-name>
@@ -78,7 +94,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastraProdutoServlet</servlet-name>
-        <url-pattern>/produtos/CadastraProdutoServlet</url-pattern>
+        <url-pattern>/CadastraProdutoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InativarProdutoServlet</servlet-name>
@@ -102,7 +118,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastrarVendaServlet</servlet-name>
-        <url-pattern>/venda/CadastrarVendaServlet</url-pattern>
+        <url-pattern>/CadastrarVendaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GerarRelatorioAnaliticoServlet</servlet-name>
@@ -117,4 +141,7 @@
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>protegido/index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : produto
-    Created on : 28/04/2021, 21:13:12
-    Author     : HOME
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,10 +59,10 @@
           outraOpcaoQuantidade('${produto.quantidade}'),
           outraOpcaoTipo('${produto.tipo}')" >
         
-        <c:import url="../header.jsp" />
+        <c:import url="../../../header.jsp" />
         <h1>Produto</h1>
         
-        <form action="AlterarProdutoServlet" method="POST" >
+        <form action="${pageContext.request.contextPath}/AlterarProdutoServlet" method="POST" >
         <label>Placa</label>
         <input type="text" name="placa" required="true" value="${produto.placa}" readonly="true" class="form-control"/>
         </br>

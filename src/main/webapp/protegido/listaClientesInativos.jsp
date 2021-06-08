@@ -4,11 +4,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Clientes</title>
+        <title>Ativar</title>
         
         <script type="text/javascript">
             function mostrarTelaAlteracao(cpf){
-                $.ajax("AlterarClienteServlet?cpf=" + cpf).done(function(){
+                $.ajax("ClienteInativoServlet?cpf=" + cpf).done(function(){
                     alert(cpf);
                 })
                     .fail(function(){
@@ -20,18 +20,18 @@
                 
                 $("#cpfCliente").html(cpf);
                 
-                var modalConfirmacao = $("#confirmarInativacao");
+                var modalConfirmacao = $("#confirmarReativacao");
                 modalConfirmacao.show();
             }
             
             function fecharTelaConfirmacao(){
-                $("#confirmarInativacao").hide();
+                $("#confirmarReativacao").hide();
             }
             
-            function inativarCliente(){
+            function ReativarCliente(){
                 var cpf = $("#cpfCliente").html();
                 fecharTelaConfirmacao();
-                $.ajax("InativarClienteServlet?cpf=" + cpf).done(function(){
+                $.ajax("AtivarClienteServlet?cpf=" + cpf).done(function(){
                         location.reload();
                         
                     })
@@ -44,11 +44,12 @@
             }
             
         </script>
+        
     </head>
     <body class="container">
         
         <div class="header-1">
-             <c:import url="/header.jsp"/>
+            <c:import url="/header.jsp"/>
         </div>
         
         <h1>Clientes:</h1>
@@ -63,7 +64,7 @@
             <th>Sexo</th>
             <th>Loja</th>
             
-            <c:forEach items="${listaClientes}" var="cliente">
+            <c:forEach items="${listaClientesInativos}" var="cliente">
                 
                 <tr>
                     
@@ -75,32 +76,32 @@
                     <td>${cliente.sexo}</td>
                     <td>${cliente.loja}</td>
                     
-                    <td><a href="AlterarClienteServlet?cpf=${cliente.cpf}"><button type="button" class="btn btn-primary">Alterar</button></a></td>
-                    <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${cliente.cpf}')">Inativar</button></td>
+                    
+                    <td><button type="button" class="btn btn-primary" onclick="mostrarTelaConfirmacao('${cliente.cpf}')">Reativar</button></td>
                     
                                         
                 </tr>
             </c:forEach>
         </table>
         
-        <div class="modal" id="confirmarInativacao">
+        <div class="modal" id="confirmarReativacao">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Confirmar Inativação</h5>
+                <h5 class="modal-title">Confirmar Reativação</h5>
                 </div>
               <div class="modal-body">
-                  <p>Tem certeza que deseja inativar o cliente de CPF <label id="cpfCliente"></label>?</p>
+                  <p>Tem certeza que deseja Reativar o cliente de CPF <label id="cpfCliente"></label>?</p>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" onclick="fecharTelaConfirmacao()">Cancelar</button>
-                  <button type="button" class="btn btn-primary" onclick="inativarCliente()">Confirmar</button>
+                  <button type="button" class="btn btn-primary" onclick="ReativarCliente()">Confirmar</button>
               </div>
             </div>
           </div>
         </div>
-                     
+                                   
          <br/><br/>
-        <a href="Cliente.jsp">Voltar</a>
+        <a href="<c:url value="/protegido/Cliente.jsp"/>">Voltar</a>
     </body>
 </html>

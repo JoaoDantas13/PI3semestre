@@ -9,14 +9,14 @@
     <body class="conteiner">
         
         <div class="header-1">
-             <c:import url="../header.jsp"/>
+             <c:import url="../../header.jsp"/>
         </div>
         
         <h1>Altera os dados dos Clientes</h1>
         
         <c:if test="${not empty cliente}">
             
-            <form action="AlterarClienteServlet" method="POST">
+            <form action="${pageContext.request.contextPath}/AlterarClienteServlet" method="POST">
                 
                 <label class="form-label">Nome:</label>&nbsp;
                 <input type="text" size="60" name="nome" required="true" value="${cliente.nome}"/> <br/><br/>
@@ -46,6 +46,6 @@
         </c:if>
                 
         <br/><br/>
-        <a href="/PI3semestre/Cliente.jsp">Voltar</a>
+        <a href="/protegido/Cliente.jsp">Voltar</a>
     </body>
 </html>

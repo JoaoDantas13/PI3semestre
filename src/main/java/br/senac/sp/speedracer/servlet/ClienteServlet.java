@@ -29,7 +29,7 @@ public class ClienteServlet extends HttpServlet {
         
        request.setAttribute("listaClientes", listaClientes);
        
-       request.getRequestDispatcher("/listaClientes.jsp").forward(request, response);
+       request.getRequestDispatcher("/protegido/listaClientes.jsp").forward(request, response);
         
     }
 

@@ -4,6 +4,7 @@
     Author     : HOME
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,6 @@
     </head>
     <body>
         <br/><br/>         
-        <a href="index.jsp">Menu Principal</a>
+        <a href= "<c:url value="/protegido/index.jsp"/>">Menu Principal</a>
     </body>
 </html>

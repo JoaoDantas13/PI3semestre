@@ -1,8 +1,3 @@
-<%-- 
-    Document   : menuRelatorioAnalitico
-    Author     : saulo.ambezerra
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,10 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Relatório Analítico</title>
     </head>
-    <body>
+    <body class="container" background="../../Background.png" bgproperties="fixed">
         
          <div class="header-1">
-             <c:import url="/header.jsp"/>
+             <c:import url="../../header.jsp"/>
         </div>
         
         <form action="GerarRelatorioAnaliticoServlet">
@@ -34,5 +29,9 @@
             <input type="date" id="datafinal" name="datafinal" required="true">
             <button type="submit">Gerar</button>
         </form>
+        
+        <br/><br/>
+        
+        <a href="../index.jsp">Voltar</a>
     </body>
 </html>

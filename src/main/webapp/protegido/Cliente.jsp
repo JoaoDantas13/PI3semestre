@@ -6,10 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cliente</title>
     </head>
-    <body class="container">
+    <body class="container" background="../Background.png" bgproperties="fixed">
         
         <div class="header-1">
-            <c:import url="/header.jsp"/>
+            <c:import url="../header.jsp"/>
         </div>
         
         <h1>Tela de Clientes</h1>
@@ -18,10 +18,10 @@
         <a href="clientes/cadastrar.jsp"><button type="button" class="btn btn-primary">Cadastar os Clientes</button></a>
                         
         <br/><br/>
-        <a href="ClienteServlet"><button type="button" class="btn btn-primary">Lista de Clientes</button></a>
+        <a href="<c:url value="/ClienteServlet"/>"><button type="button" class="btn btn-primary">Lista de Clientes</button></a>
         
         <br/><br/>
-        <a href="ClienteInativoServlet"><button type="button" class="btn btn-primary">Clientes Inativados</button></a>
+        <a href="<c:url value="/ClienteInativoServlet"/>"><button type="button" class="btn btn-primary">Clientes Inativados</button></a>
                 
         <br/><br/>
         <a href="index.jsp">Voltar</a>

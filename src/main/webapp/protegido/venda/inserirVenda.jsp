@@ -6,11 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar Venda</title>
     </head>
-    <body class="container">
-        <c:import url="../header.jsp"/>
+    <body class="container" background="../../Background.png" bgproperties="fixed">
+        <c:import url="../../header.jsp"/>
         
         <c:if test="${empty venda}">
-        <form action="CadastrarVendaServlet" method="POST">
+        <form action="${pageContext.request.contextPath}/CadastrarVendaServlet" method="POST">
             
             <label class="form-label">Placa:</label><br/>
             <input type="text" name="placa" required="true" class="form-control" /> <br/><br/>
@@ -32,7 +32,7 @@
         </form>
         </c:if>
         
-       <a href="/PI3semestre/index.jsp">Voltar</a>
+       <a href="../index.jsp">Voltar</a>
         
     </body>
 </html>

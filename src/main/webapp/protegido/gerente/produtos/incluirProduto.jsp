@@ -1,9 +1,3 @@
-<%-- 
-    Document   : produto
-    Created on : 28/04/2021, 21:13:12
-    Author     : HOME
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,11 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Produto</title>
     </head>
-    <body class="container" background="../Background.png" bgproperties="fixed">
-        <c:import url="../header.jsp" />
+    <body class="container" background="../../../Background.png" bgproperties="fixed">
+        <c:import url="../../../header.jsp" />
         <h1>Produto</h1>
         
-        <form action="CadastraProdutoServlet" method="POST">
+        <form action="${pageContext.request.contextPath}/CadastraProdutoServlet" method="POST">
         <label class="form-label">Placa</label>
         <input type="text" name="placa" required="true" class="form-control" placeholder="Ex.: XXX1111"/>
         </br>
@@ -79,6 +73,6 @@
         
         
         <br/>         
-        <a href="../ProdutoServlet">Voltar</a>
+        <a href="../../../ProdutoServlet">Voltar</a>
     </body>
 </html>

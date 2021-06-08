@@ -30,7 +30,7 @@ public class ClienteInativoServlet extends HttpServlet {
         
        request.setAttribute("listaClientesInativos", listaClientesInativos);
        
-       request.getRequestDispatcher("/listaClientesInativos.jsp").forward(request, response);
+       request.getRequestDispatcher("/protegido/listaClientesInativos.jsp").forward(request, response);
     }
 
     
