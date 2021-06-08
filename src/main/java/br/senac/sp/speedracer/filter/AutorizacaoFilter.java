@@ -53,6 +53,7 @@ public class AutorizacaoFilter implements Filter {
     public boolean verificarAcesso(String url, Usuario usuario) {
 
         boolean nok = false;
+        
 
         if (
                 (url.contains("/protegido/gerente/") && !usuario.isGerente())
