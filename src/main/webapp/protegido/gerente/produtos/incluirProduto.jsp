@@ -74,6 +74,6 @@
         
         
         <br/>         
-        <a href="../../../ProdutoServlet">Voltar</a>
+        <a href="../../../ProdutoServlet"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

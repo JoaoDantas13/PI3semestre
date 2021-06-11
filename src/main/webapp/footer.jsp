@@ -13,6 +13,6 @@
     </head>
     <body>
         <br/><br/>         
-        <a href= "<c:url value="/protegido/index.jsp"/>">Menu Principal</a>
+        <a href= "<c:url value="/protegido/index.jsp"/>"><button type="button" class="btn btn-danger">Menu Principal</button></a>
     </body>
 </html>

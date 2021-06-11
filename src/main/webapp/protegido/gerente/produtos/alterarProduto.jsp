@@ -110,6 +110,6 @@
         </form>
         
         <br/>         
-        <a href="../PI3semestre/ProdutoServlet">Voltar</a>
+        <a href="../PI3semestre/ProdutoServlet"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

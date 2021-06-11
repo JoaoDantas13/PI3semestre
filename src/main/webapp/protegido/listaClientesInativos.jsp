@@ -103,6 +103,6 @@
         </div>
                                    
          <br/><br/>
-        <a href="<c:url value="/protegido/Cliente.jsp"/>">Voltar</a>
+         <a href="<c:url value="/protegido/Cliente.jsp"/>"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

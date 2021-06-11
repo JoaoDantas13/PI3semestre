@@ -29,6 +29,6 @@
             
         <br/><br/>
         
-        <a href="../menuRelatorioSintetico.jsp">Voltar</a>
+        <a href="./menuRelatorioSintetico.jsp"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

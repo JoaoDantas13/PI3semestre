@@ -12,6 +12,7 @@
          <div class="header-1">
              <c:import url="../../header.jsp"/>
         </div>
+        <br/><br/>
         
         <form action="GerarRelatorioAnaliticoServlet">
             <label>Buscar por:</label>
@@ -22,10 +23,10 @@
                 <option value="filial">Filial</option>
             </select>
             <input type="text" id="palavrachave" name="palavrachave">
-            <br/>
+            <br/><br/>
             <label>Data Inicial:</label>
             <input type="date" id="datainicial" name="datainicial" required="true">
-            <br/>
+            <br/><br/>
             <label>Data Final:</label>
             <input type="date" id="datafinal" name="datafinal" required="true">
             <button type="submit">Gerar</button>
@@ -33,6 +34,6 @@
         
         <br/><br/>
         
-        <a href="../index.jsp">Voltar</a>
+        <a href="../index.jsp"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

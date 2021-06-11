@@ -44,7 +44,7 @@ public class RelatorioAnaliticoDAO {
                 relatorios.add(relatorio);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioAnaliticoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return relatorios;
     }
@@ -70,7 +70,7 @@ public class RelatorioAnaliticoDAO {
                 relatorios.add(relatorio);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioAnaliticoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return relatorios;
     }
@@ -96,7 +96,7 @@ public class RelatorioAnaliticoDAO {
                 relatorios.add(relatorio);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioAnaliticoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return relatorios;
     }

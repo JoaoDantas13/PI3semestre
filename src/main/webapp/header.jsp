@@ -12,9 +12,9 @@
         
         <c:if test="${not empty sessionScope.usuario}">
             
-            <p>Usuário:${sessionScope.usuario.nome}</p>
-            <p>Perfil:${sessionScope.usuario.perfil}</p>
-            <a href="<c:url value="/LogoutServlet"/>">Sair</a>
+            <b><p>Usuário:${sessionScope.usuario.nome}</p></b>
+            <b><p>Perfil:${sessionScope.usuario.perfil}</p></b>
+            <a href="<c:url value="/LogoutServlet"/>"><button type="button" class="btn btn-danger">Sair</button></a>
             
         </c:if>
         

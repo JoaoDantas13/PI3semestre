@@ -33,7 +33,7 @@
         </form>
         </c:if>
         
-       <a href="../index.jsp">Voltar</a>
+        <a href="../index.jsp"><button type="button" class="btn btn-danger">Voltar</button></a>
         
     </body>
 </html>

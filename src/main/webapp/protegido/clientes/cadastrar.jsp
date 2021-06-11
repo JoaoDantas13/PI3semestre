@@ -47,6 +47,6 @@
         </c:if>
                 
         <br/><br/>
-        <a href="../Cliente.jsp">Voltar</a>
+        <a href="../Cliente.jsp"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

@@ -33,6 +33,6 @@
         
         <br/><br/>
         
-        <a href="../menuRelatorioAnalitico.jsp">Voltar</a>
+        <a href="./menuRelatorioAnalitico.jsp"><button type="button" class="btn btn-danger">Voltar</button></a>
     </body>
 </html>

@@ -57,6 +57,8 @@ public class AutorizacaoFilter implements Filter {
 
         if (
                 (url.contains("/protegido/gerente/") && !usuario.isGerente())
+                ||
+                (url.contains("/protegido/relatorio/") && !usuario.isGerente())
                 
             ) {
 
